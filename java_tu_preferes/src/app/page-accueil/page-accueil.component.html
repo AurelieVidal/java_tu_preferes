@@ -1,0 +1,10 @@
+<body>
+<h1>Nombre de Joueurs:</h1>
+<form (ngSubmit)="onSubmitForm()">
+  <label for="nbJInput">Le nombre de Joueurs:</label>
+  <input type="nbJoueur" id="nbJInput" [(ngModel)]="nombreJoueur" name="nombreJoueur">
+  <button type="submit">OK!</button>
+</form>
+<button (click)="onContinue()">Continuer vers menu</button>
+<router-outlet></router-outlet>
+</body>
