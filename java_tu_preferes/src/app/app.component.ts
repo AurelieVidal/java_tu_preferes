@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {carte} from "./models/carte";
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'java_tu_preferes';
+
 }
