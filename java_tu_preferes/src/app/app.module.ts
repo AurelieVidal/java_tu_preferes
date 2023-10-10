@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { PartieComponent } from './partie/partie.component';
 import { MenuComponent } from './menu/menu.component';
 import {FormsModule} from "@angular/forms";
+import { PageAccueilComponent } from './page-accueil/page-accueil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PartieComponent,
-    MenuComponent
+    MenuComponent,
+    PageAccueilComponent
   ],
   imports: [
     BrowserModule,

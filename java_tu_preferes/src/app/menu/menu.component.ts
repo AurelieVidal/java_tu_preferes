@@ -9,11 +9,11 @@ import {Router} from "@angular/router";
 export class MenuComponent {
 pseudoUser!: string;
 
-//constructor(private router: Router){ }
+constructor(private router: Router){ }
   ngOnInit():void{}
-  //onContinue(): void{
-  //this.router.navigateByUrl('partie');
-  //}
+  onContinue(): void{
+  this.router.navigateByUrl('partie');
+  }
 
 onSubmitForm():void {
   console.log(this.pseudoUser);

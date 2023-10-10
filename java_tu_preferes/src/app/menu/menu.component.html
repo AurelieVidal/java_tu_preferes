@@ -5,7 +5,8 @@
     <button type="submit">OK!</button>
   </form>
   <div class="landing-links">
-<a routerLink="partie"> Continuer vers partie</a>
+<button (click)="onContinue()">Continuer vers partie</button>
+    <router-outlet></router-outlet>
   </div>
 </div>
-<router-outlet></router-outlet>
+
