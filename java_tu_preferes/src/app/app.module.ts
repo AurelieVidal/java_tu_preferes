@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PartieComponent } from './partie/partie.component';
 import { MenuComponent } from './menu/menu.component';
+
+import {CardService} from "./services/card.services";
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { PageAccueilComponent } from './page-accueil/page-accueil.component';
 
@@ -18,9 +21,11 @@ import { PageAccueilComponent } from './page-accueil/page-accueil.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
