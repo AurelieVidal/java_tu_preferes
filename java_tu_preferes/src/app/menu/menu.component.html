@@ -1,1 +1,10 @@
-<p>menu works!</p>
+<div class="landing-block">
+  <form (ngSubmit)="onSubmitForm()">
+    <label for="pseudoInput">Entre ton pseudo :</label>
+    <input type="pseudo" id="pseudoInput" [(ngModel)]="pseudoUser" name="pseudoUser">
+    <button type="submit">OK!</button>
+  </form>
+  <div class="landing-links">
+
+  </div>
+</div>

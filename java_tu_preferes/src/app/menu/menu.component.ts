@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+pseudoUser!: string;
 
+onSubmitForm():void {
+  console.log(this.pseudoUser);
+}
 }
