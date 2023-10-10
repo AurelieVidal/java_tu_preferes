@@ -11,15 +11,15 @@ import { Card } from "../models/card.model"
   styleUrls: ['./partie.component.css']
 })
 export class PartieComponent implements OnInit{
-  cards$: Observable<Card[]>;
+  /*cards$: Observable<Card[]>;*/
 
 
 
 
 
-  constructor(private _route: ActivatedRoute, private cardService: CardService, private router: Router) {
+  /*constructor(private _route: ActivatedRoute, private cardService: CardService, private router: Router) {
     this.cards$ = cardService.findAll()
-  }
+  }*/
 
   myCarte!: Card[];
   joueur1!: joueur;
@@ -32,13 +32,13 @@ export class PartieComponent implements OnInit{
     this.joueur1 = new joueur('Dwight','https://screenrant.com/wp-content/uploads/2018/10/Dwight-Schrute-in-a-Meredith-Wig.jpg');
     this.joueur2 = new joueur('Mickeal','https://images4.fanpop.com/image/photos/17700000/Michael-the-office-17734797-400-600.jpg');
 
-    this.cards$.subscribe(
+   /* this.cards$.subscribe(
       x => this.myCarte = x
-    );
+    );*/
 
-/*
-    this.myCarte =[
-      new cardModel(
+
+    /*this.myCarte =[
+      new Card(
       'chocolatine'
     ),
       new cardModel(
