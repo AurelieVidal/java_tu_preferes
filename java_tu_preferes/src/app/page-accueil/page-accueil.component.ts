@@ -11,7 +11,7 @@ export class PageAccueilComponent {
   constructor(private router: Router){ }
 
   onContinue(): void{
-    this.router.navigateByUrl('menu');
+    this.router.navigateByUrl('menu/'+this.nombreJoueur);
   }
   onSubmitForm():void {
     console.log(this.nombreJoueur);
