@@ -4,10 +4,22 @@
     <input type="pseudo" id="pseudoInput" [(ngModel)]="pseudoUser" name="pseudoUser">
     <button type="submit">OK!</button>
   </form>
-  <div class="association-image/prenom"*ngFor="let perso of (listperso | async)">
-    <span>{{perso.prenom}}</span>
-    <img src ="assets/images/{{perso.id}}.jfif">
+
+<br>
+
+  <div *ngFor="let perso of (listperso | async)" (click)="SelectImage(perso.id)"
+       >
+    <div class="image" >
+      <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
+    </div>
   </div>
+
+
+
+  <br>
+
+
+
   <div class="landing-links">
 <button (click)="onContinue()">Continuer vers partie</button>
     <router-outlet></router-outlet>

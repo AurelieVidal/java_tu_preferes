@@ -8,9 +8,11 @@ import { MenuComponent } from './menu/menu.component';
 import { PageAccueilComponent } from './page-accueil/page-accueil.component';
 import { QuestionsComponent } from './questions/questions.component';
 
-import {CardService} from "./services/card.services";
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import { CardService } from "./services/card.services";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { CarouselComponent, CarouselControlComponent, CarouselInnerComponent, CarouselItemComponent } from "@coreui/angular";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,15 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CarouselComponent,
+    CarouselInnerComponent,
+    CarouselItemComponent,
+    CarouselControlComponent,
+    BrowserAnimationsModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
