@@ -1,28 +1,21 @@
-<div class="landing-block">
-  <form (ngSubmit)="onSubmitForm()">
-    <label for="pseudoInput">Entre ton pseudo :</label>
-    <input type="pseudo" id="pseudoInput" [(ngModel)]="pseudoUser" name="pseudoUser">
-    <button type="submit">OK!</button>
-  </form>
+<ng-container *ngFor="let key of Object.keys(usersPseudo.value); let i = index">
+    <form [formGroup]="usersPseudo">
+      <label>Pseudo {{ i }}: </label>
+      <input type="text" [formControlName]="'pseudo_' + i">
+    </form>
+</ng-container>
 
-<br>
-
-  <div *ngFor="let perso of (listperso | async)" (click)="SelectImage(perso.id)"
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  
+    <div *ngFor="let perso of (listperso | async)" (click)="SelectImage(perso.id)"
        >
     <div class="image" >
       <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
     </div>
   </div>
+  <button type="submit" [disabled]="!userForm.valid">Submit</button>
+  <button (click)="onContinue()">Continuer vers partie</button>
 
+  <router-outlet></router-outlet>
 
-
-  <br>
-
-
-
-  <div class="landing-links">
-<button (click)="onContinue()">Continuer vers partie</button>
-    <router-outlet></router-outlet>
-  </div>
-</div>
 
