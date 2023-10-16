@@ -1,12 +1,14 @@
-<div class="landing-block">
-  <form (ngSubmit)="onSubmitForm()">
-    <label for="pseudoInput">Entre ton pseudo :</label>
-    <input type="pseudo" id="pseudoInput" [(ngModel)]="pseudoUser" name="pseudoUser">
-    <button type="submit">OK!</button>
-  </form>
-  <div class="landing-links">
-<button (click)="onContinue()">Continuer vers partie</button>
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<ng-container *ngFor="let key of Object.keys(usersPseudo.value); let i = index">
+    <!-- Votre section HTML ici -->
+    <form [formGroup]="usersPseudo">
+      <label>Pseudo {{ i }}: </label>
+      <input type="text" [formControlName]="'pseudo_' + i">
+    </form>
+</ng-container>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <button type="submit" [disabled]="!userForm.valid">Submit</button>
+  <button (click)="onContinue()">Continuer vers partie</button>
+
+  <router-outlet></router-outlet>
 

@@ -16,9 +16,10 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     PartieComponent,
-    MenuComponent,
+    // MenuComponent,
     PageAccueilComponent,
     // QuestionsComponent
+
   ],
   imports: [
     BrowserModule,
