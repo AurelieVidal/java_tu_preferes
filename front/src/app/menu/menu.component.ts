@@ -1,14 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, NgModule} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule, FormArray} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {PersoService} from "../services/perso.service";
+import {Perso} from "../models/Perso";
 
 /**
  * @title Input with error messages
  */
+
 
 @Component({
   selector: 'app-menu',
@@ -16,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrls: ['./menu.component.css'],
   standalone: true,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, RouterOutlet, NgForOf],
+
 })
 
 export class MenuComponent implements OnInit{
@@ -26,14 +29,38 @@ export class MenuComponent implements OnInit{
   });
   usersPseudo!: FormGroup;
 
-constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-}
+  pseudoUser!: string;
+  listperso;
+  persos!: Perso [];
+  perso_choisi!: bigint;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private persoService: PersoService){
+    this.listperso =persoService.findAll();
+  }
+
+
+
+
 
   counter() {
   return new Array(parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]))
-  }
+
   onContinue(): void{
-  this.router.navigateByUrl('questions');
+    this.router.navigateByUrl('questions');
+  }
+
+  onSubmitForm():void {
+    console.log(this.pseudoUser);
+    console.log("c'est réussi"+this.nbrJoueur);
+  }
+
+  onItemChange($event: any): void {
+    console.log('Carousel onItemChange', $event);
+  }
+
+  SelectImage(id: any): void {
+    this.perso_choisi = id;
+    console.log(id);
   }
 
   pseudoFormControl = new FormControl('', [Validators.required]);
@@ -46,6 +73,18 @@ constructor(private router: Router, private activatedRoute: ActivatedRoute) {
 
   ngOnInit(): void {
     this.initForm();
+
+    this.activatedRoute.params.subscribe(s=>{
+        this.nbrJoueur = s["nbrJoueur"]
+      }
+    )
+
+    this.listperso.subscribe(
+      x => {
+        this.persos = x;
+        console.log(x)
+      }
+    );
 
   }
 
@@ -61,5 +100,6 @@ constructor(private router: Router, private activatedRoute: ActivatedRoute) {
 
   protected readonly Array = Array;
   protected readonly Object = Object;
+
 }
 
