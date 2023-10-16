@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/java_tu_preferes.iml" filepath="$PROJECT_DIR$/.idea/java_tu_preferes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back/back-skeleton.iml" filepath="$PROJECT_DIR$/back/back-skeleton.iml" />
     </modules>
   </component>
 </project>
