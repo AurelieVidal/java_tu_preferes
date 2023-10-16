@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {PersoService} from "../services/perso.service";
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class MenuComponent implements OnInit{
 pseudoUser!: string;
 nbrJoueur!:number;
-constructor(private router: Router, private activatedRoute: ActivatedRoute){ }
+listperso;
+constructor(private router: Router, private activatedRoute: ActivatedRoute, private persoService: PersoService){
+  this.listperso =persoService.findAll();
+}
 
 
   ngOnInit():void{
@@ -25,5 +29,8 @@ constructor(private router: Router, private activatedRoute: ActivatedRoute){ }
 onSubmitForm():void {
   console.log(this.pseudoUser);
   console.log("c'est réussi"+this.nbrJoueur);
+}
+listPerso(): void{
+
 }
 }

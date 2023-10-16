@@ -4,6 +4,10 @@
     <input type="pseudo" id="pseudoInput" [(ngModel)]="pseudoUser" name="pseudoUser">
     <button type="submit">OK!</button>
   </form>
+  <div class="association-image/prenom"*ngFor="let perso of (listperso | async)">
+    <span>{{perso.prenom}}</span>
+    <img src ="assets/images/{{perso.id}}">
+  </div>
   <div class="landing-links">
 <button (click)="onContinue()">Continuer vers partie</button>
     <router-outlet></router-outlet>
