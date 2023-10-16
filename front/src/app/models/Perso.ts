@@ -1,5 +1,5 @@
 export interface Perso{
-  id: BigInteger
+  id: bigint
   prenom: string
   photoUrl:string;
 }
