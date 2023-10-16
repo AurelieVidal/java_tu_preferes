@@ -19,7 +19,7 @@ constructor(private router: Router, private activatedRoute: ActivatedRoute){ }
   )
   }
   onContinue(): void{
-  this.router.navigateByUrl('partie');
+  this.router.navigateByUrl('questions');
   }
 
 onSubmitForm():void {
