@@ -26,4 +26,19 @@ INSERT INTO student_course (id, student_id, course_id) VALUES (1, 1, 7);*/
 INSERT INTO cards (id, reponse) VALUES (1, 'chocolatine');
 INSERT INTO cards (id, reponse) VALUES (2, 'pain au chocolat');
 
+INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
+INSERT INTO perso (id, prenom) VALUES (2, 'Jim');
+INSERT INTO perso (id, prenom) VALUES (3, 'Dwight');
+INSERT INTO perso (id, prenom) VALUES (4, 'Meredith');
+INSERT INTO perso(id, prenom) VALUES (5, 'Pam');
+INSERT INTO perso (id, prenom) VALUES (6, 'Standley');
+INSERT INTO perso (id, prenom) VALUES (7, 'Angela');
+INSERT INTO perso (id, prenom) VALUES (8, 'Kevin');
+INSERT INTO perso(id, prenom) VALUES (9, 'Kelly');
+INSERT INTO perso (id, prenom) VALUES (10, 'Tobby');
+INSERT INTO perso (id, prenom) VALUES (11, 'Phyllis');
+INSERT INTO perso (id, prenom) VALUES (12, 'Ryan');
+INSERT INTO perso(id, prenom) VALUES (13, 'Creed');
+INSERT INTO perso (id, prenom) VALUES (14, 'Oscars');
+INSERT INTO perso (id, prenom) VALUES (15, 'Andy');
 
