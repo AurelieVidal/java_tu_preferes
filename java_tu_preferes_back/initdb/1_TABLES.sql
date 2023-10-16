@@ -3,6 +3,12 @@ create table cards
     id SERIAL PRIMARY KEY,
     reponse TEXT not null
 );
+
+create table perso
+(
+    id SERIAL PRIMARY KEY,
+    prenom TEXT not null
+);
 /*
 create table majors
 (
