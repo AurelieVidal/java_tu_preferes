@@ -1,11 +1,12 @@
 import {Component, Input, OnInit, NgModule} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule, FormArray} from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {PersoService} from "../services/perso.service";
 import {Perso} from "../models/Perso";
+import {Observable} from "rxjs";
 
 /**
  * @title Input with error messages
@@ -17,7 +18,7 @@ import {Perso} from "../models/Perso";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, RouterOutlet, NgForOf],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, RouterOutlet, NgForOf, NgClass, AsyncPipe],
 
 })
 
@@ -30,20 +31,18 @@ export class MenuComponent implements OnInit{
   usersPseudo!: FormGroup;
 
   pseudoUser!: string;
-  listperso;
+  listperso : Observable<Perso[]>
   persos!: Perso [];
   perso_choisi!: bigint;
-
+  protected readonly Object = Object;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private persoService: PersoService){
     this.listperso =persoService.findAll();
   }
 
 
-
-
-
   counter() {
-  return new Array(parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]))
+    return new Array(parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]))
+  }
 
   onContinue(): void{
     this.router.navigateByUrl('questions');
@@ -97,9 +96,7 @@ export class MenuComponent implements OnInit{
 
     this.usersPseudo = new FormGroup(formControls);
   }
-
-  protected readonly Array = Array;
-  protected readonly Object = Object;
-
 }
+
+
 
