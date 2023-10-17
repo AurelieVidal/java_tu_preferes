@@ -4,6 +4,8 @@ import { CardService } from "../services/card.services"
 import {map, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import { Card } from "../models/card.model"
+import {Liaison} from "../models/liaison.model";
+import {LiaisonService} from "../services/liaison.service";
 
 @Component({
   selector: 'app-partie',
@@ -12,15 +14,18 @@ import { Card } from "../models/card.model"
 })
 export class PartieComponent implements OnInit{
   /*cards$: Observable<Card[]>;*/
+  liaisons$: Observable<Liaison[]> ;
 
 
 
 
 
-  /*constructor(private _route: ActivatedRoute, private cardService: CardService, private router: Router) {
-    this.cards$ = cardService.findAll()
-  }*/
+  constructor(private _route: ActivatedRoute, private liaisonService: LiaisonService, private router: Router) {
+    //this.cards$ = cardService.findAll()
+    this.liaisons$ = liaisonService.findAll()
+  }
 
+  liaison!: Liaison[]
   myCarte!: Card[];
   joueur1!: joueur;
   joueur2 !: joueur;
@@ -36,6 +41,12 @@ export class PartieComponent implements OnInit{
       x => this.myCarte = x
     );*/
 
+    this.liaisons$.subscribe(
+      x => {
+        this.liaison = x
+        console.log(x)
+      }
+    );
 
     /*this.myCarte =[
       new Card(

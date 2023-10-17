@@ -4,6 +4,12 @@ create table cards
     reponse TEXT not null
 );
 
+create table liaison
+(
+    id_1 SERIAL not null,
+    id_2 SERIAL not null
+);
+
 create table perso
 (
     id SERIAL PRIMARY KEY,
