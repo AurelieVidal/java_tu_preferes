@@ -47,6 +47,10 @@ export class GestionCartesComponent implements OnInit {
     this.router.navigateByUrl('addCard');
   }
 
+  versAddLiaison(): void{
+    this.router.navigateByUrl('addLiaison');
+  }
+
 
 
 
