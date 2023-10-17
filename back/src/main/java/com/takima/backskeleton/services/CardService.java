@@ -15,4 +15,8 @@ public class CardService {
     public List<Card> findAll() {
         return cardDao.findAll();
     }
+
+    public Card findbyId(long id) {
+        return cardDao.findById(id).orElseThrow(RuntimeException::new);
+    }
 }

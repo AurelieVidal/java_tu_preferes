@@ -1,0 +1,15 @@
+<h1>Liste des cartes</h1>
+
+<button>Ajouter des cartes</button>
+<button>Ajouter une liaison</button>
+
+<table>
+  <tr>
+    <td>Carte 1</td>
+    <td>Carte 2</td>
+  </tr>
+  <tr *ngFor="let paire of liaison">
+    <td>{{ paire.carte1?.reponse }}</td>
+    <td>{{ paire.carte2?.reponse }}</td>
+  </tr>
+</table>

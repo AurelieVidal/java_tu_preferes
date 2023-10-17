@@ -5,6 +5,11 @@
 .image {
 }
 
+.persos{
+  height : 50px;
+  width : 50px;
+}
+
 .selected {
   box-shadow: 0 0 10px red; /* Box shadow rouge */
 }

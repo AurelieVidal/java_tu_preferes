@@ -13,6 +13,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { CarouselComponent, CarouselControlComponent, CarouselInnerComponent, CarouselItemComponent } from "@coreui/angular";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSliderModule} from "@angular/material/slider";
+import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PartieComponent,
     // MenuComponent,
     PageAccueilComponent,
+    GestionCartesComponent,
     // QuestionsComponent
 
   ],
@@ -33,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CarouselInnerComponent,
     CarouselItemComponent,
     CarouselControlComponent,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatSliderModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
