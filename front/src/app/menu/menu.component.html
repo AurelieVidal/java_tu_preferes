@@ -3,17 +3,37 @@
       <label>Pseudo {{ i }}: </label>
       <input type="text" [formControlName]="'pseudo_' + i">
     </form>
+  <!--
+  <c-carousel [animate]="false" [interval]="0">
+    <c-carousel-inner>
+      <c-carousel-item *ngFor="let slide of slides">
+        <img
+          [src]="slide.src"
+          alt="{{ slide.title }}"
+          class="d-block w-100"
+          loading="eager" />
+      </c-carousel-item>
+    </c-carousel-inner>
+    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+  </c-carousel>
+  -->
+
 </ng-container>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()"></form>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-    <div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)"
-       >
-    <div class="image" >
-      <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
-    </div>
+
+<!--
+<div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)">
+  <div class="image" >
+    <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
   </div>
-  <button type="submit" [disabled]="!userForm.valid">Submit</button>
-  <button (click)="onContinue()">Continuer vers partie</button>
+</div>
+
+-->
+
+<button type="submit" [disabled]="!userForm.valid">Submit</button>
+<button (click)="onContinue()">Continuer vers partie</button>
 
   <router-outlet></router-outlet>
