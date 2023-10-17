@@ -6,8 +6,8 @@ create table cards
 
 create table liaison
 (
-    id_1 SERIAL not null,
-    id_2 SERIAL not null
+    id_1 NUMERIC not null,
+    id_2 NUMERIC not null
 );
 
 create table perso

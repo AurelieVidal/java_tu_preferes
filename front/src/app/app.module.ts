@@ -10,12 +10,13 @@ import { QuestionsComponent } from './questions/questions.component';
 
 import { CardService } from "./services/card.services";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CarouselComponent, CarouselControlComponent, CarouselInnerComponent, CarouselItemComponent } from "@coreui/angular";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
+import { AddCardComponent } from './add-card/add-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
     // MenuComponent,
     PageAccueilComponent,
     GestionCartesComponent,
+    AddCardComponent,
     // QuestionsComponent
 
   ],
@@ -39,7 +41,8 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
     CarouselControlComponent,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    MatSliderModule
+    MatSliderModule,
+    ReactiveFormsModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]

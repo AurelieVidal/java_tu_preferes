@@ -22,12 +22,12 @@ INSERT INTO courses (id, name, hours) VALUES (6, 'Maths', 30);
 INSERT INTO courses (id, name, hours) VALUES (7, 'Java', 30);
 INSERT INTO courses (id, name, hours) VALUES (8, 'Lean Management', 30);
 INSERT INTO student_course (id, student_id, course_id) VALUES (1, 1, 7);*/
-/*
-INSERT INTO cards (id, reponse) VALUES (1, 'chocolatine');
-INSERT INTO cards (id, reponse) VALUES (2, 'pain au chocolat');*/
+
+INSERT INTO cards (reponse) VALUES ('chocolatine');
+INSERT INTO cards (reponse) VALUES ('pain au chocolat');
 
 INSERT INTO liaison (id_1, id_2) VALUES (1, 2);
-/*
+
 INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
 INSERT INTO perso (id, prenom) VALUES (2, 'Jim');
 INSERT INTO perso (id, prenom) VALUES (3, 'Dwight');
@@ -42,5 +42,5 @@ INSERT INTO perso (id, prenom) VALUES (11, 'Phyllis');
 INSERT INTO perso (id, prenom) VALUES (12, 'Ryan');
 INSERT INTO perso(id, prenom) VALUES (13, 'Creed');
 INSERT INTO perso (id, prenom) VALUES (14, 'Oscars');
-INSERT INTO perso (id, prenom) VALUES (15, 'Andy');*/
+INSERT INTO perso (id, prenom) VALUES (15, 'Andy');
 

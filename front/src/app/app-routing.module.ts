@@ -5,12 +5,14 @@ import {MenuComponent} from "./menu/menu.component";
 import {QuestionsComponent} from "./questions/questions.component";
 import {PageAccueilComponent} from "./page-accueil/page-accueil.component";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
+import { AddCardComponent } from './add-card/add-card.component';
 
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
   { path: 'menu/:nbrJoueur', component: MenuComponent},
   { path: 'questions', component: QuestionsComponent},
   { path: 'cartes', component: GestionCartesComponent},
+  {path: 'addCard', component: AddCardComponent},
   {path: '', component: PageAccueilComponent}
 ];
 
