@@ -19,4 +19,8 @@ public class CardService {
     public Card findbyId(long id) {
         return cardDao.findById(id).orElseThrow(RuntimeException::new);
     }
+
+    public void createCard(Card card) {
+        cardDao.save(card);
+    }
 }

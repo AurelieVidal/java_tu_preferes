@@ -24,4 +24,10 @@ public class CardController {
     public Card getCardbyId(@PathVariable long id) {
         return cardService.findbyId(id);
     }
+
+    @PostMapping("")
+    public void createCard(@RequestBody Card card) {
+        cardService.createCard(card);
+    }
+
 }
