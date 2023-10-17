@@ -17,6 +17,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
+import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddCardComponent } from './add-card/add-card.component';
     PageAccueilComponent,
     GestionCartesComponent,
     AddCardComponent,
+    AddLiaisonComponent,
     // QuestionsComponent
 
   ],
