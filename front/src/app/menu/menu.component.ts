@@ -18,7 +18,6 @@ import {
  * @title Input with error messages
  */
 
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -69,45 +68,46 @@ export class MenuComponent implements OnInit{
 
   onSubmit() {
     console.log(this.usersPseudo);
-    console.log("c'est réussi "+ parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
+    console.log("nb de joueurs "+ parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
     console.log(this.usersPseudo.value)
   }
 
   ngOnInit(): void {
+
     this.initForm();
 
     this.activatedRoute.params.subscribe(s=>{
         this.nbrJoueur = s["nbrJoueur"]
       }
     )
-
+    /*
     this.listperso.subscribe(
       x => {
         this.persos = x;
         console.log(x)
       }
-    );
+    );*/
 
     this.slides = [];
-
     for (let i = 1; i <= 15; i++) {
       this.slides[i - 1] = {
         src: `./assets/images/${i}.jfif`,
       };
     }
-
   }
 
   initForm() {
     const formControls: any = {};
 
     for (let i = 0; i < parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]); i++) {
-      formControls[`pseudo_${i}`] = new FormControl('');
+      formControls[`joueur_${i}`] = new FormGroup({
+        pseudo: new FormControl(''),
+        image_id: new FormControl('1')
+      });
     }
 
     this.usersPseudo = new FormGroup(formControls);
   }
 }
-
 
 
