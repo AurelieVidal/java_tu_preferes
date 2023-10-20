@@ -1,0 +1,12 @@
+<body>
+<h1>Configurer le mode de jeu:</h1>
+<h2>Nombre de Manches:</h2>
+<form (ngSubmit)="onSubmitForm()">
+  <label for="nbJInput">Le nombre de manches:</label>
+  <input type="number" id="nbJInput" [(ngModel)]="nombreManche" name="nombreManche" min="2" max="10">
+  <button type="submit">OK!</button>
+</form>
+<button (click)="onContinue()">Retour vers la page d'accueil</button>
+<router-outlet></router-outlet>
+
+</body>
