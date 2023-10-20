@@ -7,6 +7,7 @@ import {PageAccueilComponent} from "./page-accueil/page-accueil.component";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
+import {ConfigComponent} from "./config/config.component";
 
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
@@ -14,9 +15,10 @@ const routes: Routes = [
   { path: 'questions', component: QuestionsComponent},
   { path: 'cartes', component: GestionCartesComponent},
   {path: 'addCard', component: AddCardComponent},
-  {path: '', component: PageAccueilComponent},
+  {path: 'pageAccueil', component: PageAccueilComponent},
   {path: 'addLiaison', component: AddLiaisonComponent},
-  { path: 'liaisons', component: AddLiaisonComponent }
+  { path: 'liaisons', component: AddLiaisonComponent },
+  { path: 'config', component: ConfigComponent }
 ];
 
 @NgModule({

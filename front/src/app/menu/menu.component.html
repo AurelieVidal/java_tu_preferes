@@ -7,8 +7,7 @@
 
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-    <div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)"
-       >
+    <div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)">
     <div class="image" >
       <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
     </div>

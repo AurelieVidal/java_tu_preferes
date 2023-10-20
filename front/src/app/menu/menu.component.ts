@@ -79,7 +79,9 @@ export class MenuComponent implements OnInit{
     )
 
     this.listperso.subscribe(
+
       x => {
+        console.log("caca");
         this.persos = x;
         console.log(x)
       }
