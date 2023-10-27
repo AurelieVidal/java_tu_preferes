@@ -24,6 +24,7 @@ import {Observable} from "rxjs";
 
 export class MenuComponent implements OnInit{
   nbrJoueur!:number;
+  nombreManche!:number;
   contactForm!: FormGroup;
   userForm = new FormGroup({
     pseudo: new FormControl(''),
@@ -74,7 +75,9 @@ export class MenuComponent implements OnInit{
     this.initForm();
 
     this.activatedRoute.params.subscribe(s=>{
-        this.nbrJoueur = s["nbrJoueur"]
+        this.nbrJoueur = s["nbrJoueur"];
+        this.nombreManche=s["nbManche"];
+      console.log("le nbr de manche est"+this.nombreManche);
       }
     )
 
