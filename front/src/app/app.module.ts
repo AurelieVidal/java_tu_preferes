@@ -18,6 +18,7 @@ import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
+import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
     GestionCartesComponent,
     AddCardComponent,
     AddLiaisonComponent,
+    ConfigComponent,
     // QuestionsComponent
 
   ],
