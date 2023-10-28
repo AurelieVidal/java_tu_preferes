@@ -9,6 +9,9 @@ import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 import {ConfigComponent} from "./config/config.component";
 
+import {ScoresComponent} from "./scores/scores.component";
+
+
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
   { path: 'menu/:nbrJoueur', component: MenuComponent},
@@ -21,6 +24,7 @@ const routes: Routes = [
   {path: 'addLiaison', component: AddLiaisonComponent},
   { path: 'liaisons', component: AddLiaisonComponent },
   {path: 'config', component: ConfigComponent},
+  {path: 'score/:nbrJoueur', component: ScoresComponent},
 ];
 
 @NgModule({

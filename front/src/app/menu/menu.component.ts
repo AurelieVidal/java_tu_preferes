@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {FormControl, FormGroup, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 
@@ -16,9 +16,10 @@ export class MenuComponent implements OnInit{
   users!: FormGroup;
   fields: string[] = Array.from({ length: 15 }, (_, i) => `Champ ${i + 1}`);
   fieldImages: { [key: string]: string } = {};
+  nombreManche!: number;
+  nombreJoueur!: number;
 
-
-  constructor(private activatedRoute: ActivatedRoute){
+  constructor(private router: Router,private activatedRoute: ActivatedRoute){
   }
 
   ngOnInit(): void {
@@ -29,6 +30,12 @@ export class MenuComponent implements OnInit{
   initForm() {
     const formControls: any = {};
     const numberOfPlayers = parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]);
+    this.activatedRoute.params.subscribe(s=>{
+      this.nombreJoueur=numberOfPlayers;
+        this.nombreManche=s["nbManche"];
+        console.log("le nbr de manche est"+this.nombreManche+"le nbr de joueur est"+this.nombreJoueur);
+      }
+    )
 
     for (let i = 0; i < numberOfPlayers; i++) {
       formControls[`joueur_${i}`] = new FormGroup({
@@ -76,6 +83,7 @@ export class MenuComponent implements OnInit{
     console.log("Valeurs du FormGroup (users):", this.users.value);
     console.log("nb de joueurs " + parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
     console.log(this.users.value);
+    this.router.navigateByUrl('score/'+this.nombreJoueur);
   }
 }
 
