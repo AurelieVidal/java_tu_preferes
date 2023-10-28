@@ -45,15 +45,12 @@ export class MenuComponent implements OnInit{
     }
   }
   updateImage(playerIndex: number, event: Event) {
-    // Obtenez le champ sélectionné par l'utilisateur à partir de l'événement
     const selectedField = (event.target as HTMLSelectElement).value;
     const selectedImage = this.fieldImages[selectedField];
 
-    // Obtenez le contrôle "image_path" du joueur actuel
     const currentPlayerImageControl = this.users.get(`joueur_${playerIndex}.image_path`);
     console.log('currentPlayerImageControl',currentPlayerImageControl)
     if (currentPlayerImageControl) {
-      // Mettez à jour la valeur du contrôle "image_path" avec le champ sélectionné
       currentPlayerImageControl.setValue(selectedImage);
     }
   }
