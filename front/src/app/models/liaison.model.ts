@@ -1,9 +1,9 @@
 import {Card} from "./card.model";
 
 export interface Liaison {
-
-  id_1: bigint
-  id_2: bigint;
+  id?: bigint;
+  id_1: number;
+  id_2: number;
   carte1?: Card;
   carte2?: Card;
 }

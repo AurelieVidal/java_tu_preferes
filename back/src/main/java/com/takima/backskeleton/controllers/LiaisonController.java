@@ -5,10 +5,7 @@ import com.takima.backskeleton.models.Card;
 import com.takima.backskeleton.models.Liaison;
 import com.takima.backskeleton.services.LiaisonService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class LiaisonController {
     @GetMapping("")
     public List<Liaison> getAllCards() {
         return liaisonService.findAll();
+    }
+
+    @PostMapping("")
+    public void createLiaison(@RequestBody Liaison liaison) {
+        liaisonService.createLiaison(liaison);
     }
 }

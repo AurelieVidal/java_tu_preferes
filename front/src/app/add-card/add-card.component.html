@@ -1,0 +1,12 @@
+<ng-container>
+  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" >
+    <label for="reponse">Texte de la carte : </label>
+    <input type="text" id="reponse" formControlName="reponse">
+    <button type="submit" [disabled]="!cardForm.valid">OK!</button>
+  </form>
+  <button>Ajouter une liaison</button>
+
+</ng-container>
+
+
+

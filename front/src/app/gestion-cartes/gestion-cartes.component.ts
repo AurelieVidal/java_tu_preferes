@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Liaison } from '../models/liaison.model';
 import { LiaisonService } from '../services/liaison.service';
 import { CardService } from "../services/card.services";
+import {Router} from "@angular/router";
 import { Card } from '../models/card.model';
 
 @Component({
@@ -16,7 +17,8 @@ export class GestionCartesComponent implements OnInit {
 
   constructor(
     private liaisonService: LiaisonService,
-    private cardService: CardService
+    private cardService: CardService,
+    private router: Router
   ) {
     this.liaisons$ = liaisonService.findAll();
   }
@@ -40,4 +42,17 @@ export class GestionCartesComponent implements OnInit {
       }
     );
   }
+
+  versAddCard(): void{
+    this.router.navigateByUrl('addCard');
+  }
+
+  versAddLiaison(): void{
+    this.router.navigateByUrl('addLiaison');
+  }
+
+
+
+
+
 }

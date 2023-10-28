@@ -1,4 +1,4 @@
 export interface Card {
-  id: bigint
+  id?: bigint
   reponse: string;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-accueil',
@@ -8,12 +8,21 @@ import {Router} from "@angular/router";
 })
 export class PageAccueilComponent {
   nombreJoueur!: number;
-  constructor(private router: Router){ }
+  nombreManche=1;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute){ }
 
   onContinue(): void{
-    this.router.navigateByUrl('menu/'+this.nombreJoueur);
+    this.router.navigateByUrl('menu/'+this.nombreJoueur+'/'+this.nombreManche);
   }
   onSubmitForm():void {
     console.log(this.nombreJoueur);
   }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(s => {
+        this.nombreManche = s["nombreManche"] || this.nombreManche;
+        console.log("le nbr de manche est"+this.nombreManche);
+    })
+  }
+
 }
