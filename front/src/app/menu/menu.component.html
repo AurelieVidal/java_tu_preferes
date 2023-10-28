@@ -1,39 +1,27 @@
-<ng-container *ngFor="let key of Object.keys(usersPseudo.value); let i = index">
-    <form [formGroup]="usersPseudo">
-      <label>Pseudo {{ i }}: </label>
-      <input type="text" [formControlName]="key + '.pseudo'">
-    </form>
+<form [formGroup]="users" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let player of getControlNames(users); let i = index">
 
-<c-carousel [animate]="false" [interval]="0">
-  <c-carousel-inner>
-    <c-carousel-item *ngFor="let slide of slides">
-      <img
-        [src]="slide.src"
-        alt="{{ slide.title }}"
-        class="d-block w-100"
-        loading="eager" />
-    </c-carousel-item>
-  </c-carousel-inner>
-  <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-  <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-</c-carousel>
+      <h3>Joueur {{ i + 1 }}</h3>
 
+      <div formGroupName="{{player}}">
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" formControlName="pseudo" required>
+      </div>
 
-</ng-container>
+      <div formGroupName="{{player}}">
+        <label for="image_path">Image de profil :</label>
+        <select id="image_path" formControlName="image_path" (change)="updateImage(i, $event)">
+          <option [value]="getImageUrl(i)" selected>{{getKeyByValue(getImageUrl(i))}}</option>
+          <option *ngFor="let field of fields" [value]="field">{{field}}</option>
+        </select>
+      </div>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div>
+        <img [src]="getImageUrl(i)"  alt="Image">
+      </div>
+  </ng-container>
 
-<!--
-<div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)">
-  <div class="image" >
-    <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
-  </div>
-</div>
-
--->
-
-<button type="submit" [disabled]="!userForm.valid">Submit</button>
-<button (click)="onContinue()">Continuer vers partie</button>
+  <button type="submit" [disabled]="!users.valid">Submit</button>
 </form>
 
 <router-outlet></router-outlet>

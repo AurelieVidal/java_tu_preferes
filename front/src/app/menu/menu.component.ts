@@ -1,112 +1,84 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink, RouterOutlet} from "@angular/router";
-import {FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule, FormArray} from '@angular/forms';
-import {AsyncPipe, NgClass, NgForOf, NgIf} from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {PersoService} from "../services/perso.service";
-import {Perso} from "../models/Perso";
-import {Observable} from "rxjs";
-import {
-  CarouselComponent, CarouselControlComponent,
-  CarouselIndicatorsComponent,
-  CarouselInnerComponent,
-  CarouselItemComponent
-} from "@coreui/angular";
-
-/**
- * @title Input with error messages
- */
+import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {FormControl, FormGroup, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
+import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, RouterOutlet, NgForOf, NgClass, AsyncPipe, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, CarouselControlComponent, RouterLink],
+  imports: [ReactiveFormsModule, NgIf, RouterOutlet, NgForOf],
 
 })
 
 export class MenuComponent implements OnInit{
-  nbrJoueur!:number;
-  contactForm!: FormGroup;
-  userForm = new FormGroup({
-    pseudo: new FormControl(''),
-  });
-  usersPseudo!: FormGroup;
+  users!: FormGroup;
+  fields: string[] = Array.from({ length: 15 }, (_, i) => `Champ ${i + 1}`);
+  fieldImages: { [key: string]: string } = {};
 
-  pseudoUser!: string;
-  listperso : Observable<Perso[]>
-  persos!: Perso [];
-  perso_choisi!: bigint;
-  protected readonly Object = Object;
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private persoService: PersoService){
-    this.listperso =persoService.findAll();
-  }
-
-  onSubmitForm():void {
-    console.log(this.pseudoUser);
-    console.log("c'est réussi"+this.nbrJoueur);
-  }
-
-  counter() {
-    return new Array(parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]))
-  }
-
-  onContinue(): void{
-    this.router.navigateByUrl('questions');
-  }
-
-  SelectImage(id: any): void {
-    this.perso_choisi = id;
-    console.log(id);
-  }
-
-  pseudoFormControl = new FormControl('', [Validators.required]);
-
-  onSubmit() {
-    console.log(this.usersPseudo);
-    console.log("nb de joueurs "+ parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
-    console.log(this.usersPseudo.value)
+  constructor(private activatedRoute: ActivatedRoute){
   }
 
   ngOnInit(): void {
-
+    this.initFieldImages()
     this.initForm();
-
-    this.activatedRoute.params.subscribe(s=>{
-        this.nbrJoueur = s["nbrJoueur"]
-      }
-    )
-    /*
-    this.listperso.subscribe(
-      x => {
-        this.persos = x;
-        console.log(x)
-      }
-    );*/
-
-    this.slides = [];
-    for (let i = 1; i <= 15; i++) {
-      this.slides[i - 1] = {
-        src: `./assets/images/${i}.jfif`,
-      };
-    }
   }
 
   initForm() {
     const formControls: any = {};
+    const numberOfPlayers = parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]);
 
-    for (let i = 0; i < parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]); i++) {
+    for (let i = 0; i < numberOfPlayers; i++) {
       formControls[`joueur_${i}`] = new FormGroup({
-        pseudo: new FormControl(''),
-        image_id: new FormControl('1')
+        pseudo: new FormControl('', [Validators.required]),
+        image_path: new FormControl(this.fieldImages['Champ ' + (Math.floor(Math.random() * 15) + 1).toString()]) // Ajoutez le contrôle image_id ici
       });
     }
+    this.users = new FormGroup(formControls);
+  }
 
-    this.usersPseudo = new FormGroup(formControls);
+  initFieldImages() {
+    for (let i = 0; i < this.fields.length; i++) {
+      this.fieldImages[this.fields[i]] = `assets/images/${i + 1}.jfif`;
+    }
+  }
+  updateImage(playerIndex: number, event: Event) {
+    // Obtenez le champ sélectionné par l'utilisateur à partir de l'événement
+    const selectedField = (event.target as HTMLSelectElement).value;
+    const selectedImage = this.fieldImages[selectedField];
+
+    // Obtenez le contrôle "image_path" du joueur actuel
+    const currentPlayerImageControl = this.users.get(`joueur_${playerIndex}.image_path`);
+    console.log('currentPlayerImageControl',currentPlayerImageControl)
+    if (currentPlayerImageControl) {
+      // Mettez à jour la valeur du contrôle "image_path" avec le champ sélectionné
+      currentPlayerImageControl.setValue(selectedImage);
+    }
+  }
+
+  getImageUrl(playerIndex : number): string {
+    return this.users.value[`joueur_${playerIndex}`]["image_path"]
+  }
+
+  getControlNames(formGroup: FormGroup): string[] {
+    return Object.keys(formGroup.controls);
+  }
+
+  getKeyByValue(value: string): string | undefined {
+    for (const key in this.fieldImages) {
+      if (this.fieldImages.hasOwnProperty(key) && this.fieldImages[key] === value) {
+        return key;
+      }
+    }
+    return undefined; // Retourne undefined si la valeur n'est pas trouvée
+  }
+
+  onSubmit() {
+    console.log("Valeurs du FormGroup (users):", this.users.value);
+    console.log("nb de joueurs " + parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
+    console.log(this.users.value);
   }
 }
 
