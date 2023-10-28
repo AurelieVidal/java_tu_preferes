@@ -16,6 +16,19 @@ create table perso
     id SERIAL PRIMARY KEY,
     prenom TEXT not null
 );
+
+create table themes
+(
+    id SERIAL PRIMARY KEY,
+    name TEXT not null
+);
+
+create table themes_liaisons
+(
+    id SERIAL PRIMARY KEY,
+    theme_id int not null,
+    liaison_id int not null
+);
 /*
 create table majors
 (
