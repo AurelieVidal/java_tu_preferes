@@ -18,9 +18,13 @@ import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
+<<<<<<< HEAD
 import { SliderComponent } from './slider/slider.component';
 
 
+=======
+import { ConfigComponent } from './config/config.component';
+>>>>>>> 8a49b0f92bb0c5f73cf30d403ef1354c6aba224d
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { SliderComponent } from './slider/slider.component';
     GestionCartesComponent,
     AddCardComponent,
     AddLiaisonComponent,
+<<<<<<< HEAD
     SliderComponent,
+=======
+    ConfigComponent,
+>>>>>>> 8a49b0f92bb0c5f73cf30d403ef1354c6aba224d
     // QuestionsComponent
 
   ],

@@ -1,19 +1,27 @@
-<ng-container *ngFor="let key of Object.keys(usersPseudo.value); let i = index">
-    <form [formGroup]="usersPseudo">
-      <label>Pseudo {{ i }}: </label>
-      <input type="text" [formControlName]="'pseudo_' + i">
-    </form>
-</ng-container>
+<form [formGroup]="users" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let player of getControlNames(users); let i = index">
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <h3>Joueur {{ i + 1 }}</h3>
 
-    <div *ngFor="let perso of listperso | async" (click)="SelectImage(perso.id)"
-       >
-    <div class="image" >
-      <img class="persos" src="assets/images/{{perso.id}}.jfif" [ngClass]="{'selected': perso.id == perso_choisi}">
-    </div>
-  </div>
-  <button type="submit" [disabled]="!userForm.valid">Submit</button>
-  <button (click)="onContinue()">Continuer vers partie</button>
+      <div formGroupName="{{player}}">
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" formControlName="pseudo" required>
+      </div>
 
-  <router-outlet></router-outlet>
+      <div formGroupName="{{player}}">
+        <label for="image_path">Image de profil :</label>
+        <select id="image_path" formControlName="image_path" (change)="updateImage(i, $event)">
+          <option [value]="getImageUrl(i)" selected>{{getKeyByValue(getImageUrl(i))}}</option>
+          <option *ngFor="let field of fields" [value]="field">{{field}}</option>
+        </select>
+      </div>
+
+      <div>
+        <img [src]="getImageUrl(i)"  alt="Image">
+      </div>
+  </ng-container>
+
+  <button type="submit" [disabled]="!users.valid">Submit</button>
+</form>
+
+<router-outlet></router-outlet>
