@@ -8,8 +8,8 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 import {ConfigComponent} from "./config/config.component";
-
-import {ScoresComponent} from "./scores/scores.component";
+import { ThemesComponent } from './themes/themes.component';
+//import {ScoresComponent} from "./scores/scores.component";
 
 
 const routes: Routes = [
@@ -18,13 +18,15 @@ const routes: Routes = [
   { path: 'menu/:nbrJoueur/:nbManche', component: MenuComponent},
   { path: 'questions', component: QuestionsComponent},
   { path: 'cartes', component: GestionCartesComponent},
+  { path: 'cartes/:id', component: GestionCartesComponent},
   {path: 'addCard', component: AddCardComponent},
   {path: '', component: PageAccueilComponent},
   {path: 'accueil/:nombreManche', component: PageAccueilComponent},
   {path: 'addLiaison', component: AddLiaisonComponent},
   { path: 'liaisons', component: AddLiaisonComponent },
   {path: 'config', component: ConfigComponent},
-  {path: 'score/:nbrJoueur', component: ScoresComponent},
+  //{path: 'score/:nbrJoueur', component: ScoresComponent},
+  { path: 'themes', component: ThemesComponent}
 ];
 
 @NgModule({

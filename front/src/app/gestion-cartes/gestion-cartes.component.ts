@@ -3,8 +3,10 @@ import { Observable } from 'rxjs';
 import { Liaison } from '../models/liaison.model';
 import { LiaisonService } from '../services/liaison.service';
 import { CardService } from "../services/card.services";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import { Card } from '../models/card.model';
+import {Theme} from "../models/themes.model";
+import {ThemeService} from "../services/theme.service";
 
 @Component({
   selector: 'app-gestion-cartes',
@@ -12,24 +14,30 @@ import { Card } from '../models/card.model';
   styleUrls: ['./gestion-cartes.component.css']
 })
 export class GestionCartesComponent implements OnInit {
-  liaisons$: Observable<Liaison[]>;
   liaison!: Liaison[];
+  theme_obs!: Observable<Theme>
+  theme!: Theme
+  theme_id!:number
 
   constructor(
-    private liaisonService: LiaisonService,
     private cardService: CardService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private themeService: ThemeService
   ) {
-    this.liaisons$ = liaisonService.findAll();
+    this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
+    this.theme_obs = this.themeService.findById(this.theme_id);
+
+
   }
 
   ngOnInit() {
-    this.liaisons$.subscribe(
-      x => {
-        this.liaison = x;
-        console.log('Liaisons récupérées :', x);
 
-        // Récupérer les réponses des cartes pour chaque liaison
+    this.theme_obs.subscribe (
+      x=> {
+        this.theme = x;
+        console.log(this.theme)
+        this.liaison = this.theme.paires
         for (const paire of this.liaison) {
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => paire.carte1 = carte1
@@ -40,7 +48,10 @@ export class GestionCartesComponent implements OnInit {
           );
         }
       }
-    );
+    )
+
+
+
   }
 
   versAddCard(): void{

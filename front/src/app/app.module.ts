@@ -19,11 +19,14 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 
-import { ScoresComponent } from './scores/scores.component';
+//import { ScoresComponent } from './scores/scores.component';
 
 import { SliderComponent } from './slider/slider.component';
 
 import { ConfigComponent } from './config/config.component';
+import { ThemesComponent } from './themes/themes.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { ConfigComponent } from './config/config.component';
     AddLiaisonComponent,
     SliderComponent,
     ConfigComponent,
-    ScoresComponent,
+    ThemesComponent
+    //ScoresComponent,
     // QuestionsComponent
 
   ],
@@ -53,7 +57,9 @@ import { ConfigComponent } from './config/config.component';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
