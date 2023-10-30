@@ -1,12 +1,10 @@
 package com.takima.backskeleton.controllers;
 
+import com.takima.backskeleton.models.Card;
 import com.takima.backskeleton.models.Theme;
 import com.takima.backskeleton.services.ThemeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +19,10 @@ public class ThemeController {
     public List<Theme> getAllCourses() {
         return themeService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Theme getThemebyId(@PathVariable long id) {
+        return themeService.findbyId(id);
+    }
+
 }
