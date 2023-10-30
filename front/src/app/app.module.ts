@@ -27,6 +27,7 @@ import { ConfigComponent } from './config/config.component';
 import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { EditThemeComponent } from './edit-theme/edit-theme.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatButtonModule} from "@angular/material/button";
     AddLiaisonComponent,
     SliderComponent,
     ConfigComponent,
-    ThemesComponent
+    ThemesComponent,
+    EditThemeComponent,
     //ScoresComponent,
     // QuestionsComponent
 

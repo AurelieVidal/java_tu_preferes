@@ -10,14 +10,13 @@ import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 import {ConfigComponent} from "./config/config.component";
 import { ThemesComponent } from './themes/themes.component';
 //import {ScoresComponent} from "./scores/scores.component";
-
+import { EditThemeComponent } from './edit-theme/edit-theme.component';
 
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
   { path: 'menu/:nbrJoueur', component: MenuComponent},
   { path: 'menu/:nbrJoueur/:nbManche', component: MenuComponent},
   { path: 'questions', component: QuestionsComponent},
-  { path: 'cartes', component: GestionCartesComponent},
   { path: 'cartes/:id', component: GestionCartesComponent},
   {path: 'addCard', component: AddCardComponent},
   {path: '', component: PageAccueilComponent},
@@ -26,7 +25,8 @@ const routes: Routes = [
   { path: 'liaisons', component: AddLiaisonComponent },
   {path: 'config', component: ConfigComponent},
   //{path: 'score/:nbrJoueur', component: ScoresComponent},
-  { path: 'themes', component: ThemesComponent}
+  { path: 'themes', component: ThemesComponent},
+  {path: 'edit/:id', component: EditThemeComponent}
 ];
 
 @NgModule({
