@@ -15,7 +15,7 @@ import {ScoresComponent} from "./scores/scores.component";
 
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
-  { path: 'menu/:nbrJoueur', component: MenuComponent},
+  // { path: 'menu/:nbrJoueur', component: MenuComponent},
   { path: 'menu/:nbrJoueur/:nbManche', component: MenuComponent},
   { path: 'questions', component: QuestionsComponent},
   { path: 'cartes', component: GestionCartesComponent},

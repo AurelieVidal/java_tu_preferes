@@ -8,6 +8,12 @@
   <input type="number" id="nbJInput" [(ngModel)]="nombreJoueur" name="nombreJoueur" min="2" max="10">
   <button type="submit">OK!</button>
 </form>
+
+<form (ngSubmit)="onSubmitForm()">
+  <label for="nbJInput">Le nombre de manches:</label>
+  <input type="number" id="nbJInput" [(ngModel)]="nombreManche" name="nombreManche" min="2" max="10">
+  <button type="submit">OK!</button>
+</form>
 <button (click)="onContinue()">Continuer vers menu</button>
 
 
