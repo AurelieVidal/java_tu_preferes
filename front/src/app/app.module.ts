@@ -27,6 +27,7 @@ import { ConfigComponent } from './config/config.component';
 import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatButtonModule} from "@angular/material/button";
     ConfigComponent,
     ThemesComponent,
     ScoresComponent,
+    GameComponent,
     // QuestionsComponent
 
   ],

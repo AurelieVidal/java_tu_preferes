@@ -1,21 +1,22 @@
 <body>
-
 <a href='themes'>Gérer les cartes</a> <br>
 <a href='config'>Configurations</a>
+
 <h1>Nombre de Joueurs:</h1>
-<form (ngSubmit)="onSubmitForm()">
-  <label for="nbJInput">Le nombre de Joueurs:</label>
-  <input type="number" id="nbJInput" [(ngModel)]="nombreJoueur" name="nombreJoueur" min="2" max="10">
-  <button type="submit">OK!</button>
+<form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+  <div>
+    <label for="nbJInput">Le nombre de Joueurs:</label>
+    <input type="number" id="nbJInput" formControlName="nombreJoueur" min="2" max="10">
+  </div>
+
+  <div>
+    <label for="nbMInput">Le nombre de manches:</label>
+    <input type="number" id="nbMInput" formControlName="nombreManche" min="2" max="10">
+  </div>
 </form>
 
-<form (ngSubmit)="onSubmitForm()">
-  <label for="nbJInput">Le nombre de manches:</label>
-  <input type="number" id="nbJInput" [(ngModel)]="nombreManche" name="nombreManche" min="2" max="10">
-  <button type="submit">OK!</button>
-</form>
-<button (click)="onContinue()">Continuer vers menu</button>
+<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>
 
+</body>
 
 <router-outlet></router-outlet>
-</body>
