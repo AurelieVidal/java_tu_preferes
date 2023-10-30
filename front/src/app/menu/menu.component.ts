@@ -85,6 +85,9 @@ export class MenuComponent implements OnInit{
     console.log(this.users.value);
     this.router.navigateByUrl('score/'+this.nombreJoueur);
   }
+  onContinue(): void{
+    this.router.navigateByUrl('partie');
+  }
 }
 
 
