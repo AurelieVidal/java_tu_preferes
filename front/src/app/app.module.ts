@@ -19,7 +19,7 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 
-//import { ScoresComponent } from './scores/scores.component';
+import { ScoresComponent } from './scores/scores.component';
 
 import { SliderComponent } from './slider/slider.component';
 
@@ -39,8 +39,8 @@ import {MatButtonModule} from "@angular/material/button";
     AddLiaisonComponent,
     SliderComponent,
     ConfigComponent,
-    ThemesComponent
-    //ScoresComponent,
+    ThemesComponent,
+    ScoresComponent,
     // QuestionsComponent
 
   ],
