@@ -1,9 +1,12 @@
 <h1>Modifier le thème</h1>
-<button (click)="versAddLiaison()">Valider les changements</button>
+<button (click)="valider()">Valider les changements</button>
 <form>
   <mat-form-field class="example-full-width">
     <mat-label>Nom du thème</mat-label>
-    <input matInput placeholder="Ex. The Office" value="{{theme.name}}">
+    <input
+      matInput
+      placeholder="Ex. The Office"
+      [formControl]="themenameFC">
   </mat-form-field>
 
   <table>
@@ -19,8 +22,7 @@
                  matInput
                  [formControl]="carteControls1[paire.id_1]"
                  [matAutocomplete]="auto"
-                 value="{{ paire.carte1?.reponse }}"
-                 (focus)="handleInputFocus('inputCarte1', i)">
+                 (focus)="handleInputFocus('inputCarte1', i, carteControls1[paire.id_1])">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -35,8 +37,7 @@
                  matInput
                  [formControl]="carteControls2[paire.id_2]"
                  [matAutocomplete]="auto"
-                 value="{{ paire.carte2?.reponse }}"
-                 (focus)="handleInputFocus('inputCarte2', i)">
+                 (focus)="handleInputFocus('inputCarte2', i, carteControls2[paire.id_2])">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -57,7 +58,8 @@
                  placeholder="chocolatine"
                  matInput
                  [formControl]="myControl"
-                 [matAutocomplete]="auto">
+                 [matAutocomplete]="auto"
+                 (focus)="focusinputs()">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -71,7 +73,8 @@
                  placeholder="pain au chocolat"
                  matInput
                  [formControl]="myControl"
-                 [matAutocomplete]="auto">
+                 [matAutocomplete]="auto"
+                 (focus)="focusinputs()">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
