@@ -19,7 +19,7 @@ import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.componen
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
 
-//import { ScoresComponent } from './scores/scores.component';
+import { ScoresComponent } from './scores/scores.component';
 
 import { SliderComponent } from './slider/slider.component';
 
@@ -28,6 +28,8 @@ import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { EditThemeComponent } from './edit-theme/edit-theme.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { EditThemeComponent } from './edit-theme/edit-theme.component';
     ConfigComponent,
     ThemesComponent,
     EditThemeComponent,
-    //ScoresComponent,
+    ScoresComponent,
     // QuestionsComponent
 
   ],
@@ -61,7 +63,9 @@ import { EditThemeComponent } from './edit-theme/edit-theme.component';
     MatSliderModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]

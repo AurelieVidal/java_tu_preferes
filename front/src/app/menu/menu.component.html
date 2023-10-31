@@ -21,7 +21,7 @@
       </div>
   </ng-container>
 
-  <button type="submit" [disabled]="!users.valid">Submit</button>
+  <button type="submit" [disabled]="!users.valid" (click)=onContinue()>JOUER</button>
 </form>
 
 <router-outlet></router-outlet>
