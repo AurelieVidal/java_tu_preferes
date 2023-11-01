@@ -2,7 +2,12 @@
 <a href='themes'>Gérer les cartes</a> <br>
 <a href='config'>Configurations</a>
 
+
+
 <h1>Nombre de Joueurs:</h1>
+
+<iframe src="https://gifer.com/embed/14bg" width=480 height=271.543 frameBorder="0" allowFullScreen></iframe>
+
 <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
   <div>
     <label for="nbJInput">Le nombre de Joueurs:</label>
@@ -18,5 +23,5 @@
 <button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>
 
 </body>
-
+<app-audio>loading</app-audio>
 <router-outlet></router-outlet>

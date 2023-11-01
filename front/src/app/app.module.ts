@@ -28,6 +28,7 @@ import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { GameComponent } from './game/game.component';
+import { AudioComponent } from './audio/audio.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { GameComponent } from './game/game.component';
     ThemesComponent,
     ScoresComponent,
     GameComponent,
+    AudioComponent,
     // QuestionsComponent
 
   ],

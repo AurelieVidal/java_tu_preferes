@@ -11,6 +11,7 @@ import {ConfigComponent} from "./config/config.component";
 import { ThemesComponent } from './themes/themes.component';
 import {ScoresComponent} from "./scores/scores.component";
 import {GameComponent} from "./game/game.component";
+import {AudioComponent} from "./audio/audio.component";
 //import {ScoresComponent} from "./scores/scores.component";
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
 
   { path: 'themes', component: ThemesComponent},
   { path: 'game', component: GameComponent}
+  //{path:'', component:AudioComponent}
 
 ];
 
