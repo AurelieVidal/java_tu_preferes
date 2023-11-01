@@ -20,7 +20,8 @@ export class EditThemeComponent implements OnInit{
   theme_obs!: Observable<Theme>;
   theme!: Theme;
   theme_id!: number;
-  myControl = new FormControl('');
+  myControl1 = new FormControl('');
+  myControl2 = new FormControl('');
   options: string[] = [];
   ids: number[] = [];
   options_obs!: Observable<Card[]>;
@@ -54,10 +55,16 @@ export class EditThemeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.myControl1.valueChanges.pipe(
 
       map(value => this._filter(value || '')),
     );
+
+    this.filteredOptions = this.myControl2.valueChanges.pipe(
+
+      map(value => this._filter(value || '')),
+    );
+
 
     this.all_liaisons_obs.subscribe(x =>this.all_liaisons = x)
 
@@ -172,6 +179,8 @@ export class EditThemeComponent implements OnInit{
   }
 
 
+
+
   showErrorMessage(message: string) {
     this.snackBar.open(message, 'Fermer', {
       duration: 2000, // Durée d'affichage du toast en millisecondes
@@ -179,31 +188,37 @@ export class EditThemeComponent implements OnInit{
   }
 
 
-  focusinputs() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+  focusinputs(formcontroller: FormControl) {
+    this.filteredOptions = formcontroller.valueChanges.pipe(
 
       map(value => this._filter(value || '')),
     );
+
+
   }
 
-  async valider() {
 
+
+  async valider() {
     const nom = this.themenameFC.value;
     const liaisons: Liaison[] = [];
 
     for (let index = 0; index < this.indexes1.length; index++) {
       const value1 = this.carteControls1[this.indexes1[index]].value;
-      const id1 = await this.createOrFindCard(value1);
-
       const value2 = this.carteControls2[this.indexes2[index]].value;
+
+      // Vérifier si les valeurs sont vides
+      if (!value1.trim() || !value2.trim()) {
+        this.showErrorMessage("Certains champs sont incomplets, merci de les remplir");
+        return; // Arrêter la validation si les champs sont vides
+      }
+
+      const id1 = await this.createOrFindCard(value1);
       const id2 = await this.createOrFindCard(value2);
 
       const liaison = { id: this.liaison[index].id, id_1: id1, id_2: id2 };
 
-      if (
-        this.liaison[index].id_1 !== id1 ||
-        this.liaison[index].id_2 !== id2
-      ) {
+      if (this.liaison[index].id_1 !== id1 || this.liaison[index].id_2 !== id2) {
         const existingLiaison = this.findExistingLiaison(id1, id2);
 
         if (existingLiaison) {
@@ -221,14 +236,12 @@ export class EditThemeComponent implements OnInit{
     console.log("Thème modifié:", theme);
 
     this.themeService.update(this.theme_id, theme).subscribe(() => {
-      this.router.navigate(["themes"])
-    })
-
-    // Faire le PUT ou toute autre opération nécessaire ici
+      this.router.navigate(["themes"]);
+    });
 
     this.router.navigateByUrl("themes");
-
   }
+
 
 
 
@@ -289,12 +302,52 @@ export class EditThemeComponent implements OnInit{
     return id;
   }
 
+  async AddLiaison() {
+    // Vérifiez si les cartes sont vides
+    if (!this.myControl1.value!!.trim() || !this.myControl2.value!!.trim()) {
+      this.showErrorMessage("Vous n'avez pas rempli tous les champs, impossible d'ajouter le dilemme");
+      return;
+    }
+
+    // Vérifiez si les cartes existent et créez-les si nécessaire
+    const id1 = await this.createOrFindCard(this.myControl1.value!!);
+    const id2 = await this.createOrFindCard(this.myControl2.value!!);
+
+    // Vérifiez si la liaison existe
+    const existingLiaison = this.findExistingLiaison(id1, id2);
+
+    if (existingLiaison) {
+      this.liaison.push(existingLiaison)
+      this.indexes1.push(Number(existingLiaison.id))
+      this.carteControls1[Number(existingLiaison.id)] = new FormControl(this.myControl1.value!!);
+      this.indexes2.push(Number(existingLiaison.id))
+      this.carteControls2[Number(existingLiaison.id)] = new FormControl(this.myControl2.value!!);
+    } else {
+      // Créez une nouvelle liaison
+      const newLiaison = await this.createLiaison(id1, id2);
+      // Ajoutez la nouvelle liaison à la liste
+      this.liaison.push(newLiaison);
+      this.indexes1.push(Number(newLiaison.id))
+      this.carteControls1[Number(newLiaison.id)] = new FormControl(this.myControl1.value!!);
+      this.indexes2.push(Number(newLiaison.id))
+      this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value!!);
+
+    }
+
+
+
+    this.myControl1.setValue('');
+    this.myControl2.setValue('');
+
+  }
+
 
 
 
 
 
   protected readonly Number = Number;
+
 
 
 }

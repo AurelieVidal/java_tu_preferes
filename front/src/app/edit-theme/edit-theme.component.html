@@ -57,11 +57,11 @@
       <td>
         <mat-form-field class="example-full-width">
           <input type="text"
-                 placeholder="chocolatine"
+                 placeholder="Ex. chocolatine"
                  matInput
-                 [formControl]="myControl"
+                 [formControl]="myControl1"
                  [matAutocomplete]="auto"
-                 (focus)="focusinputs()">
+                 (focus)="focusinputs(myControl1)">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -72,11 +72,11 @@
       <td>
         <mat-form-field class="example-full-width">
           <input type="text"
-                 placeholder="pain au chocolat"
+                 placeholder="Ex. pain au chocolat"
                  matInput
-                 [formControl]="myControl"
+                 [formControl]="myControl2"
                  [matAutocomplete]="auto"
-                 (focus)="focusinputs()">
+                 (focus)="focusinputs(myControl2)">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -85,7 +85,7 @@
         </mat-form-field>
       </td>
       <td>
-        <button (click)="versAddLiaison()">Ajouter une liaison</button>
+        <button (click)="AddLiaison()">Ajouter une liaison</button>
       </td>
       <td>
         <button (click)="versAddLiaison()">Liste des cartes existantes</button>
