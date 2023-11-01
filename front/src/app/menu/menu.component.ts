@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {FormControl, FormGroup, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
+import { PlayerService } from "../services/player.service";
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,9 @@ export class MenuComponent implements OnInit{
   nombreManche!: number;
   nombreJoueur!: number;
 
-  constructor(private router: Router,private activatedRoute: ActivatedRoute){
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private playerService: PlayerService){
   }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class MenuComponent implements OnInit{
     this.activatedRoute.params.subscribe(s=>{
       this.nombreJoueur=numberOfPlayers;
         this.nombreManche=s["nbManche"];
-        console.log("le nbr de manche est"+this.nombreManche+"le nbr de joueur est"+this.nombreJoueur);
+        console.log("le nbr de manche est "+this.nombreManche+"le nbr de joueur est"+this.nombreJoueur);
       }
     )
 
@@ -76,17 +79,29 @@ export class MenuComponent implements OnInit{
         return key;
       }
     }
-    return undefined; // Retourne undefined si la valeur n'est pas trouvée
+    return undefined;
   }
 
   onSubmit() {
-    console.log("Valeurs du FormGroup (users):", this.users.value);
-    console.log("nb de joueurs " + parseInt(this.activatedRoute.snapshot.params["nbrJoueur"]));
-    console.log(this.users.value);
-    this.router.navigateByUrl('score/'+this.nombreJoueur);
-  }
-  onContinue(): void{
-    this.router.navigateByUrl('partie');
+
+    const playerData = this.users.value;
+    const numberOfPlayers = parseInt(this.activatedRoute.snapshot.params['nbrJoueur']);
+
+    // Créez un tableau pour stocker les informations des joueurs
+    const players = [];
+    for (let i = 0; i < numberOfPlayers; i++) {
+      const playerInfo = {
+        pseudo: playerData[`joueur_${i}`].pseudo,
+        image_path: playerData[`joueur_${i}`].image_path,
+      };
+      players.push(playerInfo);
+    }
+
+    // Enregistre les informations des joueurs dans le service PlayerService
+    this.playerService.setPlayers(players);
+
+    this.router.navigateByUrl('game');
+
   }
 }
 

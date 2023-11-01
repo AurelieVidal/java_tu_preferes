@@ -30,6 +30,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { EditThemeComponent } from './edit-theme/edit-theme.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     ThemesComponent,
     EditThemeComponent,
     ScoresComponent,
+    GameComponent,
     // QuestionsComponent
 
   ],
