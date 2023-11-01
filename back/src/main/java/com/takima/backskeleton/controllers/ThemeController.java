@@ -1,6 +1,8 @@
 package com.takima.backskeleton.controllers;
 
+import com.takima.backskeleton.DTO.ThemeDto;
 import com.takima.backskeleton.models.Card;
+import com.takima.backskeleton.models.Liaison;
 import com.takima.backskeleton.models.Theme;
 import com.takima.backskeleton.services.ThemeService;
 import lombok.RequiredArgsConstructor;
@@ -25,4 +27,9 @@ public class ThemeController {
         return themeService.findbyId(id);
     }
 
+
+    @PostMapping("/{id}")
+    public void updateStudent(@RequestBody ThemeDto themeDto, @PathVariable Long id) {
+        themeService.update(themeDto, id);
+    }
 }

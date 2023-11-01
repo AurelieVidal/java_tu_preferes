@@ -186,6 +186,10 @@ export class EditThemeComponent implements OnInit{
     const theme = { name: String(nom), paires: liaisons };
     console.log("Thème modifié:", theme);
 
+    this.themeService.update(this.theme_id, theme).subscribe(() => {
+      this.router.navigate(["themes"])
+    })
+
     // Faire le PUT ou toute autre opération nécessaire ici
 
     this.router.navigateByUrl("themes");
