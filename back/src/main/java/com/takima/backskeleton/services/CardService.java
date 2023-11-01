@@ -20,7 +20,8 @@ public class CardService {
         return cardDao.findById(id).orElseThrow(RuntimeException::new);
     }
 
-    public void createCard(Card card) {
-        cardDao.save(card);
+    public Card createCard(Card card) {
+        return cardDao.save(card);
+
     }
 }

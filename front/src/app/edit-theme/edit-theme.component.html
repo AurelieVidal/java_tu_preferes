@@ -1,0 +1,93 @@
+<h1>Modifier le thème</h1>
+<button (click)="valider()">Valider les changements</button>
+<form>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom du thème</mat-label>
+    <input
+      matInput
+      placeholder="Ex. The Office"
+      [formControl]="themenameFC">
+  </mat-form-field>
+
+  <table>
+    <tr>
+      <td>Choix 1</td>
+      <td>Choix 2</td>
+    </tr>
+    <tr *ngFor="let paire of liaison; let i = index">
+      <td>
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="Choisissez une carte"
+                 matInput
+                 [formControl]="carteControls1[Number(paire.id)]"
+                 [matAutocomplete]="auto"
+                 (focus)="handleInputFocus('inputCarte1', i, carteControls1[Number(paire.id)])">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="Choisissez une carte"
+                 matInput
+                 [formControl]="carteControls2[Number(paire.id)]"
+                 [matAutocomplete]="auto"
+                 (focus)="handleInputFocus('inputCarte2', i, carteControls2[Number(paire.id)])">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+      <td>
+        <button mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="chocolatine"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 (focus)="focusinputs()">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="pain au chocolat"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 (focus)="focusinputs()">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+      <td>
+        <button (click)="versAddLiaison()">Ajouter une liaison</button>
+      </td>
+      <td>
+        <button (click)="versAddLiaison()">Liste des cartes existantes</button>
+      </td>
+    </tr>
+  </table>
+</form>
