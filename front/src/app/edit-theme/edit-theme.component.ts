@@ -152,126 +152,84 @@ export class EditThemeComponent implements OnInit{
     );
   }
 
-  valider() {
-    let nom = this.themenameFC.value;
-    let liaisons: Liaison[] = [];
-    let index = 0;
+  async valider() {
 
-    const createCardAndContinue = () => {
-      if (index < this.indexes1.length) {
-        let value1 = this.carteControls1[this.indexes1[index]].value;
-        let id_1 = this.existe(value1);
+    const nom = this.themenameFC.value;
+    const liaisons: Liaison[] = [];
 
-        if (id_1 == -1) {
-          console.log("Nouvelle carte 1!");
-          const card1: Card = { reponse: value1 };
-          this.cardService.create(card1).subscribe((newcard: Card) => {
-            console.log("ID CREEE " + newcard.id);
-            id_1 = Number(newcard.id);
+    for (let index = 0; index < this.indexes1.length; index++) {
+      const value1 = this.carteControls1[this.indexes1[index]].value;
+      const id1 = await this.createOrFindCard(value1);
 
-            let value2 = this.carteControls2[this.indexes2[index]].value;
-            let id_2 = this.existe(value2);
+      const value2 = this.carteControls2[this.indexes2[index]].value;
+      const id2 = await this.createOrFindCard(value2);
 
-            if (id_2 == -1) {
-              console.log("Nouvelle carte 2!");
-              const card2: Card = { reponse: value2 };
-              this.cardService.create(card2).subscribe((newcard2: Card) => {
-                console.log("ID CREEE " + newcard2.id);
-                id_2 = Number(newcard2.id);
+      const liaison = { id: this.liaison[index].id, id_1: id1, id_2: id2 };
 
-                const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
+      if (
+        this.liaison[index].id_1 !== id1 ||
+        this.liaison[index].id_2 !== id2
+      ) {
+        const existingLiaison = this.findExistingLiaison(id1, id2);
 
-                if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
-                  this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                    this.router.navigate(["themes"])
-                  })
-
-                }
-                console.log("la liaison créée : "+ liaison)
-                liaisons.push(liaison);
-
-                index++;
-                createCardAndContinue();
-              });
-            } else {
-
-
-              const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
-
-              if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
-                this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                  this.router.navigate(["themes"])
-                })
-
-              }
-              console.log("la liaison créée : ")
-              console.log(liaison)
-              liaisons.push(liaison);
-
-              index++;
-              createCardAndContinue();
-            }
-          });
+        if (existingLiaison) {
+          liaisons.push(existingLiaison);
         } else {
-          let value2 = this.carteControls2[this.indexes2[index]].value;
-          let id_2 = this.existe(value2);
-
-          if (id_2 == -1) {
-            console.log("Nouvelle carte 2!");
-            const card2: Card = { reponse: value2 };
-            this.cardService.create(card2).subscribe((newcard2: Card) => {
-              console.log("ID CREEE " + newcard2.id);
-              id_2 = Number(newcard2.id);
-
-              const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
-
-              if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
-                this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                  this.router.navigate(["themes"])
-                })
-
-              }
-              console.log("la liaison créée : "+ liaison)
-              liaisons.push(liaison);
-
-              index++;
-              createCardAndContinue();
-            });
-          } else {
-            const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
-
-            if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
-              this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                this.router.navigate(["themes"])
-              })
-
-            }
-
-
-            console.log("la liaison créée : ")
-            liaisons.push(liaison);
-
-            index++;
-            createCardAndContinue();
-          }
+          const newLiaison = await this.createLiaison(id1, id2);
+          liaisons.push(newLiaison);
         }
       } else {
-        console.log("Liaisons:", liaisons);
-
-
-
-
-
-        let theme: Theme = { name: String(nom), paires: liaisons };
-        console.log("Thème modifié:", theme);
-
-        // Faire le PUT ou toute autre opération nécessaire ici
-
-        this.router.navigateByUrl('themes');
+        liaisons.push(liaison);
       }
-    };
+    }
 
-    createCardAndContinue();
+    const theme = { name: String(nom), paires: liaisons };
+    console.log("Thème modifié:", theme);
+
+    // Faire le PUT ou toute autre opération nécessaire ici
+
+    this.router.navigateByUrl("themes");
+
+  }
+
+
+
+  async createCard(value: string): Promise<Card> {
+    return new Promise((resolve, reject) => {
+      const card: Card = { reponse: value };
+      this.cardService.create(card).subscribe(
+        (newCard: Card) => {
+          console.log("Nouvelle carte créée avec ID " + newCard.id);
+          resolve(newCard);
+        },
+        (error) => {
+          console.error("Erreur lors de la création de la carte:", error);
+          reject(error);
+        }
+      );
+    });
+  }
+
+  findExistingLiaison(id1: number, id2: number): Liaison | undefined {
+    return this.all_liaisons.find(
+      (liaison) => liaison.id_1 === id1 && liaison.id_2 === id2
+    );
+  }
+
+  async createLiaison(id1: number, id2: number): Promise<Liaison> {
+    const newLiaison: Liaison = { id_1: id1, id_2: id2 };
+    return new Promise((resolve, reject) => {
+      this.liaisonService.create(newLiaison).subscribe(
+        (newLiaison: Liaison) => {
+          console.log("Nouvelle liaison créée avec ID " + newLiaison.id);
+          resolve(newLiaison);
+        },
+        (error) => {
+          console.error("Erreur lors de la création de la liaison:", error);
+          reject(error);
+        }
+      );
+    });
   }
 
   existe(value: string):number{
@@ -283,6 +241,17 @@ export class EditThemeComponent implements OnInit{
     }
     return id
   }
+
+  async createOrFindCard(value: string): Promise<number> {
+    const id = this.existe(value);
+    if (id === -1) {
+      const newCard = await this.createCard(value);
+      return Number(newCard.id);
+    }
+    return id;
+  }
+
+
 
 
   protected readonly Number = Number;

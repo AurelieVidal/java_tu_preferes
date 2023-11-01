@@ -22,8 +22,8 @@ public class LiaisonController {
     }
 
     @PostMapping("")
-    public void createLiaison(@RequestBody Liaison liaison) {
-        liaisonService.createLiaison(liaison);
+    public Liaison createLiaison(@RequestBody Liaison liaison) {
+        return liaisonService.createLiaison(liaison);
 
     }
 

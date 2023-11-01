@@ -20,8 +20,8 @@ public class LiaisonService {
         return liaisonDao.findAll();
     }
 
-    public void createLiaison(Liaison liaison) {
-        liaisonDao.save(liaison);
+    public Liaison createLiaison(Liaison liaison) {
+        return liaisonDao.save(liaison);
     }
 
 

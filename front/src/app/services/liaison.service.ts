@@ -21,6 +21,8 @@ export class LiaisonService {
     return this.http.post<Liaison>(this.liaisonUrl, liaison)
   }
 
+
+
   update(id: number, liaison: Liaison): Observable<Liaison> {
     return this.http.post<Liaison>(`${this.liaisonUrl}/${id}`, liaison)
   }
