@@ -80,19 +80,19 @@ export class EditThemeComponent implements OnInit{
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => {
               paire.carte1 = carte1;
-              this.indexes1.push(paire.id_1)
-              this.carteControls1[paire.id_1] = new FormControl(carte1.reponse);
-              console.log("création form : "+ paire.id_1 + "---"+this.carteControls1[paire.id_1].value)
-              console.log(this.carteControls1[paire.id_1])
+              this.indexes1.push(Number(paire.id))
+              this.carteControls1[Number(paire.id)] = new FormControl(carte1.reponse);
+              console.log("création form : "+ paire.id_1 + "---"+this.carteControls1[Number(paire.id)].value)
+              console.log(this.carteControls1[Number(paire.id)])
             }
           );
 
           this.cardService.findById(Number(paire.id_2)).subscribe(
             carte2 => {
               paire.carte2 = carte2;
-              this.indexes2.push(paire.id_2)
-              this.carteControls2[paire.id_2] = new FormControl(carte2.reponse);
-              console.log("création form 2 : "+ paire.id_2 +"---"+this.carteControls2[paire.id_2].value);
+              this.indexes2.push(Number(paire.id))
+              this.carteControls2[Number(paire.id)] = new FormControl(carte2.reponse);
+              console.log("création form 2 : "+ paire.id_2 +"---"+this.carteControls2[Number(paire.id)].value);
 
             }
 
@@ -123,7 +123,9 @@ export class EditThemeComponent implements OnInit{
       map(value => this._filter(value || '')),
     );
 
-
+    console.log(this.indexes1)
+    console.log(this.carteControls1)
+    console.log(formcontrolller)
 
 
     console.log("id = "+index)
@@ -181,7 +183,7 @@ export class EditThemeComponent implements OnInit{
 
                 if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
                   this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                    this.router.navigate(["liaisons"])
+                    this.router.navigate(["themes"])
                   })
 
                 }
@@ -198,7 +200,7 @@ export class EditThemeComponent implements OnInit{
 
               if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
                 this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                  this.router.navigate(["liaisons"])
+                  this.router.navigate(["themes"])
                 })
 
               }
@@ -225,7 +227,7 @@ export class EditThemeComponent implements OnInit{
 
               if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
                 this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                  this.router.navigate(["liaisons"])
+                  this.router.navigate(["themes"])
                 })
 
               }
@@ -240,7 +242,7 @@ export class EditThemeComponent implements OnInit{
 
             if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
               this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
-                this.router.navigate(["liaisons"])
+                this.router.navigate(["themes"])
               })
 
             }
@@ -283,4 +285,5 @@ export class EditThemeComponent implements OnInit{
   }
 
 
+  protected readonly Number = Number;
 }
