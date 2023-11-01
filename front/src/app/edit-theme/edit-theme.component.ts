@@ -8,6 +8,7 @@ import { ThemeService } from "../services/theme.service";
 import { FormControl } from "@angular/forms";
 import { Card } from "../models/card.model";
 import {LiaisonService} from "../services/liaison.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-theme',
@@ -35,7 +36,6 @@ export class EditThemeComponent implements OnInit{
   private _filter(value: string): string[] {
 
     const filterValue = value.toLowerCase();
-    console.log(this.options.filter(option => option.toLowerCase().includes(filterValue)))
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
@@ -44,7 +44,8 @@ export class EditThemeComponent implements OnInit{
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private themeService: ThemeService,
-    private liaisonService: LiaisonService
+    private liaisonService: LiaisonService,
+    private snackBar: MatSnackBar
   ) {
     this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
     this.theme_obs = this.themeService.findById(this.theme_id);
@@ -118,6 +119,12 @@ export class EditThemeComponent implements OnInit{
 
   handleInputFocus(type: string, index: number, formcontrolller: FormControl): void {
 
+    //vérification
+
+
+
+
+
     this.filteredOptions = formcontrolller.valueChanges.pipe(
 
       map(value => this._filter(value || '')),
@@ -143,7 +150,34 @@ export class EditThemeComponent implements OnInit{
 
 
 
+
+
+
   }
+
+  handleInputChange(type: string, index: number, formcontrolller: FormControl) {
+
+    console.log('Champ de recherche modifié:', formcontrolller.value);
+    for (let ind of this.indexes1){
+      if (ind != this.indexes1[index]){
+        if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value){
+          console.log("LIAISON EXISTANTE")
+          formcontrolller.setValue("");
+          this.showErrorMessage('Liaison existante !');
+        }
+
+      }
+
+    }
+  }
+
+
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 2000, // Durée d'affichage du toast en millisecondes
+    });
+  }
+
 
   focusinputs() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -258,5 +292,9 @@ export class EditThemeComponent implements OnInit{
 
 
 
+
+
   protected readonly Number = Number;
+
+
 }

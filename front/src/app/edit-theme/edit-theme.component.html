@@ -22,7 +22,8 @@
                  matInput
                  [formControl]="carteControls1[Number(paire.id)]"
                  [matAutocomplete]="auto"
-                 (focus)="handleInputFocus('inputCarte1', i, carteControls1[Number(paire.id)])">
+                 (focus)="handleInputFocus('inputCarte1', i, carteControls1[Number(paire.id)])"
+                 (ngModelChange)="handleInputChange('inputCarte1', i, carteControls1[Number(paire.id)])">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -37,7 +38,8 @@
                  matInput
                  [formControl]="carteControls2[Number(paire.id)]"
                  [matAutocomplete]="auto"
-                 (focus)="handleInputFocus('inputCarte2', i, carteControls2[Number(paire.id)])">
+                 (focus)="handleInputFocus('inputCarte2', i, carteControls2[Number(paire.id)])"
+                 (ngModelChange)="handleInputChange('inputCarte2', i, carteControls2[Number(paire.id)])">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}

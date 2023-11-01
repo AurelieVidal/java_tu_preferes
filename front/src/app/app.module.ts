@@ -18,7 +18,6 @@ import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
-
 import { ScoresComponent } from './scores/scores.component';
 
 import { SliderComponent } from './slider/slider.component';
@@ -31,6 +30,7 @@ import { EditThemeComponent } from './edit-theme/edit-theme.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { GameComponent } from './game/game.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { GameComponent } from './game/game.component';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule,
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
