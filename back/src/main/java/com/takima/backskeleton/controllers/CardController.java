@@ -26,8 +26,8 @@ public class CardController {
     }
 
     @PostMapping("")
-    public void createCard(@RequestBody Card card) {
-        cardService.createCard(card);
+    public Card createCard(@RequestBody Card card) {
+        return cardService.createCard(card);
     }
 
 }

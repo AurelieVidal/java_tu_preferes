@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ThemeService } from "../services/theme.service";
 import { FormControl } from "@angular/forms";
 import { Card } from "../models/card.model";
+import {LiaisonService} from "../services/liaison.service";
 
 @Component({
   selector: 'app-edit-theme',
@@ -28,6 +29,8 @@ export class EditThemeComponent implements OnInit{
   carteControls2: { [key: number]: FormControl } = {};
   indexes1 :number[] = [];
   indexes2 :number[] = [];
+  all_liaisons!: Liaison[];
+  all_liaisons_obs!: Observable<Liaison[]>;
 
   private _filter(value: string): string[] {
 
@@ -40,11 +43,13 @@ export class EditThemeComponent implements OnInit{
     private cardService: CardService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private liaisonService: LiaisonService
   ) {
     this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
     this.theme_obs = this.themeService.findById(this.theme_id);
     this.options_obs = cardService.findAll();
+    this.all_liaisons_obs = liaisonService.findAll();
   }
 
   ngOnInit() {
@@ -52,6 +57,8 @@ export class EditThemeComponent implements OnInit{
 
       map(value => this._filter(value || '')),
     );
+
+    this.all_liaisons_obs.subscribe(x =>this.all_liaisons = x)
 
 
 
@@ -144,40 +151,125 @@ export class EditThemeComponent implements OnInit{
   }
 
   valider() {
-    let nom = this.themenameFC.value
+    let nom = this.themenameFC.value;
+    let liaisons: Liaison[] = [];
+    let index = 0;
+
+    const createCardAndContinue = () => {
+      if (index < this.indexes1.length) {
+        let value1 = this.carteControls1[this.indexes1[index]].value;
+        let id_1 = this.existe(value1);
+
+        if (id_1 == -1) {
+          console.log("Nouvelle carte 1!");
+          const card1: Card = { reponse: value1 };
+          this.cardService.create(card1).subscribe((newcard: Card) => {
+            console.log("ID CREEE " + newcard.id);
+            id_1 = Number(newcard.id);
+
+            let value2 = this.carteControls2[this.indexes2[index]].value;
+            let id_2 = this.existe(value2);
+
+            if (id_2 == -1) {
+              console.log("Nouvelle carte 2!");
+              const card2: Card = { reponse: value2 };
+              this.cardService.create(card2).subscribe((newcard2: Card) => {
+                console.log("ID CREEE " + newcard2.id);
+                id_2 = Number(newcard2.id);
+
+                const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
+
+                if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
+                  this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
+                    this.router.navigate(["liaisons"])
+                  })
+
+                }
+                console.log("la liaison créée : "+ liaison)
+                liaisons.push(liaison);
+
+                index++;
+                createCardAndContinue();
+              });
+            } else {
 
 
-    let liaisons: Liaison[] = []
-    console.log(nom)
-    for (let index = 0; index < this.indexes1.length; index++) {
-      let value1 = this.carteControls1[this.indexes1[index]].value
-      let id_1 = this.existe(value1)
+              const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
 
-      if (id_1 == -1){
-        //post la carte et recup le  nouvel id
+              if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
+                this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
+                  this.router.navigate(["liaisons"])
+                })
+
+              }
+              console.log("la liaison créée : ")
+              console.log(liaison)
+              liaisons.push(liaison);
+
+              index++;
+              createCardAndContinue();
+            }
+          });
+        } else {
+          let value2 = this.carteControls2[this.indexes2[index]].value;
+          let id_2 = this.existe(value2);
+
+          if (id_2 == -1) {
+            console.log("Nouvelle carte 2!");
+            const card2: Card = { reponse: value2 };
+            this.cardService.create(card2).subscribe((newcard2: Card) => {
+              console.log("ID CREEE " + newcard2.id);
+              id_2 = Number(newcard2.id);
+
+              const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
+
+              if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
+                this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
+                  this.router.navigate(["liaisons"])
+                })
+
+              }
+              console.log("la liaison créée : "+ liaison)
+              liaisons.push(liaison);
+
+              index++;
+              createCardAndContinue();
+            });
+          } else {
+            const liaison: Liaison = { id : this.liaison[index].id,  id_1: id_1, id_2: id_2 };
+
+            if (this.liaison[index].id_1 != id_1 || this.liaison[index].id_2 != id_2 ){
+              this.liaisonService.update(Number(this.liaison[index].id), liaison).subscribe(() =>{
+                this.router.navigate(["liaisons"])
+              })
+
+            }
+
+
+            console.log("la liaison créée : ")
+            liaisons.push(liaison);
+
+            index++;
+            createCardAndContinue();
+          }
+        }
+      } else {
+        console.log("Liaisons:", liaisons);
+
+
+
+
+
+        let theme: Theme = { name: String(nom), paires: liaisons };
+        console.log("Thème modifié:", theme);
+
+        // Faire le PUT ou toute autre opération nécessaire ici
+
+        this.router.navigateByUrl('themes');
       }
+    };
 
-      let value2 = this.carteControls2[this.indexes2[index]].value
-      let id_2 = this.existe(value2)
-
-      if (id_2 == -1){
-        //post la carte et recup le  nouvel id
-      }
-
-      const liaison : Liaison = {id_1: id_1, id_2: id_2}
-      liaisons.push(liaison)
-
-      console.log(value1+"----"+value2)
-    }
-    console.log(liaisons)
-
-    let theme : Theme = {name: String(nom), paires: liaisons}
-    console.log(theme)
-    /*
-    this.cardService.create(card).subscribe(() => {
-      this.router.navigate(["cards"])
-    })*/
-    //faire le PUT
+    createCardAndContinue();
   }
 
   existe(value: string):number{
@@ -187,12 +279,6 @@ export class EditThemeComponent implements OnInit{
         id=this.ids[index]
       }
     }
-
-    console.log("L'INDICE DOIT ETRE DIFFERENT DE -1 A CHAQUE FOIS : "+id)
-
-
-    //vérifier si une variable appartient à la liste des cartes (dans le front direct je pense)
-    //retourne l'id de la carte si elle existe, sinon -1
     return id
   }
 
