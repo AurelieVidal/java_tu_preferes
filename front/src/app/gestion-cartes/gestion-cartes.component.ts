@@ -38,6 +38,7 @@ export class GestionCartesComponent implements OnInit {
         this.theme = x;
         console.log(this.theme)
         this.liaison = this.theme.paires
+
         for (const paire of this.liaison) {
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => paire.carte1 = carte1
@@ -61,6 +62,7 @@ export class GestionCartesComponent implements OnInit {
   versAddLiaison(): void{
     this.router.navigateByUrl('addLiaison');
   }
+
 
 
 

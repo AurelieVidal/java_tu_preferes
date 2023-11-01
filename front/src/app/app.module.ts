@@ -27,6 +27,9 @@ import { ConfigComponent } from './config/config.component';
 import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { EditThemeComponent } from './edit-theme/edit-theme.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { GameComponent } from './game/game.component';
 import { AudioComponent } from './audio/audio.component';
 
@@ -42,6 +45,7 @@ import { AudioComponent } from './audio/audio.component';
     SliderComponent,
     ConfigComponent,
     ThemesComponent,
+    EditThemeComponent,
     ScoresComponent,
     GameComponent,
     AudioComponent,
@@ -63,7 +67,9 @@ import { AudioComponent } from './audio/audio.component';
     MatSliderModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
