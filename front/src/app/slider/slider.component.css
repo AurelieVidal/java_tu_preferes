@@ -24,9 +24,10 @@
   -webkit-appearance: none;
   appearance: none;
   width: 50px; /* Ajustez la largeur pour centrer le curseur */
+  background: url('/assets/prison_Mike.png') no-repeat center center; /* Inclure l'image comme fond */
+  background-size: 40px 40px;
   height: 50px;
   border-radius: 50%;
-  background: aqua;
   cursor: pointer;
   position: relative;
   z-index: 2;
@@ -35,7 +36,8 @@
 .slider::-moz-range-thumb {
   width: 25px; /* Ajustez la largeur pour centrer le curseur */
   height: 25px;
-  background: aqua;
+  background: url('/assets/prison_Mike.png') no-repeat center center; /* Inclure l'image comme fond */
+  background-size: 20px 20px;
   cursor: pointer;
   position: relative;
   z-index: 2;
@@ -58,5 +60,12 @@
 .after {
   background: #04AA6D; /* Couleur après le curseur */
   right: 0;
+}
+
+.custom-slider .mat-slider-thumb {
+  background: url('/assets/prison_Mike.png') no-repeat center center;
+  background-size: contain;
+  width: 20px; /* Ajustez la largeur de l'image en fonction de vos besoins */
+  height: 20px; /* Ajustez la hauteur de l'image en fonction de vos besoins */
 }
 
