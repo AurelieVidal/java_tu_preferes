@@ -48,7 +48,7 @@
         </mat-form-field>
       </td>
       <td>
-        <button mat-icon-button color="warn">
+        <button mat-icon-button color="warn" (click)="deleteLiaison(paire)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -87,9 +87,9 @@
       <td>
         <button (click)="AddLiaison()">Ajouter une liaison</button>
       </td>
-      <td>
-        <button (click)="versAddLiaison()">Liste des cartes existantes</button>
-      </td>
     </tr>
   </table>
+
+
+  <button (click)="versAddLiaison()">Liste des cartes existantes</button>
 </form>

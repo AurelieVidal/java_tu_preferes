@@ -236,10 +236,11 @@ export class EditThemeComponent implements OnInit{
     console.log("Thème modifié:", theme);
 
     this.themeService.update(this.theme_id, theme).subscribe(() => {
-      this.router.navigate(["themes"]);
+      //this.router.navigate(["themes"]);
     });
 
     this.router.navigateByUrl("themes");
+
   }
 
 
@@ -309,6 +310,15 @@ export class EditThemeComponent implements OnInit{
       return;
     }
 
+    for (let ind of this.indexes1){
+      if (this.myControl1.value == this.carteControls1[ind].value && this.myControl2.value == this.carteControls2[ind].value){
+        console.log("LIAISON EXISTANTE")
+        this.showErrorMessage('Liaison existante !');
+        return;
+      }
+
+    }
+
     // Vérifiez si les cartes existent et créez-les si nécessaire
     const id1 = await this.createOrFindCard(this.myControl1.value!!);
     const id2 = await this.createOrFindCard(this.myControl2.value!!);
@@ -339,6 +349,21 @@ export class EditThemeComponent implements OnInit{
     this.myControl1.setValue('');
     this.myControl2.setValue('');
 
+  }
+
+  deleteLiaison(liaison: Liaison) {
+    console.log(liaison)
+    const index = this.liaison.indexOf(liaison); // Trouver l'index de la liaison à supprimer
+    this.indexes1.splice(index, 1);
+    this.indexes2.splice(index,1);
+    this.liaison.splice(index, 1); // Supprimer la liaison en utilisant splice
+    /* //Vérification pas utile
+    if (index !== -1) {
+
+      console.log(`Liaison supprimée : ${liaison}`);
+    } else {
+      console.log(`Liaison introuvable : ${liaison}`);
+    }*/
   }
 
 
