@@ -26,5 +26,9 @@ export class ThemeService {
     return this.http.post<Theme>(`${this.themeUrl}/${id}`, theme)
   }
 
+  create(theme : Theme): Observable<Theme> {
+    return this.http.post<Theme>(this.themeUrl, theme)
+  }
+
 
 }

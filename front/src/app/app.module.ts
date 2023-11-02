@@ -31,6 +31,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { GameComponent } from './game/game.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddThemeComponent } from './add-theme/add-theme.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EditThemeComponent,
     ScoresComponent,
     GameComponent,
+    AddThemeComponent,
     // QuestionsComponent
 
   ],

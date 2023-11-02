@@ -11,15 +11,14 @@ import {LiaisonService} from "../services/liaison.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-edit-theme',
-  templateUrl: './edit-theme.component.html',
-  styleUrls: ['./edit-theme.component.css']
+  selector: 'app-add-theme',
+  templateUrl: './add-theme.component.html',
+  styleUrls: ['./add-theme.component.css']
 })
-export class EditThemeComponent implements OnInit{
-  liaison!: Liaison[];
-  theme_obs!: Observable<Theme>;
+export class AddThemeComponent implements OnInit{
+  liaison: Liaison[] = [];
+  //theme_obs!: Observable<Theme>;
   theme!: Theme;
-  theme_id!: number;
   myControl1 = new FormControl('');
   myControl2 = new FormControl('');
   options: string[] = [];
@@ -27,7 +26,7 @@ export class EditThemeComponent implements OnInit{
   options_obs!: Observable<Card[]>;
   filteredOptions!: Observable<string[]>;
   carteControls1: { [key: number]: FormControl } = {};
-  themenameFC!: FormControl<string | null>
+  themenameFC = new FormControl('')
   carteControls2: { [key: number]: FormControl } = {};
   indexes1 :number[] = [];
   indexes2 :number[] = [];
@@ -48,8 +47,8 @@ export class EditThemeComponent implements OnInit{
     private liaisonService: LiaisonService,
     private snackBar: MatSnackBar
   ) {
-    this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
-    this.theme_obs = this.themeService.findById(this.theme_id);
+
+    //this.theme_obs = this.themeService.findById(this.theme_id);
     this.options_obs = cardService.findAll();
     this.all_liaisons_obs = liaisonService.findAll();
   }
@@ -76,7 +75,7 @@ export class EditThemeComponent implements OnInit{
         this.ids = cards.map(card => Number(card.id))
       }
     );
-
+/*
     this.theme_obs.subscribe(
       x => {
         this.theme = x;
@@ -108,7 +107,7 @@ export class EditThemeComponent implements OnInit{
 
         }
       }
-    );
+    );*/
 
 
   }
@@ -201,10 +200,16 @@ export class EditThemeComponent implements OnInit{
 
   async valider() {
     const nom = this.themenameFC.value;
+    console.log(nom)
     if (nom == null || nom.trim() === '') {
       // Afficher un message d'erreur ou prendre toute autre action nécessaire
       this.showErrorMessage("Le nom du thème est vide.");
       return; // Arrêter la validation si le nom est vide ou null
+    }
+
+    if (this.liaison.length === 0) {
+      this.showErrorMessage("Vous n'avez pas ajouté de dilemme ! ");
+      return;
     }
 
 
@@ -242,11 +247,18 @@ export class EditThemeComponent implements OnInit{
 
     const theme = { name: String(nom), paires: liaisons };
     console.log("Thème modifié:", theme);
-
+    //////////////////////////TRANSFORMER EN POST
+    /*
     this.themeService.update(this.theme_id, theme).subscribe(() => {
       //this.router.navigate(["themes"]);
     });
+*/
 
+    this.themeService.create(theme).subscribe(() => {
+      //this.router.navigate(["students"])
+    })
+
+    console.log("ajout du thème")
     this.router.navigateByUrl("themes");
 
   }
@@ -384,3 +396,4 @@ export class EditThemeComponent implements OnInit{
 
 
 }
+

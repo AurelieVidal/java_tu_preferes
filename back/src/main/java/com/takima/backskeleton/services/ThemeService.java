@@ -40,6 +40,18 @@ public class ThemeService {
         themeDao.save(theme);
     }
 
+    @Transactional
+    public void addStudent(ThemeDto themeDto) {
+        Theme theme;
+        try {
+            theme = ThemeMapper.fromDto(themeDto, null);
+        } catch (IOException e) {
+            throw new RuntimeException("Error with Student image", e);
+        }
+
+        themeDao.save(theme);
+    }
+
 
 
 }

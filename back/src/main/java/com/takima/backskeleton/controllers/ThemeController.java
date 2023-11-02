@@ -29,7 +29,12 @@ public class ThemeController {
 
 
     @PostMapping("/{id}")
-    public void updateStudent(@RequestBody ThemeDto themeDto, @PathVariable Long id) {
+    public void updateTheme(@RequestBody ThemeDto themeDto, @PathVariable Long id) {
         themeService.update(themeDto, id);
+    }
+
+    @PostMapping("")
+    public void addTheme(@RequestBody ThemeDto themeDto) {
+        themeService.addStudent(themeDto);
     }
 }

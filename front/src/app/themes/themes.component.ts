@@ -45,6 +45,10 @@ export class ThemesComponent implements OnInit {
       }
     );
   }
+
+  versAddTheme() {
+    this.router.navigateByUrl("addTheme")
+  }
 }
 
 
