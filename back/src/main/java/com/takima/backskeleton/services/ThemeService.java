@@ -52,6 +52,11 @@ public class ThemeService {
         themeDao.save(theme);
     }
 
+    @Transactional
+    public void deleteById(Long id) {
+        themeDao.deleteById(id);
+    }
+
 
 
 }

@@ -49,6 +49,15 @@ export class ThemesComponent implements OnInit {
   versAddTheme() {
     this.router.navigateByUrl("addTheme")
   }
+
+  DeleteTheme(theme: Theme, index: number) {
+    console.log("DELETE")
+    this.theme.splice(index, 1);
+    this.themeService.delete(theme).subscribe(//() =>
+    //this.router.navigate(["students"])
+    )
+  }
+
 }
 
 

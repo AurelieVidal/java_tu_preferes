@@ -37,4 +37,9 @@ public class ThemeController {
     public void addTheme(@RequestBody ThemeDto themeDto) {
         themeService.addStudent(themeDto);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        themeService.deleteById(id);
+    }
 }

@@ -9,12 +9,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let theme of (themes$ | async)" >
+  <tr *ngFor="let theme of theme; let i = index">
     <td>{{ theme.name }}</td>
     <td>{{ theme.paires.length }}</td>
     <td>
       <a href='/cartes/{{ theme.id }}'>Afficher</a> <br>
-      <button mat-icon-button color="warn" >
+      <button mat-icon-button color="warn" (click)="DeleteTheme(theme, i)">
         <mat-icon>delete</mat-icon>
       </button>
       <a href='/edit/{{ theme.id }}'>Modifier</a> <br>

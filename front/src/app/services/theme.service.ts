@@ -30,5 +30,9 @@ export class ThemeService {
     return this.http.post<Theme>(this.themeUrl, theme)
   }
 
+  delete(theme : Theme) {
+    return this.http.delete(`${this.themeUrl}/${theme.id}`)
+  }
+
 
 }
