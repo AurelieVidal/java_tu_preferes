@@ -1,3 +1,4 @@
+<body>
 <form [formGroup]="users" (ngSubmit)="onSubmit()">
   <ng-container *ngFor="let player of getControlNames(users); let i = index">
 
@@ -24,5 +25,5 @@
   <iframe src="https://gifer.com/embed/14ba" width=480 height=336.000 frameBorder="0" allowFullScreen></iframe>
   <button type="submit" [disabled]="!users.valid" (click)=onSubmit()>JOUER</button>
 </form>
-
+</body>
 <router-outlet></router-outlet>

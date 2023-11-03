@@ -1,36 +1,48 @@
-body {
-  box-sizing: border-box;
-  width: 50%;
-  margin:0 auto;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  box-shadow: lightgray 4px 4px 20px;}
-  img {
-    width: 100%;
-  }
-  h2 {
-    margin-bottom: 0;
-  }
-  p {
-    font-weight: 300;
-    font-size: 16px;
-  }
-  button {
-    background-color: transparent;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    border: none;
-    box-shadow: lightgray 3px 3px 7px;
-    margin-right: 20px;
-    outline: none;
-    font-size: 14px;
-    font-weight: 500;
-    &:active {
-      transform: translate(1px, 1px);
-      box-shadow: lightgray 0 0 5px;
-    }
-  }
+h1{
+  color: white; /* Couleur du texte */
+  font-size: 80px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
 
+}
+h2{
+  color: white; /* Couleur du texte */
+  font-size: 50px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+
+}
+p{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  margin: 40px;
+}
+label{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+}
+div{
+  text-align: center;
+}
+button {
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: none;
+  box-shadow: lightgray 3px 3px 7px;
+  margin-right: 20px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+}
 
 

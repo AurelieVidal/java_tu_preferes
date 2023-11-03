@@ -1,21 +1,31 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playtone+One">
+
+
 <body>
 <a href='themes'>Gérer les cartes</a> <br>
 <a href='config'>Configurations</a>
 
 
 
-<h1>Nombre de Joueurs:</h1>
+<h1>That what they like :</h1>
+<p>Que tu sois fan de Dwight ou que tu collectionnes les posters de Michael, bienvenu.e.s sur That what they like! Le but n'est pas d'être le plus original mais d'être celui qui arrivera à deviner les préférences de ses collègues. Bon assez discuter, aller tous en conférence room !... </p>
 
-<iframe src="https://gifer.com/embed/14bg" width=480 height=271.543 frameBorder="0" allowFullScreen></iframe>
-
+<iframe
+  src="https://gifer.com/embed/14bg"
+  width="100%"
+  height="100%"
+  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+  allowfullscreen
+></iframe>
+<h2>Nombre de Joueurs : </h2>
 <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
   <div>
-    <label for="nbJInput">Le nombre de Joueurs:</label>
+    <label for="nbJInput">Le nombre de Joueurs : </label>
     <input type="number" id="nbJInput" formControlName="nombreJoueur" min="2" max="10">
   </div>
 
   <div>
-    <label for="nbMInput">Le nombre de manches:</label>
+    <label for="nbMInput">Le nombre de manches : </label>
     <input type="number" id="nbMInput" formControlName="nombreManche" min="2" max="10">
   </div>
 </form>

@@ -1,3 +1,4 @@
+<body>
 <div class="mat-app-background basic-container">
   <!-- Affiche le pseudo du joueur actuel -->
   <h2>Pseudo du joueur actuel : {{ players[currentPlayer]?.pseudo }}</h2>
@@ -16,3 +17,4 @@
     {{ (currentPlayer < players.length - 1) ? 'Joueur suivant' : (currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
   </button>
 </div>
+</body>
