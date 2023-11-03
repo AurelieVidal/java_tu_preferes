@@ -224,15 +224,21 @@ export class EditThemeComponent implements OnInit{
       const id1 = await this.createOrFindCard(value1);
       const id2 = await this.createOrFindCard(value2);
 
-      const liaison = { id: this.liaison[index].id, id_1: id1, id_2: id2 };
+      const liaison = { id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!! };
+
+      if (id1==id2){
+        this.showErrorMessage("Une des liaisons a deux choix identiques ! ")
+        return;
+      }
+
 
       if (this.liaison[index].id_1 !== id1 || this.liaison[index].id_2 !== id2) {
-        const existingLiaison = this.findExistingLiaison(id1, id2);
+        const existingLiaison = this.findExistingLiaison(id1!!, id2!!);
 
         if (existingLiaison) {
           liaisons.push(existingLiaison);
         } else {
-          const newLiaison = await this.createLiaison(id1, id2);
+          const newLiaison = await this.createLiaison(id1!!, id2!!);
           liaisons.push(newLiaison);
         }
       } else {
@@ -293,6 +299,7 @@ export class EditThemeComponent implements OnInit{
   }
 
   existe(value: string):number{
+    console.log ("dans esiste")
     let id: number = -1
     for (let index = 0; index < this.options.length; index++) {
       if (this.options[index]==value){
@@ -302,19 +309,30 @@ export class EditThemeComponent implements OnInit{
     return id
   }
 
-  async createOrFindCard(value: string): Promise<number> {
-    const id = this.existe(value);
-    if (id === -1) {
-      const newCard = await this.createCard(value);
-      return Number(newCard.id);
+
+  async createOrFindCard(value: string): Promise<number | null> {
+    for (let index = 0; index < this.options.length; index++) {
+      if (this.options[index] === value) {
+        return this.ids[index];
+      }
     }
-    return id;
+
+    // Si la carte n'existe pas, créez-la et renvoyez l'ID
+    const newCard = await this.createCard(value);
+    this.options.push(newCard.reponse);
+    this.ids.push(Number(newCard.id));
+    return Number(newCard.id);
   }
 
   async AddLiaison() {
     // Vérifiez si les cartes sont vides
-    if (!this.myControl1.value!!.trim() || !this.myControl2.value!!.trim()) {
+    if (!this.myControl1.value || !this.myControl2.value) {
       this.showErrorMessage("Vous n'avez pas rempli tous les champs, impossible d'ajouter le dilemme");
+      return;
+    }
+
+    if (this.myControl1.value == this.myControl2.value) {
+      this.showErrorMessage("Vous avez renseigné deux choix identiques !");
       return;
     }
 
@@ -327,36 +345,33 @@ export class EditThemeComponent implements OnInit{
 
     }
 
-    // Vérifiez si les cartes existent et créez-les si nécessaire
-    const id1 = await this.createOrFindCard(this.myControl1.value!!);
-    const id2 = await this.createOrFindCard(this.myControl2.value!!);
+    const id1 = await this.createOrFindCard(this.myControl1.value);
+    const id2 = await this.createOrFindCard(this.myControl2.value);
 
-    // Vérifiez si la liaison existe
-    const existingLiaison = this.findExistingLiaison(id1, id2);
+    if (id1 !== null && id2 !== null) {
+      // Vérifiez si la liaison existe
+      const existingLiaison = this.findExistingLiaison(id1, id2);
 
-    if (existingLiaison) {
-      this.liaison.push(existingLiaison)
-      this.indexes1.push(Number(existingLiaison.id))
-      this.carteControls1[Number(existingLiaison.id)] = new FormControl(this.myControl1.value!!);
-      this.indexes2.push(Number(existingLiaison.id))
-      this.carteControls2[Number(existingLiaison.id)] = new FormControl(this.myControl2.value!!);
-    } else {
-      // Créez une nouvelle liaison
-      const newLiaison = await this.createLiaison(id1, id2);
-      // Ajoutez la nouvelle liaison à la liste
-      this.liaison.push(newLiaison);
-      this.indexes1.push(Number(newLiaison.id))
-      this.carteControls1[Number(newLiaison.id)] = new FormControl(this.myControl1.value!!);
-      this.indexes2.push(Number(newLiaison.id))
-      this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value!!);
-
+      if (existingLiaison) {
+        this.liaison.push(existingLiaison);
+        this.indexes1.push(Number(existingLiaison.id));
+        this.carteControls1[Number(existingLiaison.id)] = new FormControl(this.myControl1.value);
+        this.indexes2.push(Number(existingLiaison.id));
+        this.carteControls2[Number(existingLiaison.id)] = new FormControl(this.myControl2.value);
+      } else {
+        // Créez une nouvelle liaison
+        const newLiaison = await this.createLiaison(id1, id2);
+        // Ajoutez la nouvelle liaison à la liste
+        this.liaison.push(newLiaison);
+        this.indexes1.push(Number(newLiaison.id));
+        this.carteControls1[Number(newLiaison.id)] = new FormControl(this.myControl1.value);
+        this.indexes2.push(Number(newLiaison.id));
+        this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value);
+      }
     }
-
-
 
     this.myControl1.setValue('');
     this.myControl2.setValue('');
-
   }
 
   deleteLiaison(liaison: Liaison) {
