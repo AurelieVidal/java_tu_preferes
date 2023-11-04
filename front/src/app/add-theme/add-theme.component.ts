@@ -238,11 +238,11 @@ export class AddThemeComponent implements OnInit{
     console.log("Thème modifié:", theme);
 
     this.themeService.create(theme).subscribe(() => {
-      //this.router.navigate(["students"])
+      this.router.navigateByUrl("themes");
     })
 
     console.log("ajout du thème")
-    this.router.navigateByUrl("themes");
+
 
   }
 

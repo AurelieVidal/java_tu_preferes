@@ -1,12 +1,85 @@
+<h1>Liste des cartes</h1>
+
 <ng-container>
   <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" >
-    <label for="reponse">Texte de la carte : </label>
+    <label for="reponse">Ajouter une carte : </label>
     <input type="text" id="reponse" formControlName="reponse">
     <button type="submit" [disabled]="!cardForm.valid">OK!</button>
   </form>
 
-  <button>Ajouter une liaison</button>
+  <form>
+    <label>Rechercher une carte : </label>
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput placeholder="Ex. Pain au chocolat" [formControl]="searchForm">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="Recherche()">
+      <mat-icon matSuffix>search</mat-icon>
+    </button>
+
+    <button mat-icon-button color="primary" (click)="AnnulerRecherche()" *ngIf="isSearching">
+      <mat-icon matSuffix>close</mat-icon>
+    </button>
+
+  </form>
+
+
+
 </ng-container>
 
 
 
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="#">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let card"> {{card.id}} </td>
+    </ng-container>
+
+    <!-- Response Column -->
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Réponse </th>
+      <td mat-cell *matCellDef="let card">
+        <ng-container *ngIf="!isEditingCard(card)">
+          {{ card.reponse }}
+        </ng-container>
+        <ng-container *ngIf="isEditingCard(card)">
+          <mat-form-field>
+            <input matInput [(ngModel)]="editedCardValue" required>
+          </mat-form-field>
+          <button mat-icon-button color="primary" (click)="saveEditedCard(card)" *ngIf="isEditingCard(card)">
+            <mat-icon matSuffix>done</mat-icon>
+          </button>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let card">
+        <button mat-icon-button color="warn" (click)="delete(card)" >
+          <mat-icon matSuffix>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="edit(card)"  *ngIf="!isEditingCard(card)">
+          <mat-icon matSuffix>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="edit(card)"  *ngIf="isEditingCard(card)">
+          <mat-icon matSuffix>close</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of cards">
+  </mat-paginator>
+</div>

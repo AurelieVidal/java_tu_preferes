@@ -57,6 +57,10 @@ public class ThemeService {
         themeDao.deleteById(id);
     }
 
+    public List<Theme> findByName(String keyword) {
+        return themeDao.findByNameLike("%" + keyword + "%");
+    }
+
 
 
 }

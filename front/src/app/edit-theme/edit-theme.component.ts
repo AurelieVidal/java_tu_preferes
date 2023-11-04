@@ -251,9 +251,10 @@ export class EditThemeComponent implements OnInit{
 
     this.themeService.update(this.theme_id, theme).subscribe(() => {
       //this.router.navigate(["themes"]);
+      this.router.navigateByUrl("themes");
     });
 
-    this.router.navigateByUrl("themes");
+
 
   }
 

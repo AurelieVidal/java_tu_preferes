@@ -34,5 +34,9 @@ export class ThemeService {
     return this.http.delete(`${this.themeUrl}/${theme.id}`)
   }
 
+  search(keyword: String): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.themeUrl}/search/${keyword}`)
+  }
+
 
 }

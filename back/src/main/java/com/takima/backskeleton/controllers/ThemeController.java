@@ -42,4 +42,9 @@ public class ThemeController {
     public void delete(@PathVariable Long id) {
         themeService.deleteById(id);
     }
+
+    @GetMapping("/search/{keyword}")
+    public List<Theme> searchTheme(@PathVariable String keyword) {
+        return themeService.findByName(keyword);
+    }
 }

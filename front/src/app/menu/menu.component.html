@@ -1,3 +1,11 @@
+<body>
+<iframe
+  src="https://gifer.com/embed/14ba"
+  width="100%"
+  height="100%"
+  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+  allowfullscreen
+></iframe>
 <form [formGroup]="users" (ngSubmit)="onSubmit()">
   <ng-container *ngFor="let player of getControlNames(users); let i = index">
 
@@ -21,7 +29,10 @@
       </div>
   </ng-container>
 
-  <button type="submit" [disabled]="!users.valid" (click)=onSubmit()>JOUER</button>
+  <div class="image-container">
+    <img src="assets/bettrave.png" alt="Description de l'image" (click)="onSubmit()" />
+    <div class="texte-sur-image">JOUER</div>
+  </div>
 </form>
-
+</body>
 <router-outlet></router-outlet>

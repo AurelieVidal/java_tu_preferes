@@ -32,6 +32,9 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { GameComponent } from './game/game.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddThemeComponent } from './add-theme/add-theme.component';
+import { AudioComponent } from './audio/audio.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { AddThemeComponent } from './add-theme/add-theme.component';
     ScoresComponent,
     GameComponent,
     AddThemeComponent,
+    AudioComponent,
     // QuestionsComponent
 
   ],
@@ -71,6 +75,8 @@ import { AddThemeComponent } from './add-theme/add-theme.component';
     MatInputModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [CardService],
   bootstrap: [AppComponent]
