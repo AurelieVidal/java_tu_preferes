@@ -29,8 +29,11 @@
     <input type="number" id="nbMInput" formControlName="nombreManche" min="2" max="10">
   </div>
 </form>
-
-<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>
+<div class="image-container">
+  <img src="assets/bettrave.png" alt="Description de l'image" (click)="onContinue()" />
+  <div class="texte-sur-image">Ok</div>
+</div>
+<!--<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>-->
 
 </body>
 <app-audio>loading</app-audio>
