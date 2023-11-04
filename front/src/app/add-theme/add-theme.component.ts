@@ -11,28 +11,29 @@ import {LiaisonService} from "../services/liaison.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-edit-theme',
-  templateUrl: './edit-theme.component.html',
-  styleUrls: ['./edit-theme.component.css']
+  selector: 'app-add-theme',
+  templateUrl: './add-theme.component.html',
+  styleUrls: ['./add-theme.component.css']
 })
-export class EditThemeComponent implements OnInit{
-  liaison!: Liaison[];
-  theme_obs!: Observable<Theme>;
+export class AddThemeComponent implements OnInit{
+  liaison: Liaison[] = [];
+  //theme_obs!: Observable<Theme>;
   theme!: Theme;
-  theme_id!: number;
   myControl1 = new FormControl('');
   myControl2 = new FormControl('');
   options: string[] = [];
-  ids: number[] = [];
+  ids: number[] = []; //ids de toutes les cartes
   options_obs!: Observable<Card[]>;
   filteredOptions!: Observable<string[]>;
   carteControls1: { [key: number]: FormControl } = {};
-  themenameFC!: FormControl<string | null>
+  themenameFC = new FormControl('')
   carteControls2: { [key: number]: FormControl } = {};
   indexes1 :number[] = [];
   indexes2 :number[] = [];
   all_liaisons!: Liaison[];
   all_liaisons_obs!: Observable<Liaison[]>;
+  all_themes!: Theme[];
+  all_themes_obs!: Observable<Theme[]>;
 
   private _filter(value: string): string[] {
 
@@ -48,10 +49,11 @@ export class EditThemeComponent implements OnInit{
     private liaisonService: LiaisonService,
     private snackBar: MatSnackBar
   ) {
-    this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
-    this.theme_obs = this.themeService.findById(this.theme_id);
+
+    //this.theme_obs = this.themeService.findById(this.theme_id);
     this.options_obs = cardService.findAll();
     this.all_liaisons_obs = liaisonService.findAll();
+    this.all_themes_obs = themeService.findAll();
   }
 
   ngOnInit() {
@@ -65,6 +67,10 @@ export class EditThemeComponent implements OnInit{
       map(value => this._filter(value || '')),
     );
 
+    this.all_themes_obs.subscribe(
+      theme => this.all_themes = theme
+    )
+
 
     this.all_liaisons_obs.subscribe(x =>this.all_liaisons = x)
 
@@ -76,40 +82,6 @@ export class EditThemeComponent implements OnInit{
         this.ids = cards.map(card => Number(card.id))
       }
     );
-
-    this.theme_obs.subscribe(
-      x => {
-        this.theme = x;
-        console.log(this.theme);
-        this.liaison = this.theme.paires;
-        this.themenameFC = new FormControl(this.theme.name)
-        console.log("LE TRUC DU NOM : " + this.themenameFC.value)
-        for (const paire of this.liaison) {
-          this.cardService.findById(Number(paire.id_1)).subscribe(
-            carte1 => {
-              paire.carte1 = carte1;
-              this.indexes1.push(Number(paire.id))
-              this.carteControls1[Number(paire.id)] = new FormControl(carte1.reponse);
-              console.log("création form : "+ paire.id_1 + "---"+this.carteControls1[Number(paire.id)].value)
-              console.log(this.carteControls1[Number(paire.id)])
-            }
-          );
-
-          this.cardService.findById(Number(paire.id_2)).subscribe(
-            carte2 => {
-              paire.carte2 = carte2;
-              this.indexes2.push(Number(paire.id))
-              this.carteControls2[Number(paire.id)] = new FormControl(carte2.reponse);
-              console.log("création form 2 : "+ paire.id_2 +"---"+this.carteControls2[Number(paire.id)].value);
-
-            }
-
-          );
-
-        }
-      }
-    );
-
 
   }
 
@@ -201,10 +173,24 @@ export class EditThemeComponent implements OnInit{
 
   async valider() {
     const nom = this.themenameFC.value;
+    console.log(nom)
     if (nom == null || nom.trim() === '') {
       // Afficher un message d'erreur ou prendre toute autre action nécessaire
       this.showErrorMessage("Le nom du thème est vide.");
       return; // Arrêter la validation si le nom est vide ou null
+    }
+
+
+    for (let theme of this.all_themes){
+      if (theme.name == nom){
+        this.showErrorMessage("Il existe déjà un thème avec ce nom");
+        return;
+      }
+    }
+
+    if (this.liaison.length === 0) {
+      this.showErrorMessage("Vous n'avez pas ajouté de dilemme ! ");
+      return;
     }
 
 
@@ -223,22 +209,24 @@ export class EditThemeComponent implements OnInit{
 
       const id1 = await this.createOrFindCard(value1);
       const id2 = await this.createOrFindCard(value2);
-
-      const liaison = { id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!! };
+      console.log("IDDDD1")
+      console.log(id1)
+      const liaison = { id: this.liaison[index].id, id_1: id1, id_2: id2 };
 
       if (id1==id2){
         this.showErrorMessage("Une des liaisons a deux choix identiques ! ")
         return;
       }
 
-
       if (this.liaison[index].id_1 !== id1 || this.liaison[index].id_2 !== id2) {
-        const existingLiaison = this.findExistingLiaison(id1!!, id2!!);
-
+        const existingLiaison = this.findExistingLiaison(id1, id2);
+        console.log("LIAISON A AJOUTER")
+        console.log(liaison)
         if (existingLiaison) {
           liaisons.push(existingLiaison);
         } else {
-          const newLiaison = await this.createLiaison(id1!!, id2!!);
+          console.log("LA LIAISON NEXISTE PAS")
+          const newLiaison = await this.createLiaison(id1, id2);
           liaisons.push(newLiaison);
         }
       } else {
@@ -249,11 +237,11 @@ export class EditThemeComponent implements OnInit{
     const theme = { name: String(nom), paires: liaisons };
     console.log("Thème modifié:", theme);
 
-    this.themeService.update(this.theme_id, theme).subscribe(() => {
-      //this.router.navigate(["themes"]);
+    this.themeService.create(theme).subscribe(() => {
       this.router.navigateByUrl("themes");
-    });
+    })
 
+    console.log("ajout du thème")
 
 
   }
@@ -278,6 +266,7 @@ export class EditThemeComponent implements OnInit{
   }
 
   findExistingLiaison(id1: number, id2: number): Liaison | undefined {
+
     return this.all_liaisons.find(
       (liaison) => liaison.id_1 === id1 && liaison.id_2 === id2
     );
@@ -300,34 +289,32 @@ export class EditThemeComponent implements OnInit{
   }
 
   existe(value: string):number{
-    console.log ("dans esiste")
     let id: number = -1
+    console.log("dans existe")
     for (let index = 0; index < this.options.length; index++) {
       if (this.options[index]==value){
         id=this.ids[index]
+        console.log(this.ids)
       }
     }
     return id
   }
 
-
-  async createOrFindCard(value: string): Promise<number | null> {
-    for (let index = 0; index < this.options.length; index++) {
-      if (this.options[index] === value) {
-        return this.ids[index];
-      }
+  async createOrFindCard(value: string): Promise<number> {
+    const id = this.existe(value);
+    if (id === -1) {
+      console.log("JAMAIS")
+      const newCard = await this.createCard(value);
+      this.options.push(newCard.reponse)
+      this.ids.push(Number(newCard.id));
+      return Number(newCard.id);
     }
-
-    // Si la carte n'existe pas, créez-la et renvoyez l'ID
-    const newCard = await this.createCard(value);
-    this.options.push(newCard.reponse);
-    this.ids.push(Number(newCard.id));
-    return Number(newCard.id);
+    return id;
   }
 
   async AddLiaison() {
     // Vérifiez si les cartes sont vides
-    if (!this.myControl1.value || !this.myControl2.value) {
+    if (!this.myControl1.value!!.trim() || !this.myControl2.value!!.trim()) {
       this.showErrorMessage("Vous n'avez pas rempli tous les champs, impossible d'ajouter le dilemme");
       return;
     }
@@ -346,33 +333,39 @@ export class EditThemeComponent implements OnInit{
 
     }
 
-    const id1 = await this.createOrFindCard(this.myControl1.value);
-    const id2 = await this.createOrFindCard(this.myControl2.value);
+    // Vérifiez si les cartes existent et créez-les si nécessaire
+    const id1 = await this.createOrFindCard(this.myControl1.value!!);
+    const id2 = await this.createOrFindCard(this.myControl2.value!!);
 
-    if (id1 !== null && id2 !== null) {
-      // Vérifiez si la liaison existe
-      const existingLiaison = this.findExistingLiaison(id1, id2);
+    // Vérifiez si la liaison existe
+    const existingLiaison = this.findExistingLiaison(id1, id2);
 
-      if (existingLiaison) {
-        this.liaison.push(existingLiaison);
-        this.indexes1.push(Number(existingLiaison.id));
-        this.carteControls1[Number(existingLiaison.id)] = new FormControl(this.myControl1.value);
-        this.indexes2.push(Number(existingLiaison.id));
-        this.carteControls2[Number(existingLiaison.id)] = new FormControl(this.myControl2.value);
-      } else {
-        // Créez une nouvelle liaison
-        const newLiaison = await this.createLiaison(id1, id2);
-        // Ajoutez la nouvelle liaison à la liste
-        this.liaison.push(newLiaison);
-        this.indexes1.push(Number(newLiaison.id));
-        this.carteControls1[Number(newLiaison.id)] = new FormControl(this.myControl1.value);
-        this.indexes2.push(Number(newLiaison.id));
-        this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value);
-      }
+    if (existingLiaison) {
+      this.liaison.push(existingLiaison)
+      this.indexes1.push(Number(existingLiaison.id))
+      this.carteControls1[Number(existingLiaison.id)] = new FormControl(this.myControl1.value!!);
+      this.indexes2.push(Number(existingLiaison.id))
+      this.carteControls2[Number(existingLiaison.id)] = new FormControl(this.myControl2.value!!);
+
+    } else {
+      // Créez une nouvelle liaison
+      const newLiaison = await this.createLiaison(id1, id2);
+      // Ajoutez la nouvelle liaison à la liste
+      this.liaison.push(newLiaison);
+      this.indexes1.push(Number(newLiaison.id))
+      this.carteControls1[Number(newLiaison.id)] = new FormControl(this.myControl1.value!!);
+      this.indexes2.push(Number(newLiaison.id))
+      this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value!!);
+      this.all_liaisons.push(newLiaison)
     }
+
+    console.log(this.liaison)
+
+
 
     this.myControl1.setValue('');
     this.myControl2.setValue('');
+
   }
 
   deleteLiaison(liaison: Liaison) {
@@ -381,16 +374,8 @@ export class EditThemeComponent implements OnInit{
     this.indexes1.splice(index, 1);
     this.indexes2.splice(index,1);
     this.liaison.splice(index, 1); // Supprimer la liaison en utilisant splice
-    /* //Vérification pas utile
-    if (index !== -1) {
 
-      console.log(`Liaison supprimée : ${liaison}`);
-    } else {
-      console.log(`Liaison introuvable : ${liaison}`);
-    }*/
   }
-
-
 
 
 
@@ -402,3 +387,4 @@ export class EditThemeComponent implements OnInit{
 
 
 }
+

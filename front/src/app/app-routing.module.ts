@@ -14,6 +14,7 @@ import {GameComponent} from "./game/game.component";
 import {AudioComponent} from "./audio/audio.component";
 //import {ScoresComponent} from "./scores/scores.component";
 import { EditThemeComponent } from './edit-theme/edit-theme.component';
+import { AddThemeComponent } from './add-theme/add-theme.component';
 
 const routes: Routes = [
   { path: 'partie', component: PartieComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'score/:nbrJoueur', component: ScoresComponent},
   { path: 'scores', component: ScoresComponent},
   { path: 'themes', component: ThemesComponent},
-  { path: 'game', component: GameComponent}
+  { path: 'game', component: GameComponent},
+  { path: 'addTheme', component: AddThemeComponent}
 ];
 
 @NgModule({

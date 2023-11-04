@@ -29,7 +29,22 @@ public class ThemeController {
 
 
     @PostMapping("/{id}")
-    public void updateStudent(@RequestBody ThemeDto themeDto, @PathVariable Long id) {
+    public void updateTheme(@RequestBody ThemeDto themeDto, @PathVariable Long id) {
         themeService.update(themeDto, id);
+    }
+
+    @PostMapping("")
+    public void addTheme(@RequestBody ThemeDto themeDto) {
+        themeService.addStudent(themeDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        themeService.deleteById(id);
+    }
+
+    @GetMapping("/search/{keyword}")
+    public List<Theme> searchTheme(@PathVariable String keyword) {
+        return themeService.findByName(keyword);
     }
 }

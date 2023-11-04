@@ -55,13 +55,10 @@ export class GestionCartesComponent implements OnInit {
 
   }
 
-  versAddCard(): void{
-    this.router.navigateByUrl('addCard');
+  versEditTheme(): void{
+    this.router.navigateByUrl('edit/'+this.theme_id);
   }
 
-  versAddLiaison(): void{
-    this.router.navigateByUrl('addLiaison');
-  }
 
 
 
