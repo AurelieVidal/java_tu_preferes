@@ -1,6 +1,9 @@
 <div>
-  <p>audio works!</p>
-  <button (click)="playAudio()">Play</button>
+  <div class="image-container">
+    <img src="assets/bettrave.png" alt="Description de l'image" (click)="playAudio()" />
+    <div class="texte-sur-image">Play Musique !</div>
+  </div>
+
   <audio #audioPlayer>
     <source src="assets/audio_the_office.mp3" type="audio/mp3">
 
