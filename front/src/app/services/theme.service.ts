@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import {HttpClient} from "@angular/common/http";
-import {Theme} from "../models/themes.model";
+import {ThemeModel} from "../models/themes.model";
 import {Card} from "../models/card.model";
 
 @Injectable({
@@ -13,13 +13,11 @@ export class ThemeService {
 
   private themeUrl = "http://localhost:8080/themes"
 
-  findAll(): Observable<Theme[]> {
-    return this.http.get<Theme[]>(this.themeUrl)
+  findAll(): Observable<ThemeModel[]> {
+    return this.http.get<ThemeModel[]>(this.themeUrl)
   }
 
-  findById(id: number): Observable<Theme> {
-    return this.http.get<Theme>(`${this.themeUrl}/${id}`)
+  findById(id: number): Observable<ThemeModel> {
+    return this.http.get<ThemeModel>(`${this.themeUrl}/${id}`)
   }
-
-
 }

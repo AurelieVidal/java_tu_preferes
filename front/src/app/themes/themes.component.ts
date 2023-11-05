@@ -4,7 +4,7 @@ import {Liaison} from "../models/liaison.model";
 import {LiaisonService} from "../services/liaison.service";
 import {CardService} from "../services/card.services";
 import {Router} from "@angular/router";
-import {Theme} from "../models/themes.model";
+import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
 
 @Component({
@@ -13,8 +13,8 @@ import {ThemeService} from "../services/theme.service";
   styleUrls: ['./themes.component.css']
 })
 export class ThemesComponent implements OnInit {
-  themes$: Observable<Theme[]>;
-  theme!: Theme[];
+  themes$: Observable<ThemeModel[]>;
+  theme!: ThemeModel[];
 
   constructor(
     private themeService: ThemeService,

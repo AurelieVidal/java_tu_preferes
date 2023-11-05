@@ -28,24 +28,27 @@ import { ThemesComponent } from './themes/themes.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { GameComponent } from './game/game.component';
+import {GameSettingsService} from "./services/gameSettings.service";
+import {ThemeService} from "./services/theme.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PartieComponent,
-    // MenuComponent,
-    PageAccueilComponent,
-    GestionCartesComponent,
-    AddCardComponent,
-    AddLiaisonComponent,
-    SliderComponent,
-    ConfigComponent,
-    ThemesComponent,
-    ScoresComponent,
-    GameComponent,
-    // QuestionsComponent
+    declarations: [
+        AppComponent,
+        PartieComponent,
+        // MenuComponent,
+        PageAccueilComponent,
+        GestionCartesComponent,
+        AddCardComponent,
+        AddLiaisonComponent,
+        SliderComponent,
+        ConfigComponent,
+        ThemesComponent,
+        ScoresComponent,
+        GameComponent,
+        QuestionsComponent,
+        // QuestionsComponent
 
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -63,7 +66,10 @@ import { GameComponent } from './game/game.component';
     MatIconModule,
     MatButtonModule
   ],
-  providers: [CardService],
+  providers: [CardService,
+              GameSettingsService,
+              ThemeService,
+              CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

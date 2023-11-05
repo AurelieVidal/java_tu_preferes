@@ -31,6 +31,4 @@ export class CardService {
   delete(card : Card) {
     return this.http.delete(`${this.cardsUrl}/${card.id}`)
   }
-
-
 }

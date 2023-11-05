@@ -10,10 +10,16 @@ export class PlayerService {
 
   setPlayers(players: PlayerInfo[]) {
     this.players = players;
-    console.log('player service', this.players)
+    localStorage.setItem('players', JSON.stringify(players));
   }
 
-  getPlayers() {
+  getPlayers(): PlayerInfo[] {
+    if (this.players.length === 0) {
+      const storedPlayers = localStorage.getItem('players');
+      if (storedPlayers) {
+        this.players = JSON.parse(storedPlayers);
+      }
+    }
     return this.players;
   }
 }
