@@ -65,4 +65,6 @@ button {
 
 }
 
-
+.giff{
+  filter: opacity(0.8);
+}
