@@ -64,3 +64,6 @@ button {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
 
 }
+.giff{
+  filter: opacity(0.8);
+}
