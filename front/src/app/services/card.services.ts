@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { Card } from "../models/card.model"
 import {HttpClient} from "@angular/common/http";
-import {Theme} from "../models/themes.model";
 
 @Injectable({
   providedIn: "root",

@@ -1,9 +1,10 @@
+<div>
+  <h2>Thème: {{ cardTheme.name }}</h2>
+</div>
+<p></p>
 <section>
   <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="onContinue()">Q1</button>
-    <button mat-raised-button color="primary" (click)="onContinue()">Q2</button>
+    <button mat-raised-button color="primary" (click)="addVote('button_1')">{{this.cardText.button_1}}</button>
+    <button mat-raised-button color="primary" (click)="addVote('button_2')">{{this.cardText.button_2}}</button>
   </div>
 </section>
-
-
-

@@ -25,8 +25,10 @@ export class PageAccueilComponent {
   onContinue(): void {
     // Enregistrez le nombre de manches dans le service GameSettingsService
     this.gameSettingsService.setGameSettings({
-      nombreManche: this.form.value.nombreManche, // Utilisez this.form.value
-      nombreJoueur: this.form.value.nombreJoueur // Utilisez this.form.value
+      nombreManche: this.form.value.nombreManche,
+      nombreJoueur: this.form.value.nombreJoueur,
+      currentManche: 1,
+      currentPlayer: 0
     });
     this.router.navigateByUrl('menu/' + this.form.value.nombreJoueur + '/' + this.form.value.nombreManche);
   }

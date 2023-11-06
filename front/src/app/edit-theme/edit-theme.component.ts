@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { Liaison } from "../models/liaison.model";
 import { map, Observable, startWith } from "rxjs";
-import { Theme } from "../models/themes.model";
+import { ThemeModel } from "../models/themes.model";
 import { CardService } from "../services/card.services";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ThemeService } from "../services/theme.service";
@@ -17,8 +17,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditThemeComponent implements OnInit{
   liaison!: Liaison[];
-  theme_obs!: Observable<Theme>;
-  theme!: Theme;
+  theme_obs!: Observable<ThemeModel>;
+  theme!: ThemeModel;
   theme_id!: number;
   myControl1 = new FormControl('');
   myControl2 = new FormControl('');

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Liaison } from '../models/liaison.model';
-import { LiaisonService } from '../services/liaison.service';
 import { CardService } from "../services/card.services";
-import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
-import { Card } from '../models/card.model';
-import {Theme} from "../models/themes.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
 
 @Component({
@@ -15,8 +13,8 @@ import {ThemeService} from "../services/theme.service";
 })
 export class GestionCartesComponent implements OnInit {
   liaison!: Liaison[];
-  theme_obs!: Observable<Theme>
-  theme!: Theme
+  theme_obs!: Observable<ThemeModel>
+  theme!: ThemeModel
   theme_id!:number
 
   constructor(
@@ -27,18 +25,13 @@ export class GestionCartesComponent implements OnInit {
   ) {
     this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
     this.theme_obs = this.themeService.findById(this.theme_id);
-
-
   }
 
   ngOnInit() {
-
     this.theme_obs.subscribe (
       x=> {
         this.theme = x;
-        console.log(this.theme)
         this.liaison = this.theme.paires
-
         for (const paire of this.liaison) {
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => paire.carte1 = carte1
@@ -46,23 +39,17 @@ export class GestionCartesComponent implements OnInit {
 
           this.cardService.findById(Number(paire.id_2)).subscribe(
             carte2 => paire.carte2 = carte2
-          );
-        }
-      }
-    )
-
-
-
+          );}})
   }
 
   versEditTheme(): void{
     this.router.navigateByUrl('edit/'+this.theme_id);
   }
+  versAddCard(): void{
+    this.router.navigateByUrl('addCard');
+  }
 
-
-
-
-
-
-
+  versAddLiaison(): void{
+    this.router.navigateByUrl('addLiaison');
+  }
 }
