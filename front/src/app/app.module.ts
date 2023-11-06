@@ -18,7 +18,6 @@ import {MatSliderModule} from "@angular/material/slider";
 import { GestionCartesComponent } from './gestion-cartes/gestion-cartes.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { AddLiaisonComponent } from './add-liaison/add-liaison.component';
-
 import { ScoresComponent } from './scores/scores.component';
 
 import { SliderComponent } from './slider/slider.component';
@@ -31,7 +30,11 @@ import { EditThemeComponent } from './edit-theme/edit-theme.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { GameComponent } from './game/game.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddThemeComponent } from './add-theme/add-theme.component';
 import { AudioComponent } from './audio/audio.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { AudioComponent } from './audio/audio.component';
     EditThemeComponent,
     ScoresComponent,
     GameComponent,
+    AddThemeComponent,
     AudioComponent,
     // QuestionsComponent
 
@@ -69,7 +73,10 @@ import { AudioComponent } from './audio/audio.component';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [CardService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 <h1>Thèmes</h1>
 
+
 <iframe class="giff"
         src="https://gifer.com/embed/9ev"
         width="100%"
@@ -7,28 +8,86 @@
         style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
         allowfullscreen
 ></iframe>
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Nom</th>
-    <th scope="col">Nombre de dilemmes</th>
-    <th scope="col">Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let theme of (themes$ | async)" >
-    <td>{{ theme.name }}</td>
-    <td>{{ theme.paires.length }}</td>
-    <td>
-      <a href='/cartes/{{ theme.id }}'>Afficher</a> <br>
-      <button mat-icon-button color="warn" >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <a href='/edit/{{ theme.id }}'>Modifier</a> <br>
-    </td>
-  </tr>
-  </tbody>
-</table>
 
 
-<button mat-raised-button color="primary" >Créer un thème</button>
+
+<form>
+  <label>Rechercher un thème : </label>
+  <mat-form-field appearance="fill">
+    <mat-label>Rechercher</mat-label>
+    <input matInput placeholder="Ex. Pain au chocolat" [formControl]="searchForm">
+  </mat-form-field>
+  <button mat-icon-button color="primary" (click)="Recherche()">
+    <mat-icon matSuffix>search</mat-icon>
+  </button>
+
+  <button mat-icon-button color="primary" (click)="AnnulerRecherche()" *ngIf="isSearching">
+    <mat-icon matSuffix>close</mat-icon>
+  </button>
+
+</form>
+
+<button mat-raised-button color="primary" (click)="versAddTheme()">Créer un thème</button>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nom du thème </th>
+      <td mat-cell *matCellDef="let theme"> {{theme.name}} </td>
+    </ng-container>
+
+    <!-- number Column -->
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef> Nombre de questions </th>
+      <td mat-cell *matCellDef="let theme"> {{ theme.paires.length }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let theme">
+        <button mat-icon-button color="primary" (click)="AfficherTheme(theme)" >
+          <mat-icon matSuffix>description</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="ModifierTheme(theme)" >
+          <mat-icon matSuffix>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"  (click)="DeleteTheme(theme)">
+          <mat-icon matSuffix>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <!--  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Nombre de dilemmes</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let theme of theme; let i = index">
+      <td>{{ theme.name }}</td>
+      <td>{{ theme.paires.length }}</td>
+      <td>
+        <a href='/cartes/{{ theme.id }}'>Afficher</a> <br>
+        <button mat-icon-button color="warn" (click)="DeleteTheme(theme, i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <a href='/edit/{{ theme.id }}'>Modifier</a> <br>
+      </td>
+    </tr>
+    </tbody>-->
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of cards">
+  </mat-paginator>
+</div>
+
+
+
+

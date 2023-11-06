@@ -26,5 +26,17 @@ export class ThemeService {
     return this.http.post<Theme>(`${this.themeUrl}/${id}`, theme)
   }
 
+  create(theme : Theme): Observable<Theme> {
+    return this.http.post<Theme>(this.themeUrl, theme)
+  }
+
+  delete(theme : Theme) {
+    return this.http.delete(`${this.themeUrl}/${theme.id}`)
+  }
+
+  search(keyword: String): Observable<Theme[]> {
+    return this.http.get<Theme[]>(`${this.themeUrl}/search/${keyword}`)
+  }
+
 
 }
