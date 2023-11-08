@@ -25,20 +25,20 @@ INSERT INTO student_course (id, student_id, course_id) VALUES (1, 1, 7);*/
 
 
 /* Thème : nourriture*/
-INSERT INTO cards (reponse) VALUES ('chocolatine');
-INSERT INTO cards (reponse) VALUES ('pain au chocolat');
-INSERT INTO cards (reponse) VALUES ('pizza');
-INSERT INTO cards (reponse) VALUES ('burger');
-INSERT INTO cards (reponse) VALUES ('sushi');
-INSERT INTO cards (reponse) VALUES ('tacos');
-INSERT INTO cards (reponse) VALUES ('fruit');
-INSERT INTO cards (reponse) VALUES ('legumes');
-INSERT INTO cards (reponse) VALUES ('sucré');
-INSERT INTO cards (reponse) VALUES ('salé');
-INSERT INTO cards (reponse) VALUES ('cuisine française');
-INSERT INTO cards (reponse) VALUES ('cuisine italienne');
-INSERT INTO cards (reponse) VALUES ('cuisine asiatique');
-INSERT INTO cards (reponse) VALUES ('cuisine mexicaine');
+INSERT INTO cards (reponse) VALUES ('manger en tête à tête avec Mickeal et Jan');
+INSERT INTO cards (reponse) VALUES ('Manger en tête à tête avec Dwight et Angela');
+INSERT INTO cards (reponse) VALUES ('assister à un remake du mariage de Pam et Jim');
+INSERT INTO cards (reponse) VALUES ('assister à un remake du mariage de Holy et Mickeal');
+INSERT INTO cards (reponse) VALUES ('être dans le bureau de Kelly et Ryan');
+INSERT INTO cards (reponse) VALUES ('avoir son bureau dans le placard à balais');
+INSERT INTO cards (reponse) VALUES ('te marier dans la Schrute Farm');
+INSERT INTO cards (reponse) VALUES ('avoir le groupe de Kévin qui anime ton mariage');
+INSERT INTO cards (reponse) VALUES ('devoir écouter Andy chanter jusqu''à la fin de ta vie');
+INSERT INTO cards (reponse) VALUES ('écouter Kelly parler jusqu''à la fin de ta vie');
+INSERT INTO cards (reponse) VALUES ('travailler à l entrepot');
+INSERT INTO cards (reponse) VALUES ('travailler dans le bureau de Mickeal');
+INSERT INTO cards (reponse) VALUES ('assister à la fête de Noël au bureau');
+INSERT INTO cards (reponse) VALUES ('assister à la fête d''Halloween au bureau');
 
 INSERT INTO liaison (id_1, id_2) VALUES (1, 2);
 INSERT INTO liaison (id_1, id_2) VALUES (3, 4);
@@ -48,7 +48,7 @@ INSERT INTO liaison (id_1, id_2) VALUES (9, 10);
 INSERT INTO liaison (id_1, id_2) VALUES (11, 12);
 INSERT INTO liaison (id_1, id_2) VALUES (13, 14);
 
-INSERT INTO themes (name) VALUES ('Nourriture');
+INSERT INTO themes (name) VALUES ('The Office');
 
 INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (1,1);
 INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (1,2);
@@ -97,7 +97,7 @@ INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (2,14);
 INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (2,15);
 
 
-INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
+/*INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
 INSERT INTO perso (id, prenom) VALUES (2, 'Jim');
 INSERT INTO perso (id, prenom) VALUES (3, 'Dwight');
 INSERT INTO perso (id, prenom) VALUES (4, 'Meredith');
@@ -111,5 +111,5 @@ INSERT INTO perso (id, prenom) VALUES (11, 'Phyllis');
 INSERT INTO perso (id, prenom) VALUES (12, 'Ryan');
 INSERT INTO perso(id, prenom) VALUES (13, 'Creed');
 INSERT INTO perso (id, prenom) VALUES (14, 'Oscars');
-INSERT INTO perso (id, prenom) VALUES (15, 'Andy');
+INSERT INTO perso (id, prenom) VALUES (15, 'Andy');*/
 
