@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 import { GameSettingsService } from "../services/gameSettings.service";
 import {ThemeService} from "../services/theme.service";
 import {Observable} from "rxjs";
-import {Theme} from "../models/themes.model";
+import {ThemeModel} from "../models/themes.model";
 import {NumberService} from "../services/number.service";
 
 @Component({
@@ -14,8 +14,8 @@ import {NumberService} from "../services/number.service";
 })
 export class PageAccueilComponent {
   form: FormGroup; // Créez un formulaire réactif
-  themes_obs!:Observable<Theme[]>
-  themes!: Theme[]
+  themes_obs!:Observable<ThemeModel[]>
+  themes!: ThemeModel[]
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -49,7 +49,7 @@ export class PageAccueilComponent {
 
     this.gameSettingsService.setGameSettings({
       nombreManche: this.numberService.getValueManche(), // Utilisez this.form.value
-      nombreJoueur: this.numberService.getValueJoueur() // Utilisez this.form.value
+      nombreJoueur: this.numberService.getValueJoueur(), // Utilisez this.form.value
       currentManche: 1,
       currentPlayer: 0
     });
