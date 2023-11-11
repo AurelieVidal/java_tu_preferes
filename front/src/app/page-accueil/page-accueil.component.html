@@ -3,7 +3,7 @@
 
 <body>
 <a href='themes'>Gérer les cartes</a> <br>
-<a href='config'>Configurations</a>
+<!--<a href='config'>Configurations</a>-->
 
 
 
@@ -17,24 +17,67 @@
   style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
   allowfullscreen
 ></iframe>
-<h2>Nombre de Joueurs : </h2>
-<form [formGroup]="form" (ngSubmit)="onSubmitForm()">
-  <div>
-    <label for="nbJInput">Le nombre de Joueurs : </label>
-    <input type="number" id="nbJInput" formControlName="nombreJoueur" min="2" max="10">
+
+<div class="big">
+  <div class="stepper">
+    <mat-stepper orientation="vertical" [linear]="false" #stepper class="custom-stepper">
+      <mat-step [stepControl]="firstFormGroup" >
+        <form [formGroup]="firstFormGroup" class="step1">
+          <ng-template matStepLabel><p>Nombre de joueurs</p></ng-template>
+          <app-number-input label="joueurs"></app-number-input>
+          <div>
+            <button matStepperNext class="nextButton"><p class="pbutton">Suivant</p></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" class="step1">
+          <ng-template matStepLabel><p>Nombre de manches</p></ng-template>
+          <app-number-input label="manches"></app-number-input>
+          <div class="buttons">
+            <button mat-button matStepperPrevious class="nextButton"><p class="pbutton">Retour</p></button>
+            <button mat-button matStepperNext class="nextButton"><p class="pbutton">Suivant</p></button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" class="step1">
+          <ng-template matStepLabel><p>Choix du thème</p></ng-template>
+
+          <mat-form-field>
+            <mat-label>Thème</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let theme of themes" [value]="theme.name">
+                {{theme.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button matStepperPrevious class="nextButton retour"><p class="pbutton">Retour</p></button>
+
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+  <div class="button">
+    <div class="image-container" (click)="onContinue()">
+      <img src="assets/bettrave.png" alt="Description de l'image"  />
+      <div class="texte-sur-image">Ok</div>
+    </div>
   </div>
 
-  <div>
-    <label for="nbMInput">Le nombre de manches : </label>
-    <input type="number" id="nbMInput" formControlName="nombreManche" min="2" max="10">
-  </div>
-</form>
-<div class="image-container">
-  <img src="assets/bettrave.png" alt="Description de l'image" (click)="onContinue()" />
-  <div class="texte-sur-image">Ok</div>
 </div>
+
+
+
+
+
+
 <!--<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>-->
 
 </body>
-<app-audio>loading</app-audio>
+<!--<app-audio>loading</app-audio>-->
+
+
+
+
 <router-outlet></router-outlet>

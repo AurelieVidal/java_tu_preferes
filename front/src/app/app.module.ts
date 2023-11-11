@@ -31,8 +31,13 @@ import { ThemeService } from "./services/theme.service";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddThemeComponent } from './add-theme/add-theme.component';
 import { AudioComponent } from './audio/audio.component';
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatTableModule } from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
+import {MatSelectModule} from "@angular/material/select";
+import {MatStepperModule} from "@angular/material/stepper";
+import { NumberInputComponent } from './number-input/number-input.component';
+import { NumberService } from './services/number.service';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +54,8 @@ import { MatTableModule } from "@angular/material/table";
     QuestionsComponent,
     AddThemeComponent,
     AudioComponent,
+    NumberInputComponent,
+    // QuestionsComponent
     EditThemeComponent,
   ],
   imports: [
@@ -71,8 +78,14 @@ import { MatTableModule } from "@angular/material/table";
     MatSnackBarModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSelectModule,
+    MatStepperModule,
   ],
-  providers: [CardService, GameSettingsService, ThemeService],
+  providers: [CardService,
+              NumberService,
+              GameSettingsService,
+              ThemeService
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
