@@ -50,6 +50,8 @@ export class PageAccueilComponent {
     this.gameSettingsService.setGameSettings({
       nombreManche: this.numberService.getValueManche(), // Utilisez this.form.value
       nombreJoueur: this.numberService.getValueJoueur() // Utilisez this.form.value
+      currentManche: 1,
+      currentPlayer: 0
     });
     console.log('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche())
     this.router.navigateByUrl('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche());

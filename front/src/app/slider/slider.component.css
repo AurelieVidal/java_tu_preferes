@@ -12,7 +12,7 @@
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 100vh;
+  height: 20vh;
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;

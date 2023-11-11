@@ -1,20 +1,17 @@
 <body>
 <div class="mat-app-background basic-container">
   <!-- Affiche le pseudo du joueur actuel -->
-  <h2>Pseudo du joueur actuel : {{ players[currentPlayer]?.pseudo }}</h2>
+  <h2>Pseudo du joueur actuel : {{ players[this.gameSettings.currentPlayer]?.pseudo }}</h2>
   <iframe src="https://gifer.com/embed/5Dam" width=480 height=530.939 frameBorder="0" allowFullScreen></iframe>
+
   <!-- Affiche le numéro de la manche en cours -->
-  <h2>Manche en cours : {{ currentManche }}</h2>
+  <h2>Manche en cours : {{ this.gameSettings.currentManche }}</h2>
 
-  <div class="example-button-row">
-    <button mat-raised-button color="primary">Q1</button>
-    <button mat-raised-button color="primary">Q2</button>
-  </div>
-
+  <app-questions> TEST </app-questions>
   <app-slider>loading</app-slider>
 
   <button (click)="nextPlayerOrManche()">
-    {{ (currentPlayer < players.length - 1) ? 'Joueur suivant' : (currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
+    {{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
   </button>
 </div>
 </body>

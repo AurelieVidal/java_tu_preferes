@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { Liaison } from "../models/liaison.model";
 import { map, Observable, startWith } from "rxjs";
-import { Theme } from "../models/themes.model";
+import { ThemeModel } from "../models/themes.model";
 import { CardService } from "../services/card.services";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ThemeService } from "../services/theme.service";
@@ -18,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddThemeComponent implements OnInit{
   liaison: Liaison[] = [];
   //theme_obs!: Observable<Theme>;
-  theme!: Theme;
+  theme!: ThemeModel;
   myControl1 = new FormControl('');
   myControl2 = new FormControl('');
   options: string[] = [];
@@ -32,8 +32,8 @@ export class AddThemeComponent implements OnInit{
   indexes2 :number[] = [];
   all_liaisons!: Liaison[];
   all_liaisons_obs!: Observable<Liaison[]>;
-  all_themes!: Theme[];
-  all_themes_obs!: Observable<Theme[]>;
+  all_themes!: ThemeModel[];
+  all_themes_obs!: Observable<ThemeModel[]>;
 
   private _filter(value: string): string[] {
 
@@ -125,13 +125,6 @@ export class AddThemeComponent implements OnInit{
       console.log("valeur = " + this.carteControls2[this.indexes2[index]].value);
       this._filter(this.carteControls2[this.indexes2[index]].value)
     }
-
-
-
-
-
-
-
   }
 
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
