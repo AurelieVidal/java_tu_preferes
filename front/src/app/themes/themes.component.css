@@ -5,6 +5,7 @@ h1{
   font-family: 'Playton one', sans-serif; /* Famille de police */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
   text-align: center;
+  margin: 0;
 
 }
 h2{
@@ -67,4 +68,42 @@ button {
 
 .giff{
   filter: opacity(0.8);
+}
+
+table {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+mat-paginator {
+  background-color: rgba(255, 255, 255, 0.76);
+}
+
+.themes {
+  display: flex;
+  justify-content: center;
+
+}
+
+body {
+  padding-top: 20px;
+}
+.image-container {
+  cursor :pointer;
+}
+
+.small-button {
+  height: 200px;
+}
+
+.texte-sur-image {
+  width: 200px;
+
+}
+
+.small-text {
+  font-size: 25px;
+}
+
+.recherche {
+  display: flex;
+  align-items: center;
 }

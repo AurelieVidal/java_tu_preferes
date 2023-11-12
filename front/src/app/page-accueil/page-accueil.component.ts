@@ -77,4 +77,9 @@ export class PageAccueilComponent {
       theme => this.themes = theme
     )
   }
+
+  versThemes() {
+    console.log("THEME")
+    this.router.navigateByUrl('themes')
+  }
 }

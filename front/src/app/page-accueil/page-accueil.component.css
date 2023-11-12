@@ -5,6 +5,7 @@ h1{
   font-family: 'Playton one', sans-serif; /* Famille de police */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
   text-align: center;
+  margin-top: 0;
 
 }
 h2{
@@ -124,4 +125,24 @@ button {
 .retour{
   height: 50px;
   margin-top: 5px;
+}
+
+.themes {
+  position: absolute;
+}
+
+.small-button {
+  height: 130px;
+}
+
+.small-text {
+  font-size: 25px;
+}
+
+.image-container {
+  cursor: pointer;
+}
+
+body {
+  padding-top: 20px;
 }
