@@ -5,6 +5,7 @@ import { CardService } from "../services/card.services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-gestion-cartes',
@@ -31,7 +32,9 @@ export class GestionCartesComponent implements OnInit {
     this.theme_obs.subscribe (
       x=> {
         this.theme = x;
+
         this.liaison = this.theme.paires
+
         for (const paire of this.liaison) {
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => paire.carte1 = carte1

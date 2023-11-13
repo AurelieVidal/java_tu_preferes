@@ -1,14 +1,28 @@
 <h1>Ajouter un thème</h1>
-<button (click)="valider()">Valider les changements</button>
+<iframe class="giff"
+        src="https://gifer.com/embed/fyAI"
+        width="100%"
+        height="100%"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+        allowfullscreen
+></iframe>
+<div class="button">
+  <div class="image-container" (click)="valider()">
+    <img src="assets/bettrave.png" alt="Description de l'image"  />
+    <div class="texte-sur-image">Ajouter le thème</div>
+  </div>
+</div>
 <form>
-  <mat-form-field class="example-full-width">
+  <div class="validation">
+  <mat-form-field class="test">
     <mat-label>Nom du thème</mat-label>
     <input
       matInput
       placeholder="Ex. The Office"
       [formControl]="themenameFC">
   </mat-form-field>
-
+  </div>
+  <div class="suite">
   <table>
     <tr>
       <td>Choix 1</td>
@@ -91,8 +105,12 @@
       </td>
     </tr>
   </table>
-
-
-  <button (click)="versAddLiaison()">Liste des cartes existantes</button>
+  </div>
+  <div class="button">
+    <div class="imag_pseudo-container-2" (click)="versAddLiaison()">
+      <img src="assets/bettrave.png" alt="Description de l'image"  />
+      <div class="texte-sur-image">Liste des cartes existantes</div>
+    </div>
+  </div>
 </form>
 

@@ -1,7 +1,13 @@
 <h1>{{theme.name}}</h1>
+<iframe class="giff"
+        src="https://gifer.com/embed/6SO"
+        width="100%"
+        height="100%"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+        allowfullscreen
+></iframe>
 
-<button (click)="versEditTheme()">Modifier le thème</button>
-
+<div class="tableau">
 <table>
   <tr>
     <td>Carte 1</td>
@@ -12,3 +18,12 @@
     <td>{{ paire.carte2?.reponse }}</td>
   </tr>
 </table>
+</div>
+
+
+<div class="button">
+  <div class="image-container" (click)="versEditTheme()">
+    <img src="assets/bettrave.png" alt="Description de l'image"  />
+    <div class="texte-sur-image">Modifier le thème</div>
+  </div>
+</div>
