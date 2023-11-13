@@ -6,6 +6,7 @@ import {ThemeService} from "../services/theme.service";
 import {Observable} from "rxjs";
 import {ThemeModel} from "../models/themes.model";
 import {NumberService} from "../services/number.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-page-accueil',
@@ -32,7 +33,8 @@ export class PageAccueilComponent {
               private gameSettingsService: GameSettingsService,
               private themeService : ThemeService,
               private _formBuilder: FormBuilder,
-              private numberService: NumberService
+              private numberService: NumberService,
+              private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       nombreJoueur: ['', [Validators.required, Validators.min(2), Validators.max(10)]],
@@ -42,16 +44,39 @@ export class PageAccueilComponent {
     this.themes_obs = themeService.findAll();
   }
 
+  getTheme (name:String){
+    for (let theme of this.themes) {
+      if (theme.name == name){
+        return theme.id
+      }
+    }
+    return -1
+  }
+
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 2000, // Durée d'affichage du toast en millisecondes
+    });
+  }
+
   onContinue(): void {
     // Enregistrez le nombre de manches dans le service GameSettingsService
     console.log(this.numberService.getValueJoueur())
     console.log(this.numberService.getValueManche())
+    console.log ("THEME")
+    console.log(this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)))
+
+    if (this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)) == -1){
+      this.showErrorMessage("Veuillez renseigner un thème !")
+      return;
+    }
 
     this.gameSettingsService.setGameSettings({
       nombreManche: this.numberService.getValueManche(), // Utilisez this.form.value
       nombreJoueur: this.numberService.getValueJoueur(), // Utilisez this.form.value
       currentManche: 1,
-      currentPlayer: 0
+      currentPlayer: 0,
+
     });
     console.log('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche())
     this.router.navigateByUrl('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche());

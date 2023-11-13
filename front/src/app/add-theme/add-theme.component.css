@@ -134,9 +134,10 @@ mat-form-field{
 }
 
 .imag_pseudo-container-2{
+  margin-top: 20px;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 160px; /* Ajoutez la largeur souhaitée */
   height: auto;
   font-size: 15px; /* Taille de la police */
@@ -146,10 +147,55 @@ mat-form-field{
   display: flex;
   justify-content: center;
 }
-.test{
-  width: 30%;
-}
+
+
+
 .suite{
   display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container-2 {
+  position: relative;
+}
+
+.texte-sur-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Couleur du texte, ajustez selon vos besoins */
+  font-size: 18px; /* Taille de la police, ajustez selon vos besoins */
+  font-weight: bold; /* Gras, ajustez selon vos besoins */
+  text-align: center; /* Centrer le texte horizontalement */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+}
+
+.ptheme {
+  font-size: 25px;
+}
+
+.fvalidation{
+  width: 30%;
+  margin-top: 10px;
+}
+
+body {
+  width: 100%;
+}
+
+.back {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }

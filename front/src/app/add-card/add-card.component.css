@@ -1,0 +1,146 @@
+h1{
+  color: white; /* Couleur du texte */
+  font-size: 80px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+  margin: 0;
+
+  margin-bottom: 40px;
+
+}
+h2{
+  color: white; /* Couleur du texte */
+  font-size: 50px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+
+}
+p{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  margin: 40px;
+}
+label{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+}
+div{
+  text-align: center;
+}
+button {
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: none;
+  /*box-shadow: lightgray 3px 3px 7px;*/
+  text-align: center;
+  outline: none;
+  font-size: 14px;
+  font-weight: bold; /* Poids de la police */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.giff{
+  filter: opacity(0.8);
+}
+
+body {
+  padding-top: 20px;
+}
+
+.precherche {
+  font-size: 25px;
+}
+
+.mat-elevation-z8{
+  margin: 40px;
+  box-shadow: none;
+  margin-top: 0;
+}
+
+.dessus {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centrer verticalement */
+}
+
+mat-form-field{
+  margin-top: 30px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.retour{
+  height: 50px;
+  margin-top: 5px;
+}
+
+
+.pbutton {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.nextButton{
+  margin-left: 40px;
+  height: 100%;
+  width: 90px;
+  background-color: #3F51B5;
+  box-shadow: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+.recherche {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-recherche {
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+table {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+mat-paginator {
+  background-color: rgba(255, 255, 255, 0.76);
+}
+
+
+.actions {
+  display: flex;
+  height: 100%;
+}
+
+.back {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

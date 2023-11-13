@@ -1,4 +1,5 @@
-<h1>Liste des cartes
+<body>
+<h1>Liste des cartes</h1>
   <iframe class="giff"
           src="https://gifer.com/embed/3b4"
           width="100%"
@@ -7,38 +8,54 @@
           allowfullscreen
   ></iframe>
 
+
+
+
+
 <ng-container>
-  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" >
-    <label for="reponse">Ajouter une carte : </label>
-    <input type="text" id="reponse" formControlName="reponse">
-    <button type="submit" [disabled]="!cardForm.valid">OK!</button>
-  </form>
-
-  <form>
-    <label>Rechercher une carte : </label>
-    <mat-form-field appearance="fill">
-      <mat-label>Rechercher</mat-label>
-      <input matInput placeholder="Ex. Pain au chocolat" [formControl]="searchForm">
+  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()"  class="dessus">
+    <label for="reponse"><p class="precherche">Créer une carte : </p></label>
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" id="reponse" formControlName="reponse">
     </mat-form-field>
-    <button mat-icon-button color="primary" (click)="Recherche()">
-      <mat-icon matSuffix>search</mat-icon>
-    </button>
 
-    <button mat-icon-button color="primary" (click)="AnnulerRecherche()" *ngIf="isSearching">
-      <mat-icon matSuffix>close</mat-icon>
-    </button>
-
+    <button mat-button class="nextButton retour" type="submit" [disabled]="!cardForm.valid"><p class="pbutton" >Ajouter</p></button>
   </form>
 
+
+  <form class="dessus recherche">
+    <label><p class="precherche">Rechercher une carte : </p></label>
+    <mat-form-field appearance="fill">
+      <div class="input-recherche">
+        <input matInput placeholder="Ex. Pain au chocolat" [formControl]="searchForm">
+
+        <button mat-icon-button color="primary" (click)="Recherche()" *ngIf="!isSearching">
+          <mat-icon matSuffix>search</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" (click)="AnnulerRecherche()" *ngIf="isSearching">
+          <mat-icon matSuffix>close</mat-icon>
+        </button>
+
+      </div>
+    </mat-form-field>
+
+
+  </form>
 
 
 </ng-container>
 
 
 
-
-
 <div class="mat-elevation-z8">
+
+
+
+
+
+
+
   <table mat-table [dataSource]="dataSource">
 
     <!-- id Column -->
@@ -69,6 +86,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let card">
+        <div class="actions">
         <button mat-icon-button color="warn" (click)="delete(card)" >
           <mat-icon matSuffix>delete</mat-icon>
         </button>
@@ -78,6 +96,7 @@
         <button mat-icon-button color="primary" (click)="edit(card)"  *ngIf="isEditingCard(card)">
           <mat-icon matSuffix>close</mat-icon>
         </button>
+        </div>
       </td>
     </ng-container>
 
@@ -90,3 +109,10 @@
                  aria-label="Select page of cards">
   </mat-paginator>
 </div>
+
+<div class="back">
+  <button mat-icon-button color="primary" class="bback" >
+    <mat-icon class="iback">arrow_back</mat-icon>
+  </button>
+</div>
+</body>

@@ -1,3 +1,4 @@
+<body>
 <h1>Modifier le thème</h1>
 <iframe class="giff"
         src="https://gifer.com/embed/5O4"
@@ -6,22 +7,17 @@
         style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
         allowfullscreen
 ></iframe>
-<div class="button">
-  <div class="image-container-2" (click)="valider()">
-    <img src="assets/bettrave.png" alt="Description de l'image"  />
-    <div class="texte-sur-image">Valider les changements</div>
-  </div>
-</div>
+
 <form>
   <div class="validation">
-  <mat-form-field class="test">
-    <mat-label>Nom du thème</mat-label>
-    <input
-      matInput
-      placeholder="Ex. The Office"
-      [formControl]="themenameFC">
-  </mat-form-field>
-</div>
+    <p class="ptheme">Nom du thème : </p>
+    <mat-form-field class="fvalidation">
+      <input
+        matInput
+        placeholder="Ex. The Office"
+        [formControl]="themenameFC">
+    </mat-form-field>
+  </div>
   <div class="tableau">
   <table>
     <tr>
@@ -111,7 +107,22 @@
   <div class="button">
     <div class="image-container" (click)="versAddCard()">
       <img src="assets/bettrave.png" alt="Description de l'image"  />
-      <div class="texte-sur-image">Liste des cartes existantes</div>
+      <div class="texte-sur-image">Liste des cartes</div>
     </div>
   </div>
 </form>
+
+
+<div class="button">
+  <div class="image-container-2" (click)="valider()">
+    <img src="assets/bettrave.png" alt="Description de l'image"  />
+    <div class="texte-sur-image">Valider les changements</div>
+  </div>
+</div>
+
+<div class="back">
+  <button mat-icon-button color="primary" class="bback" >
+    <mat-icon class="iback">arrow_back</mat-icon>
+  </button>
+</div>
+</body>
