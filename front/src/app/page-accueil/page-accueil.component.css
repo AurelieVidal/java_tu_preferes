@@ -68,3 +68,60 @@ button {
 .giff{
   filter: opacity(0.8);
 }
+
+.custom-stepper {
+  background-color: rgba(0, 0, 255, 0);
+  /* Autres styles de votre choix */
+}
+
+.big {
+  display: flex;
+  flex-direction: row;
+  padding-left: 200px;
+  padding-right: 200px;
+  height: 40vh;
+}
+
+.stepper {
+  width: 70%;
+}
+
+.button {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+.step1{
+  padding-left: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.nextButton{
+  margin-left: 70px;
+  height: 100%;
+  width: 90px;
+  background-color: #3F51B5;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.pbutton {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.retour{
+  height: 50px;
+  margin-top: 5px;
+}

@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import {HttpClient} from "@angular/common/http";
-import {Theme} from "../models/themes.model";
-import {Card} from "../models/card.model";
-import {Liaison} from "../models/liaison.model";
+import {ThemeModel} from "../models/themes.model";
 
 @Injectable({
   providedIn: "root",
@@ -14,28 +12,28 @@ export class ThemeService {
 
   private themeUrl = "http://localhost:8080/themes"
 
-  findAll(): Observable<Theme[]> {
-    return this.http.get<Theme[]>(this.themeUrl)
+  findAll(): Observable<ThemeModel[]> {
+    return this.http.get<ThemeModel[]>(this.themeUrl)
   }
 
-  findById(id: number): Observable<Theme> {
-    return this.http.get<Theme>(`${this.themeUrl}/${id}`)
+  findById(id: number): Observable<ThemeModel> {
+    return this.http.get<ThemeModel>(`${this.themeUrl}/${id}`)
   }
 
-  update(id: number, theme:Theme): Observable<Theme> {
-    return this.http.post<Theme>(`${this.themeUrl}/${id}`, theme)
+  update(id: number, theme:ThemeModel): Observable<ThemeModel> {
+    return this.http.post<ThemeModel>(`${this.themeUrl}/${id}`, theme)
   }
 
-  create(theme : Theme): Observable<Theme> {
-    return this.http.post<Theme>(this.themeUrl, theme)
+  create(theme : ThemeModel): Observable<ThemeModel> {
+    return this.http.post<ThemeModel>(this.themeUrl, theme)
   }
 
-  delete(theme : Theme) {
+  delete(theme : ThemeModel) {
     return this.http.delete(`${this.themeUrl}/${theme.id}`)
   }
 
-  search(keyword: String): Observable<Theme[]> {
-    return this.http.get<Theme[]>(`${this.themeUrl}/search/${keyword}`)
+  search(keyword: String): Observable<ThemeModel[]> {
+    return this.http.get<ThemeModel[]>(`${this.themeUrl}/search/${keyword}`)
   }
 
 

@@ -1,14 +1,11 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
-import {Liaison} from "../models/liaison.model";
-import {LiaisonService} from "../services/liaison.service";
 import {CardService} from "../services/card.services";
 import {Router} from "@angular/router";
-import {Theme} from "../models/themes.model";
+import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
 import { Location } from '@angular/common';
 import {MatTableDataSource} from "@angular/material/table";
-import {Card} from "../models/card.model";
 import {MatPaginator} from "@angular/material/paginator";
 import {FormControl} from "@angular/forms";
 
@@ -17,14 +14,13 @@ import {FormControl} from "@angular/forms";
   templateUrl: './themes.component.html',
   styleUrls: ['./themes.component.css']
 })
-export class ThemesComponent implements OnInit, AfterViewInit {
-  themes$: Observable<Theme[]>;
-  theme!: Theme[];
+export class ThemesComponent implements OnInit {
+  themes$: Observable<ThemeModel[]>;
+  theme!: ThemeModel[];
   searchForm = new FormControl('')
   isSearching: boolean = false;
-  dataSource = new MatTableDataSource<Theme>();
+  dataSource = new MatTableDataSource<ThemeModel>();
   displayedColumns: string[] = ['name', 'number', 'actions'];
-
 
   constructor(
     private themeService: ThemeService,
@@ -35,7 +31,7 @@ export class ThemesComponent implements OnInit, AfterViewInit {
     this.themes$ = themeService.findAll();
   }
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator
 
 
   ngAfterViewInit() {
@@ -67,13 +63,9 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
-    console.log("ngononot")
-    console.log(this.themes$)
     this.themes$.subscribe(
       x => {
         this.theme = x;
-        console.log("THEMES")
         console.log('Liaisons récupérées :', x);
         this.dataSource.data = x
       }
@@ -85,7 +77,7 @@ export class ThemesComponent implements OnInit, AfterViewInit {
     this.router.navigateByUrl("addTheme")
   }
 
-  DeleteTheme(theme: Theme) {
+  DeleteTheme(theme: ThemeModel) {
     console.log("SUPPR")
     this.themeService.delete(theme).subscribe()
 
@@ -126,11 +118,11 @@ export class ThemesComponent implements OnInit, AfterViewInit {
 
   }
 
-  AfficherTheme(theme: Theme) {
+  AfficherTheme(theme: ThemeModel) {
     this.router.navigateByUrl('cartes/'+theme.id)
   }
 
-  ModifierTheme(theme: Theme) {
+  ModifierTheme(theme: ThemeModel) {
     this.router.navigateByUrl('edit/'+theme.id)
   }
 }

@@ -43,7 +43,8 @@ export class MenuComponent implements OnInit{
     for (let i = 0; i < numberOfPlayers; i++) {
       formControls[`joueur_${i}`] = new FormGroup({
         pseudo: new FormControl('', [Validators.required]),
-        image_path: new FormControl(this.fieldImages['Champ ' + (Math.floor(Math.random() * 15) + 1).toString()]) // Ajoutez le contrôle image_id ici
+        image_path: new FormControl(this.fieldImages['Champ ' + (Math.floor(Math.random() * 15) + 1).toString()]),
+        vote: new FormArray([]),
       });
     }
     this.users = new FormGroup(formControls);
@@ -93,6 +94,7 @@ export class MenuComponent implements OnInit{
       const playerInfo = {
         pseudo: playerData[`joueur_${i}`].pseudo,
         image_path: playerData[`joueur_${i}`].image_path,
+        vote: [""]
       };
       players.push(playerInfo);
     }
