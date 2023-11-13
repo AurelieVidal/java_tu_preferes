@@ -68,3 +68,8 @@ button {
 .giff{
   filter: opacity(0.8);
 }
+
+.mat-elevation-z8{
+  margin: 40px;
+  text-align: center;
+}
