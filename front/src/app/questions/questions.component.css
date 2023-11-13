@@ -1,31 +1,90 @@
-section {
-  display: table;
+
+body {
+  box-sizing: border-box;
+
+  margin:0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
+  background-color: transparent;
+  width: 100%;}
+
+h1{
+  color: white; /* Couleur du texte */
+  font-size: 80px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+  background-color: transparent;
+
+}
+h2{
+  color: white; /* Couleur du texte */
+  font-size: 50px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+  background-color: transparent;
+
+}
+p{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  margin: 40px;
+  background-color: transparent;
+}
+label{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+  background-color: transparent;
 }
 
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
+div{
+  text-align: center;
+  background-color: transparent;
 }
 
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
+div.example-button-row{
   display: flex;
   justify-content: center;
-  width: 120px;
+}
+button {
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: none;
+  box-shadow: lightgray 3px 3px 7px;
+  text-align: center;
+  outline: none;
+  font-size: 14px;
+  font-weight: bold;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.texte-sur-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+
+}
+
+.giff{
+  filter: opacity(0.8);
 }

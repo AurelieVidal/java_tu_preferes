@@ -36,7 +36,7 @@ p{
   background-color: transparent;
 }
 label{
-  font-size: 30px; /* Taille de la police */
+  font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
@@ -66,6 +66,22 @@ button {
 .image-container {
   position: relative;
   text-align: center;
+}
+.imag_pseudo-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px; /* Ajoutez la largeur souhaitée */
+  height: auto;
+  font-size: 15px; /* Taille de la police */
+}
+.imag_pseudo-container-2{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px; /* Ajoutez la largeur souhaitée */
+  height: auto;
+  font-size: 15px; /* Taille de la police */
 }
 
 .texte-sur-image {

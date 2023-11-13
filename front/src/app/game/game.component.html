@@ -1,8 +1,16 @@
 <body>
 <div class="mat-app-background basic-container">
   <!-- Affiche le pseudo du joueur actuel -->
+  <div class="imag_pseudo-container">
+    <img src="assets/pseudo.png" alt="Pseudo">
+    <div class="texte-sur-image">{{ players[this.gameSettings.currentPlayer]?.pseudo }}</div>
+  </div>
 
-  <h2>Pseudo du joueur actuel : {{ players[this.gameSettings.currentPlayer]?.pseudo }}</h2>
+  <div class="imag_pseudo-container-2">
+    <img src="assets/manche.png" alt="Manche">
+    <div class="texte-sur-image">{{ this.gameSettings.currentManche }}</div>
+  </div>
+
   <iframe class="giff"
           src="https://gifer.com/embed/5Dam"
           width="100%"
@@ -10,15 +18,12 @@
           style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
           allowfullscreen
   ></iframe>
-  <!-- Affiche le numéro de la manche en cours -->
-  <h2>Manche en cours : {{ this.gameSettings.currentManche }}</h2>
 
-  <!-- Affiche le numéro de la manche en cours -->
-  <h2>Manche en cours : {{ this.gameSettings.currentManche }}</h2>
+
+
 
   <app-questions> TEST </app-questions>
   <app-slider>loading</app-slider>
-
 
 
   <div class="image-container">
@@ -26,8 +31,5 @@
     <div class="texte-sur-image">{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
     </div>
 </div>
-
-
 </div>
 </body>
-
