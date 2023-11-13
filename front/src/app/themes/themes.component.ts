@@ -38,7 +38,7 @@ export class ThemesComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
 
-    this.paginator._intl.itemsPerPageLabel = 'Nombre de cartes par page';
+    this.paginator._intl.itemsPerPageLabel = 'Nombre de thèmes par page';
     this.paginator._intl.nextPageLabel = 'Page suivante';
     this.paginator._intl.previousPageLabel = 'Page précédente';
     this.paginator._intl.firstPageLabel = 'Première page'

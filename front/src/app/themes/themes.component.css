@@ -39,7 +39,7 @@ button {
   box-sizing: border-box;
   padding: 5px 10px;
   border: none;
-  box-shadow: lightgray 3px 3px 7px;
+  /*box-shadow: lightgray 3px 3px 7px;*/
   text-align: center;
   outline: none;
   font-size: 14px;
@@ -105,9 +105,52 @@ body {
 
 .recherche {
   display: flex;
-  align-items: center;}
+  align-items: center;
+}
 
 .mat-elevation-z8{
   margin: 40px;
   text-align: center;
+  margin-top: 0;
+}
+
+.input-recherche {
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+
+
+mat-form-field{
+  margin-top: 30px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-recherche {
+  box-shadow: none;
+  margin: 0;
+}
+
+.precherche {
+  font-size: 25px;
+}
+
+.actions {
+  display: flex;
+  height: 100%;
+}
+
+.back {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

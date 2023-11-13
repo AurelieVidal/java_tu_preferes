@@ -51,8 +51,8 @@
 
           <mat-form-field>
             <mat-label>Thème</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let theme of themes" [value]="theme.name">
+            <mat-select [formControl]="secondFormGroup.controls.secondCtrl">
+              <mat-option *ngFor="let theme of themes" [value]="theme.name" >
                 {{theme.name}}
               </mat-option>
             </mat-select>
