@@ -2,7 +2,7 @@
 <div class="mat-app-background basic-container">
   <!-- Affiche le pseudo du joueur actuel -->
 
-  <h2>Pseudo du joueur actuel : {{ players[currentPlayer]?.pseudo }}</h2>
+  <h2>Pseudo du joueur actuel : {{ players[this.gameSettings.currentPlayer]?.pseudo }}</h2>
   <iframe class="giff"
           src="https://gifer.com/embed/5Dam"
           width="100%"
@@ -11,7 +11,7 @@
           allowfullscreen
   ></iframe>
   <!-- Affiche le numéro de la manche en cours -->
-  <h2>Manche en cours : {{ currentManche }}</h2>
+  <h2>Manche en cours : {{ this.gameSettings.currentManche }}</h2>
 
   <!-- Affiche le numéro de la manche en cours -->
   <h2>Manche en cours : {{ this.gameSettings.currentManche }}</h2>
@@ -23,10 +23,11 @@
 
   <div class="image-container">
     <img src="assets/bettrave.png" alt="Description de l'image" (click)="nextPlayerOrManche()" />
-    <div class="texte-sur-image">{{ (currentPlayer < players.length - 1) ? 'Joueur suivant' : (currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
+    <div class="texte-sur-image">{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
     </div>
 </div>
 
- 
+
 </div>
 </body>
+
