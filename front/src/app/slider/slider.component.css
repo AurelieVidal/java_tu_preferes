@@ -1,6 +1,13 @@
 .slidecontainer {
   position: relative;
   width: 100%;
+  height: 40vh;
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  text-align: center;
+  -webkit-appearance: none;
 }
 
 .slider-wrapper {
@@ -12,12 +19,13 @@
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 20vh;
+  height: 40vh;
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
   z-index: 1;
   align-self: flex-start;
+
 }
 
 .slider::-webkit-slider-thumb {
@@ -53,12 +61,12 @@
 }
 
 .before {
-  background: #FF0000; /* Couleur avant le curseur */
+  background: white; /* Couleur avant le curseur */
   left: 0;
 }
 
 .after {
-  background: #04AA6D; /* Couleur après le curseur */
+  background: black; /* Couleur après le curseur */
   right: 0;
 }
 

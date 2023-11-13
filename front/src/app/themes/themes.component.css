@@ -105,5 +105,9 @@ body {
 
 .recherche {
   display: flex;
-  align-items: center;
+  align-items: center;}
+
+.mat-elevation-z8{
+  margin: 40px;
+  text-align: center;
 }
