@@ -13,10 +13,11 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrls: ['./gestion-cartes.component.css']
 })
 export class GestionCartesComponent implements OnInit {
-  liaison!: Liaison[];
+  liaison!: MatTableDataSource<Liaison>;
   theme_obs!: Observable<ThemeModel>
   theme!: ThemeModel
   theme_id!:number
+  displayedColumns: string[] = ['carte1Reponse', 'carte2Reponse'];
 
   constructor(
     private cardService: CardService,
@@ -33,9 +34,9 @@ export class GestionCartesComponent implements OnInit {
       x=> {
         this.theme = x;
 
-        this.liaison = this.theme.paires
+        this.liaison = new MatTableDataSource<Liaison>(this.theme.paires);
 
-        for (const paire of this.liaison) {
+        for (const paire of this.liaison.data) {
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => paire.carte1 = carte1
           );
@@ -54,5 +55,9 @@ export class GestionCartesComponent implements OnInit {
 
   versAddLiaison(): void{
     this.router.navigateByUrl('addLiaison');
+  }
+
+  VersTheme() {
+    this.router.navigateByUrl('themes');
   }
 }

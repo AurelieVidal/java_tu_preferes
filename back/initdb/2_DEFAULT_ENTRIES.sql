@@ -97,7 +97,7 @@ INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (2,14);
 INSERT INTO themes_liaisons(theme_id, liaison_id) VALUES (2,15);
 
 
-/*INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
+INSERT INTO perso(id, prenom) VALUES (1, 'Micheal');
 INSERT INTO perso (id, prenom) VALUES (2, 'Jim');
 INSERT INTO perso (id, prenom) VALUES (3, 'Dwight');
 INSERT INTO perso (id, prenom) VALUES (4, 'Meredith');
@@ -111,5 +111,5 @@ INSERT INTO perso (id, prenom) VALUES (11, 'Phyllis');
 INSERT INTO perso (id, prenom) VALUES (12, 'Ryan');
 INSERT INTO perso(id, prenom) VALUES (13, 'Creed');
 INSERT INTO perso (id, prenom) VALUES (14, 'Oscars');
-INSERT INTO perso (id, prenom) VALUES (15, 'Andy');*/
+INSERT INTO perso (id, prenom) VALUES (15, 'Andy');
 

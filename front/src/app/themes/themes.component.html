@@ -12,12 +12,7 @@
         allowfullscreen
 ></iframe>
 
-<div class="themes">
-  <div class="image-container" (click)="versAddTheme()">
-    <img class="small-button" src="assets/bettrave.png" alt="Description de l'image"  />
-    <div class="texte-sur-image"><p class="small-text">Créer un thème</p></div>
-  </div>
-</div>
+<app-button-big label="Créer un thème" (click)="versAddTheme()"></app-button-big>
 
 
 
@@ -99,11 +94,8 @@
   </mat-paginator>
 </div>
 
-<div class="back">
-  <button mat-icon-button color="primary" class="bback" >
-    <mat-icon class="iback">arrow_back</mat-icon>
-  </button>
-</div>
+
+<app-back-button label="Accueil" (click)="VersAccueil()"></app-back-button>
 
 </body>
 

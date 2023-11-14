@@ -34,41 +34,7 @@ label{
 div{
   text-align: center;
 }
-button {
-  background-color: transparent;
-  box-sizing: border-box;
-  padding: 5px 10px;
-  border: none;
-  box-shadow: lightgray 3px 3px 7px;
-  text-align: center;
-  outline: none;
-  font-size: 14px;
-  font-weight: bold; /* Poids de la police */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.image-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 160px; /* Ajoutez la largeur souhaitée */
-  height: auto;
-  font-size: 8px; /* Taille de la police */
-}
-
-.texte-sur-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
-
-}
 
 .giff{
   filter: opacity(0.8);
@@ -76,9 +42,8 @@ button {
 
 table {
   background-color: rgba(255, 255, 255, 0.3);
-}
-mat-paginator {
-  background-color: rgba(255, 255, 255, 0.76);
+  margin: 0;
+
 }
 
 .themes {
@@ -90,9 +55,7 @@ mat-paginator {
 body {
   padding-top: 20px;
 }
-.image-container {
-  cursor :pointer;
-}
+
 
 .small-button {
   height: 200px;
@@ -114,36 +77,14 @@ body {
 .mat-elevation-z8{
   margin: 40px;
   text-align: center;
-}
-
-table {
-  position: relative;
-  text-align: center;
   width: 80%;
-  border-collapse: collapse;
-  font-size: 30px; /* Taille de la police */
-  font-weight: bold; /* Poids de la police */
-  color: white; /* Couleur du texte */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
-  margin: 40px;
-
-
-}
-.tableau{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-th, td {
-  border: 3px solid white;
-  padding: 8px;
-  text-align: left;
-}
 
-th {
-  background-color: black;
-}
+
+
+
+
 
 .back {
   position: absolute;
@@ -152,6 +93,28 @@ th {
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+app-button-small {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+app-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tableau {
+  width: 80%;
+  display: flex;
+}
+
+.tab {
+  display: flex;
   justify-content: center;
 }
 
