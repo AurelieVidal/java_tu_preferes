@@ -144,3 +144,18 @@ mat-paginator {
   align-items: center;
   justify-content: center;
 }
+
+app-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-container{
+  width: 100%;
+}

@@ -8,6 +8,10 @@
         allowfullscreen
 ></iframe>
 
+
+
+<app-button-small label="Liste des cartes"  (click)="versAddCard()"></app-button-small>
+<app-back-button label="Annuler" (click)="Retour()"></app-back-button>
 <form>
   <div class="validation">
     <p class="ptheme">Nom du thème : </p>
@@ -104,25 +108,12 @@
 
   </div>
 
-  <div class="button">
-    <div class="image-container" (click)="versAddCard()">
-      <img src="assets/bettrave.png" alt="Description de l'image"  />
-      <div class="texte-sur-image">Liste des cartes</div>
-    </div>
-  </div>
+
+
 </form>
 
 
-<div class="button">
-  <div class="image-container-2" (click)="valider()">
-    <img src="assets/bettrave.png" alt="Description de l'image"  />
-    <div class="texte-sur-image">Valider les changements</div>
-  </div>
-</div>
 
-<div class="back">
-  <button mat-icon-button color="primary" class="bback" >
-    <mat-icon class="iback">arrow_back</mat-icon>
-  </button>
-</div>
+<app-button-big label="Valider les changements" (click)="valider()"></app-button-big>
+
 </body>

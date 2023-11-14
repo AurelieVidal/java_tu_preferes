@@ -1,36 +1,34 @@
-<h1>{{theme.name}}</h1>
-<iframe class="giff"
-        src="https://gifer.com/embed/6SO"
-        width="100%"
-        height="100%"
-        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
-        allowfullscreen
+<h1>{{ theme.name }}</h1>
+
+<iframe
+  class="giff"
+  src="https://gifer.com/embed/6SO"
+  width="100%"
+  height="100%"
+  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+  allowfullscreen
 ></iframe>
-
+<div class="tab">
 <div class="tableau">
-<table>
-  <tr>
-    <td>Carte 1</td>
-    <td>Carte 2</td>
-  </tr>
-  <tr *ngFor="let paire of liaison">
-    <td>{{ paire.carte1?.reponse }}</td>
-    <td>{{ paire.carte2?.reponse }}</td>
-  </tr>
-</table>
+  <table mat-table [dataSource]="liaison" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="carte1Reponse">
+      <th mat-header-cell *matHeaderCellDef> Carte 1 </th>
+      <td mat-cell *matCellDef="let element"> {{ element.carte1?.reponse }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="carte2Reponse">
+      <th mat-header-cell *matHeaderCellDef> Carte 2 </th>
+      <td mat-cell *matCellDef="let element"> {{ element.carte2?.reponse }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
 </div>
 
+<app-button-small label="Modifier le thème" (click)="versEditTheme()"></app-button-small>
 
-<div class="button">
-  <div class="image-container" (click)="versEditTheme()">
-    <img src="assets/bettrave.png" alt="Description de l'image"  />
-    <div class="texte-sur-image">Modifier le thème</div>
-  </div>
-</div>
-
-
-<div class="back">
-  <button mat-icon-button color="primary" class="bback" >
-    <mat-icon class="iback">arrow_back</mat-icon>
-  </button>
-</div>
+<app-back-button label="Retour" (click)="VersTheme()"></app-back-button>

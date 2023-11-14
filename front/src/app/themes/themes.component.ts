@@ -14,7 +14,7 @@ import {FormControl} from "@angular/forms";
   templateUrl: './themes.component.html',
   styleUrls: ['./themes.component.css']
 })
-export class ThemesComponent implements OnInit {
+export class ThemesComponent implements OnInit, AfterViewInit {
   themes$: Observable<ThemeModel[]>;
   theme!: ThemeModel[];
   searchForm = new FormControl('')
@@ -124,6 +124,10 @@ export class ThemesComponent implements OnInit {
 
   ModifierTheme(theme: ThemeModel) {
     this.router.navigateByUrl('edit/'+theme.id)
+  }
+
+  VersAccueil() {
+    this.router.navigateByUrl('')
   }
 }
 

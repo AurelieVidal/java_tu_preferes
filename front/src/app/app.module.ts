@@ -37,6 +37,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import { NumberInputComponent } from './number-input/number-input.component';
 import { NumberService } from './services/number.service';
+import { ButtonBigComponent } from './button-big/button-big.component';
+import { ButtonSmallComponent } from './button-small/button-small.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { NumberService } from './services/number.service';
     NumberInputComponent,
     // QuestionsComponent
     EditThemeComponent,
+    ButtonBigComponent,
+    ButtonSmallComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,

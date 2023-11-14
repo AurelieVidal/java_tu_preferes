@@ -1,0 +1,41 @@
+* {
+  color: white; /* Couleur du texte */
+  font-size: 22px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  font-family: 'Playton one', sans-serif; /* Famille de police */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+
+.image-container {
+  position: relative; /* Assurez-vous que le conteneur est positionné de manière relative */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer
+}
+
+img {
+  height: 130px;
+}
+
+.texte-sur-image {
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%; /* Place le haut du texte au centre vertical de l'image */
+  left: 50%; /* Place le côté gauche du texte au centre horizontal de l'image */
+  transform: translate(-50%, -50%); /* Centre le texte correctement */
+  /* Ajoutez d'autres styles nécessaires pour le texte */
+  text-align: center;
+  line-height: 1;
+}

@@ -2,12 +2,9 @@
 
 
 <body>
-<div class="themes">
-  <div class="image-container" (click)="versThemes()">
-    <img class="small-button" src="assets/bettrave.png" alt="Description de l'image"  />
-    <div class="texte-sur-image"><p class="small-text">Voir les thèmes</p></div>
-  </div>
-</div>
+
+
+<app-button-small label="Voir les thèmes"  (click)="versThemes()"></app-button-small>
 <!--<a href='config'>Configurations</a>-->
 
 
@@ -63,18 +60,11 @@
       </mat-step>
     </mat-stepper>
   </div>
-  <div class="button">
-    <div class="image-container" (click)="onContinue()">
-      <img src="assets/bettrave.png" alt="Description de l'image"  />
-      <div class="texte-sur-image">Ok</div>
-    </div>
-  </div>
+  <app-button-big label="Continuer" (click)="onContinue()"></app-button-big>
+
+
 
 </div>
-
-
-
-
 
 
 <!--<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>-->
