@@ -199,3 +199,16 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
+app-button-small {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+app-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

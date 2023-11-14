@@ -378,6 +378,8 @@ export class AddThemeComponent implements OnInit{
   protected readonly Number = Number;
 
 
-
+  Retour() {
+    this.router.navigateByUrl('themes')
+  }
 }
 

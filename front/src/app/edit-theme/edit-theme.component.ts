@@ -246,6 +246,11 @@ export class EditThemeComponent implements OnInit{
       }
     }
 
+    if (liaisons.length === 0) {
+      this.showErrorMessage("Vous n'avez pas ajouté de dilemme ! ");
+      return;
+    }
+
     const theme = { name: String(nom), paires: liaisons };
     console.log("Thème modifié:", theme);
 
@@ -388,6 +393,10 @@ export class EditThemeComponent implements OnInit{
     } else {
       console.log(`Liaison introuvable : ${liaison}`);
     }*/
+  }
+
+  Retour() {
+    this.router.navigateByUrl('themes')
   }
 
 

@@ -1,6 +1,8 @@
 package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.CardDao;
+import com.takima.backskeleton.DAO.LiaisonDao;
+import com.takima.backskeleton.DAO.ThemeDao;
 import com.takima.backskeleton.models.Card;
 import com.takima.backskeleton.models.Liaison;
 import jakarta.transaction.Transactional;
@@ -14,6 +16,8 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class CardService {
     private final CardDao cardDao;
+    private final LiaisonDao liaisonDao;
+    private final ThemeDao themeDao;
 
     public List<Card> findAll() {
         return cardDao.findAll();
@@ -33,8 +37,21 @@ public class CardService {
     }
 
     public void deleteById(Long id) {
+        Card card = cardDao.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Liaison doesn't exist"));
+
+        // Supprimer toutes les liaisons liées à la carte
+        List<Liaison> liaisons = liaisonDao.findAll();
+        for (Liaison liaison : liaisons) {
+            if (liaison.getId_1() == id || liaison.getId_2()==id) {
+                liaisonDao.delete(liaison);
+            }
+
+        }
+
         cardDao.deleteById(id);
     }
+
 
     public void update(Card card, Long id) {
         Card existingCard = cardDao.findById(id)

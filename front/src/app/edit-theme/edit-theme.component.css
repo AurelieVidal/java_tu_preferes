@@ -167,4 +167,15 @@ body{
   justify-content: center;
 }
 
+app-button-small {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+app-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 

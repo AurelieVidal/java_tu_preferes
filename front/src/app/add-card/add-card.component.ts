@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AddCardComponent implements OnInit, AfterViewInit{
     private router: Router,
     private _route: ActivatedRoute,
     private cardService: CardService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private location: Location) {
 
     this.cards$ = cardService.findAll()
 
@@ -175,5 +177,23 @@ export class AddCardComponent implements OnInit, AfterViewInit{
     if (this.isEditingCard(card)) {
       this.editedCardValue = card.reponse;
     }
+  }
+
+  Retour() {
+    this.location.back();
+  }
+
+  confirmer (card : Card) {
+    const snackBarRef = this.snackBar.open(
+      "Etes-vous sûr de vouloir supprimer cette carte ? Toutes les liaisons la contenant seront également supprimées.",
+      "Confirmer",
+      { duration: 10000 }
+    );
+
+    // Ajouter un écouteur pour l'action "Confirmer" sur snackBarRef
+    snackBarRef.onAction().subscribe(() => {
+      console.log("OUI")
+      this.delete(card)
+    });
   }
 }
