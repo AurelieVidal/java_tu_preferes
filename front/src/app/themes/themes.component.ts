@@ -129,6 +129,10 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   VersAccueil() {
     this.router.navigateByUrl('')
   }
+
+  versAddCard(): void {
+    this.router.navigateByUrl('addCard');
+  }
 }
 
 

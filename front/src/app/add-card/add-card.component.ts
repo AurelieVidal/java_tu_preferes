@@ -8,6 +8,8 @@ import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
 
 
 @Component({
@@ -34,7 +36,8 @@ export class AddCardComponent implements OnInit, AfterViewInit{
     private _route: ActivatedRoute,
     private cardService: CardService,
     private snackBar: MatSnackBar,
-    private location: Location) {
+    private location: Location,
+    private dialog: MatDialog) {
 
     this.cards$ = cardService.findAll()
 
@@ -182,7 +185,7 @@ export class AddCardComponent implements OnInit, AfterViewInit{
   Retour() {
     this.location.back();
   }
-
+/*
   confirmer (card : Card) {
     const snackBarRef = this.snackBar.open(
       "Etes-vous sûr de vouloir supprimer cette carte ? Toutes les liaisons la contenant seront également supprimées.",
@@ -195,5 +198,20 @@ export class AddCardComponent implements OnInit, AfterViewInit{
       console.log("OUI")
       this.delete(card)
     });
+  }*/
+  confirmer(card: Card) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: "Etes-vous sûr de vouloir supprimer cette carte ? Toutes les questions contenant cette carte seront supprimées. Si toutes les questions d'un thème ont été supprimées, ce thème sera supprimé automatiquement."
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("OUI");
+        this.delete(card);
+      }
+    });
   }
+
 }

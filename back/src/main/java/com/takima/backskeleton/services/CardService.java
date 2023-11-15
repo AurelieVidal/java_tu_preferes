@@ -5,6 +5,7 @@ import com.takima.backskeleton.DAO.LiaisonDao;
 import com.takima.backskeleton.DAO.ThemeDao;
 import com.takima.backskeleton.models.Card;
 import com.takima.backskeleton.models.Liaison;
+import com.takima.backskeleton.models.Theme;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -47,6 +48,14 @@ public class CardService {
                 liaisonDao.delete(liaison);
             }
 
+        }
+
+
+        List<Theme> themes = themeDao.findAll();
+        for (Theme theme : themes) {
+            if (theme.getPaires().size() == 0){
+                themeDao.delete(theme);
+            }
         }
 
         cardDao.deleteById(id);

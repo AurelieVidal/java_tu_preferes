@@ -179,3 +179,8 @@ app-back-button {
   left: 0;
 }
 
+.bigbutton{
+  display: flex;
+  justify-content: center;
+}
+

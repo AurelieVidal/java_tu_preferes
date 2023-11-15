@@ -212,3 +212,8 @@ app-back-button {
   top: 0;
   left: 0;
 }
+
+.bigbutton{
+  display: flex;
+  justify-content: center;
+}
