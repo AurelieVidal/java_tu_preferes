@@ -23,6 +23,7 @@ export class PageAccueilComponent {
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
+  totalThemes!: ThemeModel[]
   //firstFormGroup = new FormGroup('');
   //secondFormGroup = new FormControl('');
   //thirdFormGroup = new FormControl('');
@@ -99,7 +100,10 @@ export class PageAccueilComponent {
     });
 
     this.themes_obs.subscribe(
-      theme => this.themes = theme
+      theme => {
+        this.themes = theme
+        this.totalThemes = theme
+      }
     )
   }
 
@@ -107,4 +111,11 @@ export class PageAccueilComponent {
     console.log("THEME")
     this.router.navigateByUrl('themes')
   }
+
+  changed() {
+    console.log("MODIFIE")
+    this.themes = this.totalThemes.filter((theme) => theme.paires.length >= this.numberService.getValueManche());
+    console.log(this.themes)
+  }
+
 }
