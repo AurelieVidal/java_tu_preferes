@@ -1,11 +1,16 @@
 <div>
-  <div class="image-container">
-    <img src="assets/bettrave.png" alt="Description de l'image" (click)="playAudio()" />
-    <div class="texte-sur-image">Play Musique !</div>
+  <div class="image-container" (click)="playAudio()">
+    <img src="assets/bettrave.png" alt="Description de l'image"  />
+    <div class="texte-sur-image">
+      <mat-icon *ngIf="isPlaying">volume_up</mat-icon>
+      <mat-icon *ngIf="!isPlaying">volume_off</mat-icon>
+    </div>
   </div>
 
-  <audio #audioPlayer>
+  <audio #audioPlayer loop>
     <source src="assets/audio_the_office.mp3" type="audio/mp3">
 
   </audio>
 </div>
+
+

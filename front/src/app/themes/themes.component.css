@@ -154,9 +154,22 @@ mat-form-field{
   align-items: center;
   justify-content: center;
 }
-
+/*
 app-back-button {
   position: absolute;
   top: 0;
   left: 0;
+}
+*/
+.buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+.bigbutton{
+  display: flex;
+  justify-content: center;
 }

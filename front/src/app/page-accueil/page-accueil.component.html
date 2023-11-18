@@ -35,7 +35,7 @@
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup" class="step1">
           <ng-template matStepLabel><p>Nombre de manches</p></ng-template>
-          <app-number-input label="manches"></app-number-input>
+          <app-number-input label="manches" (click)="changed()"></app-number-input>
           <div class="buttons">
             <button mat-button matStepperPrevious class="nextButton"><p class="pbutton">Retour</p></button>
             <button mat-button matStepperNext class="nextButton"><p class="pbutton">Suivant</p></button>

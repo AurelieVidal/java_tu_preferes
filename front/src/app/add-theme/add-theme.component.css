@@ -200,15 +200,20 @@ body {
   justify-content: center;
 }
 
-
+/*
 app-button-small {
   position: absolute;
   top: 0;
   right: 0;
-}
+}*/
 
-app-back-button {
+.buttons {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.bigbutton{
+  display: flex;
+  justify-content: center;
 }

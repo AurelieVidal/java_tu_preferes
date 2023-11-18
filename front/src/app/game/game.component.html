@@ -1,15 +1,19 @@
 <body>
 <div class="mat-app-background basic-container">
-  <!-- Affiche le pseudo du joueur actuel -->
-  <div class="imag_pseudo-container">
-    <img src="assets/pseudo.png" alt="Pseudo">
-    <div class="texte-sur-image">{{ players[this.gameSettings.currentPlayer]?.pseudo }}</div>
-  </div>
+  <div class = infos>
 
-  <div class="imag_pseudo-container-2">
-    <img src="assets/manche.png" alt="Manche">
-    <div class="texte-sur-image">{{ this.gameSettings.currentManche }}</div>
+    <div class="imag_pseudo-container">
+      <img src="assets/pseudo.png" alt="Pseudo">
+      <div class="texte-sur-image">{{ players[this.gameSettings.currentPlayer]?.pseudo }}</div>
+    </div>
+
+    <div class="imag_pseudo-container">
+      <img src="assets/manche.png" alt="Manche">
+      <div class="texte-sur-image">{{ this.gameSettings.currentManche }}</div>
+    </div>
   </div>
+  <!-- Affiche le pseudo du joueur actuel -->
+
 
   <iframe class="giff"
           src="https://gifer.com/embed/5Dam"

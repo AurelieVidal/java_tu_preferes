@@ -8,6 +8,7 @@ import { GameSettingsService } from "../services/gameSettings.service";
 import { CardService } from "../services/card.services";
 import { Card } from '../models/card.model';
 import {PlayerInfo} from "../models/player-info.model";
+import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-questions',
@@ -19,6 +20,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   buttonClicked: boolean = false;
 
   cardTheme!: ThemeModel;
+  idTheme!: number;
   gameSettings!: GameSettingsModel;
   cards!: Card[];
   private cardsSubscription: Subscription | undefined;
@@ -35,12 +37,15 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     private gameSettingsService: GameSettingsService,
     public cardService: CardService,
     private playerService : PlayerService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.gameSettings = this.gameSettingsService.getGameSettings();
+    this.idTheme = parseInt(this.activatedRoute.snapshot.params["themeId"]);
+    console.log(this.idTheme)
+    this.themeSubscription = this.themeService.findById(this.idTheme).subscribe((theme) => {
 
-    this.themeSubscription = this.themeService.findById(1).subscribe((theme) => {
       this.cardTheme = theme;
       this.updateCardText();
     });
@@ -60,7 +65,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   // Mettre à jour cardText en fonction de this.gameSettings.currentManche
   private updateCardText() {
     console.log("updateCardText currentManche: ", this.gameSettings.currentManche)
-    const paire = this.cardTheme.paires[this.gameSettings.currentManche];
+    const paire = this.cardTheme.paires[this.gameSettings.currentManche-1];
 
     this.cardService.findById(paire.id_1).subscribe((card) => {
       this.cardText.button_1 = card.reponse;

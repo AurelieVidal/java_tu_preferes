@@ -8,9 +8,11 @@
         allowfullscreen
 ></iframe>
 
+<div class="buttons">
+  <app-back-button label="Annuler" (click)="Retour()"></app-back-button>
 <app-button-small label="Liste des cartes"  (click)="versAddCard()"></app-button-small>
-<app-back-button label="Annuler" (click)="Retour()"></app-back-button>
 
+</div>
 <form>
   <div class="validation">
     <p class="ptheme">Nom du thème : </p>
@@ -108,8 +110,9 @@
 
 </form>
 
+<div class="bigbutton">
 <app-button-big label="Ajouter le thème" (click)="valider()"></app-button-big>
-
+</div>
 
 
 

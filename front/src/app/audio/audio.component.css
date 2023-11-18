@@ -1,16 +1,44 @@
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .image-container {
-  position: relative;
-  text-align: center;
+  position: relative; /* Assurez-vous que le conteneur est positionné de manière relative */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer
+}
+
+img {
+  height: 130px;
 }
 
 .texte-sur-image {
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  top: 50%; /* Place le haut du texte au centre vertical de l'image */
+  left: 50%; /* Place le côté gauche du texte au centre horizontal de l'image */
+  transform: translate(-50%, -50%); /* Centre le texte correctement */
+  /* Ajoutez d'autres styles nécessaires pour le texte */
+  text-align: center;
+  line-height: 1;
+}
 
+
+mat-icon {
+  color: white;
+  font-size: 50px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
 }
