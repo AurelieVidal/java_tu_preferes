@@ -1,36 +1,35 @@
-import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
-    /*`
-    <audio (play)="onPlay()" (pause)="onPause()" (loadedmetadata)="onLoadedMetadata()" (ended)="onEnded()">
-      <source src="assets/audio_the_office.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-  `,*/
   styleUrls: ['./audio.component.css']
 })
-export class AudioComponent {
+export class AudioComponent implements AfterViewInit{
+  isPlaying!: boolean
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngAfterViewInit() {
+    /*
     const audioPlayer = this.el.nativeElement.querySelector('audio');
     this.renderer.listen(audioPlayer, 'play', (event) => {
       this.onPlay();
-    });
+    });*/
+    this.playAudio()
   }
 
   onPlay() {
-    console.log('Lecture en cours');
+    console.log('Lectures en cours');
     // Ajouter ici votre logique spécifique à l'action de lecture
   }
 
   playAudio() {
     const audioPlayer = this.el.nativeElement.querySelector('audio');
     if (audioPlayer.paused) {
+      this.isPlaying = true
       audioPlayer.play();
     } else {
+      this.isPlaying = false
       audioPlayer.pause();
     }
   }

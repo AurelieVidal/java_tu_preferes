@@ -8,10 +8,12 @@
         allowfullscreen
 ></iframe>
 
+<div class = buttons>
+  <app-back-button label="Annuler" (click)="Retour()"></app-back-button>
+  <app-button-small label="Liste des cartes"  (click)="versAddCard()"></app-button-small>
+</div>
 
 
-<app-button-small label="Liste des cartes"  (click)="versAddCard()"></app-button-small>
-<app-back-button label="Annuler" (click)="Retour()"></app-back-button>
 <form>
   <div class="validation">
     <p class="ptheme">Nom du thème : </p>

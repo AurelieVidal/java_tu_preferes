@@ -67,22 +67,20 @@ button {
   position: relative;
   text-align: center;
 }
-.imag_pseudo-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 160px; /* Ajoutez la largeur souhaitée */
-  height: auto;
-  font-size: 15px; /* Taille de la police */
-}
-.imag_pseudo-container-2{
+.infos {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.imag_pseudo-container {
+  position: relative;
   width: 160px; /* Ajoutez la largeur souhaitée */
   height: auto;
   font-size: 15px; /* Taille de la police */
 }
+
+
 
 .texte-sur-image {
   position: absolute;

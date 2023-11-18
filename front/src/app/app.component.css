@@ -31,3 +31,9 @@ button {
     box-shadow: lightgray 0 0 5px;
   }
 }
+
+app-audio {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
