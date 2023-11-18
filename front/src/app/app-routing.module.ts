@@ -16,6 +16,7 @@ import { AddThemeComponent } from './add-theme/add-theme.component';
 const routes: Routes = [
   // { path: 'menu/:nbrJoueur', component: MenuComponent},
   { path: 'menu/:nbrJoueur/:nbManche', component: MenuComponent},
+  { path: 'menu/:nbrJoueur/:nbManche/:idTheme', component: MenuComponent},
   { path: 'questions', component: QuestionsComponent},
   { path: 'cartes', component: GestionCartesComponent},
   { path: 'cartes/:id', component: GestionCartesComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'scores', component: ScoresComponent},
   { path: 'themes', component: ThemesComponent},
   { path: 'game', component: GameComponent},
+  { path: 'game/:themeId', component: GameComponent},
   { path: 'addTheme', component: AddThemeComponent}
 ];
 

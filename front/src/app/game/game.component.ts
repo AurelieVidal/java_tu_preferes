@@ -14,6 +14,7 @@ import { GameSettingsService } from "../services/gameSettings.service";
 export class GameComponent implements OnInit {
   gameSettings!: GameSettingsModel
 
+
   constructor(
     private playerService: PlayerService,
     private gameSettingsService: GameSettingsService,

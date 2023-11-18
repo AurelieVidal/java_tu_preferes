@@ -79,7 +79,7 @@ export class PageAccueilComponent {
 
     });
     console.log('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche())
-    this.router.navigateByUrl('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche());
+    this.router.navigateByUrl('menu/' + this.numberService.getValueJoueur() + '/' + this.numberService.getValueManche() + "/" + this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)));
   }
 
   onSubmitForm(): void {

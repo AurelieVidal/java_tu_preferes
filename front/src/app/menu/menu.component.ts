@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit{
   fieldImages: { [key: string]: string } = {};
   nombreManche!: number;
   nombreJoueur!: number;
+  idTheme!: number
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class MenuComponent implements OnInit{
   ngOnInit(): void {
     this.initFieldImages()
     this.initForm();
+    this.idTheme = parseInt(this.activatedRoute.snapshot.params["idTheme"]);
   }
 
   initForm() {
@@ -102,7 +104,7 @@ export class MenuComponent implements OnInit{
     // Enregistre les informations des joueurs dans le service PlayerService
     this.playerService.setPlayers(players);
 
-    this.router.navigateByUrl('game');
+    this.router.navigateByUrl('game/'+ this.idTheme);
 
   }
 }
