@@ -6,6 +6,7 @@ import { PlayerService } from "../services/player.service";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectChange, MatSelectModule} from "@angular/material/select";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-menu',
@@ -18,15 +19,19 @@ import {MatSelectChange, MatSelectModule} from "@angular/material/select";
 
 export class MenuComponent implements OnInit{
   users!: FormGroup;
-  fields: string[] = Array.from({ length: 15 }, (_, i) => `Champ ${i + 1}`);
+  characters: string[] = ['Micheal', 'Jim', 'Dwight', 'Meredith', 'Pam', 'Standley', 'Angela', 'Kevin', 'Kelly', 'Tobby', 'Phyllis', 'Ryan', 'Creed', 'Oscars', 'Andy'];
+  fields: string[] = Array.from({ length: 15 }, (_, i) => `${this.characters[i]}`);
   fieldImages: { [key: string]: string } = {};
   nombreManche!: number;
   nombreJoueur!: number;
   idTheme!: number
 
+
+
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private playerService: PlayerService) {
+              private playerService: PlayerService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -45,12 +50,12 @@ export class MenuComponent implements OnInit{
     })
 
     for (let i = 0; i < numberOfPlayers; i++) {
-      let number = (Math.floor(Math.random() * 15) + 1).toString();
+      let number = (Math.floor(Math.random() * 15));
       formControls[`joueur_${i}`] = new FormGroup({
 
         pseudo: new FormControl('', [Validators.required]),
-        image_path: new FormControl(this.fieldImages['Champ ' + number]),
-        image_path_display: new FormControl('Champ ' + number),
+        image_path: new FormControl(this.fieldImages[this.characters[number]]),
+        image_path_display: new FormControl(this.characters[number]),
         vote: new FormArray([]),
       });
     }
@@ -98,25 +103,68 @@ export class MenuComponent implements OnInit{
   }
 
   onSubmit() {
-    const playerData = this.users.value;
-    const numberOfPlayers = parseInt(this.activatedRoute.snapshot.params['nbrJoueur']);
+    // Vérifier si le formulaire est valide
+    if (this.users.valid) {
+      const playerData = this.users.value;
+      const numberOfPlayers = parseInt(this.activatedRoute.snapshot.params['nbrJoueur']);
 
-    // Créez un tableau pour stocker les informations des joueurs
-    const players = [];
-    for (let i = 0; i < numberOfPlayers; i++) {
-      const playerInfo = {
-        pseudo: playerData[`joueur_${i}`].pseudo,
-        image_path: playerData[`joueur_${i}`].image_path,
-        vote: [""]
-      };
-      players.push(playerInfo);
+      // Créez un tableau pour stocker les informations des joueurs
+      const players = [];
+
+      // Vérifier si chaque joueur a renseigné son pseudo et s'il est unique
+      let isFormValid = true;
+      const usedPseudos = new Set<string>();
+
+      for (let i = 0; i < numberOfPlayers; i++) {
+        const playerFormGroup = this.users.get(`joueur_${i}`) as FormGroup;
+
+        const pseudo = playerFormGroup.get('pseudo')?.value;
+
+        if (!pseudo || usedPseudos.has(pseudo)) {
+          // Afficher un message d'erreur ou prendre une action appropriée
+          console.error(`Le joueur ${i + 1} n'a pas renseigné son pseudo ou le pseudo est déjà utilisé.`);
+          this.showErrorMessage(`Le pseudo du joueur ${i + 1} est déjà utilisé !`);
+          isFormValid = false;
+          break;  // Sortir de la boucle si un joueur n'a pas renseigné son pseudo ou si le pseudo est déjà utilisé
+        }
+
+        usedPseudos.add(pseudo);
+
+        const playerInfo = {
+          pseudo: pseudo,
+          image_path: playerFormGroup.get('image_path')?.value,
+          vote: [""]
+        };
+        players.push(playerInfo);
+      }
+
+      // Soumettre le formulaire seulement si tous les joueurs ont renseigné leur pseudo et les pseudos sont uniques
+      if (isFormValid) {
+        // Enregistre les informations des joueurs dans le service PlayerService
+        this.playerService.setPlayers(players);
+
+        this.router.navigateByUrl('game/' + this.idTheme);
+      }
+
+      // Soumettre le formulaire seulement si tous les joueurs ont renseigné leur pseudo
+      if (isFormValid) {
+        // Enregistre les informations des joueurs dans le service PlayerService
+        this.playerService.setPlayers(players);
+
+        this.router.navigateByUrl('game/' + this.idTheme);
+      }
+    } else {
+      // Afficher un message d'erreur ou prendre une action appropriée si le formulaire n'est pas valide
+      this.showErrorMessage('Veuillez renseigner tous les pseudos');
     }
-
-    // Enregistre les informations des joueurs dans le service PlayerService
-    this.playerService.setPlayers(players);
-
-    this.router.navigateByUrl('game/' + this.idTheme);
   }
+
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 2000, // Durée d'affichage du toast en millisecondes
+    });
+  }
+
 }
 
 
