@@ -6,32 +6,53 @@
   style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
   allowfullscreen
 ></iframe>
+<h1>Joueurs</h1>
 <form [formGroup]="users" (ngSubmit)="onSubmit()">
   <ng-container *ngFor="let player of getControlNames(users); let i = index">
+    <div class="container">
+
+      <div class = "texte">
 
       <h3>Joueur {{ i + 1 }}</h3>
-
+        <div class="pseudo">
       <div formGroupName="{{player}}">
-        <label for="pseudo">Pseudo:</label>
-        <input type="text" id="pseudo" formControlName="pseudo" required>
+        <label for="pseudo">Pseudo :</label>
+        <mat-form-field class="example-full-width">
+          <mat-label>Pseudo</mat-label>
+          <input matInput type="text" id="pseudo" formControlName="pseudo" required>
+        </mat-form-field>
+        <!--<input type="text" id="pseudo" formControlName="pseudo" required>-->
       </div>
+        </div>
 
-      <div formGroupName="{{player}}">
+      <div class="img_choix" formGroupName="{{player}}">
         <label for="image_path">Image de profil :</label>
+        <mat-form-field>
+          <mat-select id="image_path" formControlName="image_path_display" (selectionChange)="updateImage(i, $event)">
+
+            <mat-option *ngFor="let field of fields" [value]="field">
+              {{field}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!--
         <select id="image_path" formControlName="image_path" (change)="updateImage(i, $event)">
           <option [value]="getImageUrl(i)" selected>{{getKeyByValue(getImageUrl(i))}}</option>
           <option *ngFor="let field of fields" [value]="field">{{field}}</option>
-        </select>
+        </select>-->
+      </div>
       </div>
 
       <div>
         <img [src]="getImageUrl(i)"  alt="Image">
       </div>
+
+    </div>
   </ng-container>
 
   <div class="image-container">
     <img src="assets/bettrave.png" alt="Description de l'image" (click)="onSubmit()" />
-    <div class="texte-sur-image">JOUER</div>
+    <div class="texte-sur-image">Jouer</div>
   </div>
 </form>
 </body>
