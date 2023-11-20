@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PlayerInfo} from "../models/player-info.model";
+import {PlayerService} from "../services/player.service";
 
 @Component({
   selector: 'app-scores',
@@ -10,9 +12,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class ScoresComponent {
   nombreJoueur!: number;
   users!: FormGroup;
+  players: PlayerInfo[];
 
-constructor(private router: Router, private activatedRoute: ActivatedRoute){
+constructor(private router: Router, private activatedRoute: ActivatedRoute, private playerService: PlayerService,){
   this.users = new FormGroup({});
+  this.players = this.playerService.getPlayers();
 }
 
 /*onContinue(): void{
@@ -23,6 +27,8 @@ onSubmitForm():void {
 }
 
 ngOnInit(): void {
+
+  console.log(this.players)
   this.activatedRoute.params.subscribe(s => {
     this.nombreJoueur = s["nbrJoueur"];
     console.log("le nbr de joueurs est dans le score " + this.nombreJoueur);

@@ -7,14 +7,15 @@ import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectChange, MatSelectModule} from "@angular/material/select";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ButtonBigComponent } from '../button-big/button-big.component';
+import {AppModule} from "../app.module";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  standalone: true,
-  imports: [ReactiveFormsModule, NgIf, RouterOutlet, NgForOf, MatInputModule, MatOptionModule, MatSelectModule],
-
+  //standalone: true,
+  //imports: [ReactiveFormsModule, NgIf, RouterOutlet, NgForOf, MatInputModule, MatOptionModule, MatSelectModule, ButtonBigComponent],
 })
 
 export class MenuComponent implements OnInit{
@@ -56,7 +57,7 @@ export class MenuComponent implements OnInit{
         pseudo: new FormControl('', [Validators.required]),
         image_path: new FormControl(this.fieldImages[this.characters[number]]),
         image_path_display: new FormControl(this.characters[number]),
-        vote: new FormArray([]),
+        //vote: new FormArray([]),
       });
     }
     this.users = new FormGroup(formControls);
@@ -133,7 +134,8 @@ export class MenuComponent implements OnInit{
         const playerInfo = {
           pseudo: pseudo,
           image_path: playerFormGroup.get('image_path')?.value,
-          vote: [""]
+          choices: [],
+          predictions: []
         };
         players.push(playerInfo);
       }

@@ -1,11 +1,10 @@
 body {
-  box-sizing: border-box;
-  width: 50%;
-  margin:0 auto;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 30px;
-  background-color: transparent;}
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px 200px;
+  background-color: transparent;
+}
 
 h1{
   color: white; /* Couleur du texte */
@@ -96,4 +95,9 @@ button {
 
 .giff{
   filter: opacity(0.8);
+}
+
+
+app-questions {
+  margin-bottom: 20px;
 }

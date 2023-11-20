@@ -1,5 +1,5 @@
 <body>
-<div class="mat-app-background basic-container">
+
   <div class = infos>
 
     <div class="imag_pseudo-container">
@@ -9,7 +9,7 @@
 
     <div class="imag_pseudo-container">
       <img src="assets/manche.png" alt="Manche">
-      <div class="texte-sur-image">{{ this.gameSettings.currentManche }}</div>
+      <div class="texte-sur-image">{{ this.gameSettings.currentManche }} / {{this.gameSettings.nombreManche}}</div>
     </div>
   </div>
   <!-- Affiche le pseudo du joueur actuel -->
@@ -26,14 +26,20 @@
 
 
 
-  <app-questions> TEST </app-questions>
-  <app-slider>loading</app-slider>
+  <app-questions></app-questions>
+  <app-slider></app-slider>
 
-
+<!--
   <div class="image-container">
     <img src="assets/bettrave.png" alt="Description de l'image" (click)="nextPlayerOrManche()" />
     <div class="texte-sur-image">{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
     </div>
-</div>
-</div>
+</div>-->
+
+<app-button-big
+  label="{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}"
+  (click)="nextPlayerOrManche()">
+</app-button-big>
+
+
 </body>

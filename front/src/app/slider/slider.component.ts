@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {SliderService} from "../services/slider.service";
 
 
 @Component({
@@ -7,6 +8,10 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
+
+  constructor(private sliderSerevice: SliderService) {
+  }
+
   get audioPlayerRef(): ElementRef {
     return this._audioPlayerRef;
   }
@@ -27,7 +32,8 @@ export class SliderComponent implements OnInit {
     const audioPlayer = this.audioPlayerRef.nativeElement as HTMLAudioElement;
     audioPlayer.play();
     const value = (this.sliderValue - 1) / 99;
-    console.log('Valeur actuelle du slider :', this.sliderValue);
+    //console.log('Valeur actuelle du slider :', this.sliderValue);
+    this.sliderSerevice.setValue(this.sliderValue);
     this.updateBeforeAfterWidth();
   }
 
