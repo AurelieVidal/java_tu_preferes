@@ -6,11 +6,11 @@
   style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
   allowfullscreen
 ></iframe>
-<form [formGroup]="users">
+
   <div *ngFor="let joueur of users.controls | keyvalue; let i = index">
     <div formGroupName="{{joueur.key}}">
       <label>Score du joueur {{ i + 1 }} :</label>
       <br><br>
     </div>
   </div>
-</form>
+

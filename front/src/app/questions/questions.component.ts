@@ -9,6 +9,8 @@ import { CardService } from "../services/card.services";
 import { Card } from '../models/card.model';
 import {PlayerInfo} from "../models/player-info.model";
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
+import {MatButtonToggleChange} from "@angular/material/button-toggle";
+import {ToggleService} from "../services/toggle.service";
 
 @Component({
   selector: 'app-questions',
@@ -29,15 +31,18 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   cardText: { button_1: string, button_2: string } = { button_1: '', button_2: '' };
 
   private playerSubscription: Subscription | undefined;
-  players: PlayerInfo[] = [{pseudo: "", image_path: "", vote:[]}];
+  players!: PlayerInfo[];
   private currentMancheSubscription: Subscription | undefined;
+  option1!: string
+  option2!: string
 
   constructor(
     private themeService: ThemeService,
     private gameSettingsService: GameSettingsService,
     public cardService: CardService,
     private playerService : PlayerService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toggleService: ToggleService
   ) {}
 
   ngOnInit() {
@@ -69,23 +74,36 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
     this.cardService.findById(paire.id_1).subscribe((card) => {
       this.cardText.button_1 = card.reponse;
+      this.option1 = card.reponse;
     });
 
     this.cardService.findById(paire.id_2).subscribe((card) => {
       this.cardText.button_2 = card.reponse;
+      this.option2 = card.reponse;
     });
+
+
+
   }
 
   addVote(button:string) {
     if ( button == 'button_1') {
-      this.players[this.gameSettings.currentPlayer].vote.push(this.cardText.button_1 )
+      this.players[this.gameSettings.currentPlayer].choices.push(this.cardText.button_1 )
     }
     if ( button == 'button_2') {
-      this.players[this.gameSettings.currentPlayer].vote.push(this.cardText.button_2 )
+      this.players[this.gameSettings.currentPlayer].choices.push(this.cardText.button_2 )
     }
     console.log(this.players)
     // Ensuite, désactivez le bouton en mettant la variable buttonClicked sur true.
     this.buttonClicked = true;
 
+  }
+
+
+  onToggleChange(event: MatButtonToggleChange) {
+    const selectedValue = event.value;
+    //console.log('Toggle selected:', selectedValue);
+    // Vous pouvez maintenant utiliser la valeur sélectionnée comme nécessaire
+    this.toggleService.setSelected(selectedValue)
   }
 }

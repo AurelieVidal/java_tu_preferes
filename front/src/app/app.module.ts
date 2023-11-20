@@ -42,59 +42,66 @@ import { ButtonSmallComponent } from './button-small/button-small.component';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MenuComponent} from "./menu/menu.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageAccueilComponent,
-    GestionCartesComponent,
-    AddCardComponent,
-    AddLiaisonComponent,
-    SliderComponent,
-    ConfigComponent,
-    ThemesComponent,
-    ScoresComponent,
-    GameComponent,
-    QuestionsComponent,
-    AddThemeComponent,
-    AudioComponent,
-    NumberInputComponent,
-    // QuestionsComponent
-    EditThemeComponent,
-    ButtonBigComponent,
-    ButtonSmallComponent,
-    BackButtonComponent,
-    ConfirmationDialogComponent,
-  ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        CarouselComponent,
-        CarouselInnerComponent,
-        CarouselItemComponent,
-        CarouselControlComponent,
-        BrowserAnimationsModule,
-        MatSlideToggleModule,
-        MatSliderModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatButtonModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatSnackBarModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatSelectModule,
-        MatStepperModule,
-        MatDialogModule,
+    declarations: [
+        AppComponent,
+        PageAccueilComponent,
+        GestionCartesComponent,
+        AddCardComponent,
+        AddLiaisonComponent,
+        SliderComponent,
+        ConfigComponent,
+        ThemesComponent,
+        ScoresComponent,
+        GameComponent,
+        QuestionsComponent,
+        AddThemeComponent,
+        AudioComponent,
+        NumberInputComponent,
+        // QuestionsComponent
+        EditThemeComponent,
+        ButtonBigComponent,
+        ButtonSmallComponent,
+        BackButtonComponent,
+        ConfirmationDialogComponent,
+        MenuComponent
     ],
-  providers: [CardService,
-              NumberService,
-              GameSettingsService,
-              ThemeService
-              ],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    CarouselComponent,
+    CarouselInnerComponent,
+    CarouselItemComponent,
+    CarouselControlComponent,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+  ],
+    providers: [CardService,
+        NumberService,
+        GameSettingsService,
+        ThemeService
+    ],
+    exports: [
+        ButtonBigComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
