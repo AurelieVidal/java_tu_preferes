@@ -63,7 +63,7 @@ export class GameComponent implements OnInit {
     }
 
     this.players[this.gameSettings.currentPlayer].choices.push(this.toggleService.getSelected())
-    this.players[this.gameSettings.currentPlayer].predictions.push(this.sliderService.getValue())
+    this.players[this.gameSettings.currentPlayer].predictions.push(Math.round(this.sliderService.getValue()*this.gameSettings.nombreJoueur/100))
     this.playerService.setPlayers(this.players)
     console.log(this.players)
 
