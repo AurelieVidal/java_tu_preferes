@@ -130,6 +130,13 @@ export class AddThemeComponent implements OnInit{
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
 
     console.log('Champ de recherche modifié:', formcontrolller.value);
+
+    if (formcontrolller.value.length > 85) {
+      console.log("Limite de 85 caractères atteinte ! ");
+      this.showErrorMessage("Limite de 85 caractères atteinte ! ");
+      formcontrolller.setValue(formcontrolller.value.slice(0, 100));
+    }
+
     for (let ind of this.indexes1){
       if (ind != this.indexes1[index]){
         if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value){

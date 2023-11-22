@@ -1,6 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SliderService} from "../services/slider.service";
-
+import {Subscription} from "rxjs";
+import { GameSettingsModel } from "../models/gameSettings.model";
+import { GameSettingsService } from "../services/gameSettings.service";
 
 @Component({
   selector: 'app-slider',
@@ -8,8 +10,13 @@ import {SliderService} from "../services/slider.service";
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
+  slidervalue!: number
+  gameSettings!: GameSettingsModel
+  nbPlayers!: number
 
-  constructor(private sliderSerevice: SliderService) {
+
+  constructor(private sliderSerevice: SliderService,
+              private gameSettingsService: GameSettingsService,) {
   }
 
   get audioPlayerRef(): ElementRef {
@@ -24,6 +31,11 @@ export class SliderComponent implements OnInit {
   sliderValue: number = 50;
 
   ngOnInit() {
+    this.gameSettings = this.gameSettingsService.getGameSettings();
+    this.nbPlayers = this.gameSettings.nombreJoueur
+    this.slidervalue = Math.round(this.sliderSerevice.getValue()*this.gameSettings.nombreJoueur/100)
+
+
     console.log('Valeur actuelle du slider :', this.sliderValue);
     this.updateBeforeAfterWidth();
   }
@@ -32,6 +44,7 @@ export class SliderComponent implements OnInit {
     const audioPlayer = this.audioPlayerRef.nativeElement as HTMLAudioElement;
     audioPlayer.play();
     const value = (this.sliderValue - 1) / 99;
+    this.slidervalue = Math.round(this.sliderSerevice.getValue()*this.gameSettings.nombreJoueur/100)
     //console.log('Valeur actuelle du slider :', this.sliderValue);
     this.sliderSerevice.setValue(this.sliderValue);
     this.updateBeforeAfterWidth();
@@ -50,4 +63,9 @@ export class SliderComponent implements OnInit {
       afterElement.style.width = afterWidth + '%';
     }
   }
+
+
+
+
+
 }

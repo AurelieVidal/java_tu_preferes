@@ -1,4 +1,7 @@
-<h1>TABLE DES SCORES :</h1>
+
+<body>
+
+
 <iframe class="giff"
   src="https://gifer.com/embed/69jg"
   width="100%"
@@ -7,10 +10,68 @@
   allowfullscreen
 ></iframe>
 
+
+<h1>VAINQUEUR</h1>
+<div class="premier">
+
+
+
+  <div class="loader" *ngIf="showLoader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
+<div class="vainqueur" id="vainqueur" [ngClass]="{'show': showVainqueur}">
+
+
+<img class="gagnant" src="{{gagnant?.image_path}}">
+<h2>{{gagnant?.pseudo}}</h2>
+
+</div>
+</div>
+<!--
   <div *ngFor="let joueur of users.controls | keyvalue; let i = index">
     <div formGroupName="{{joueur.key}}">
       <label>Score du joueur {{ i + 1 }} :</label>
       <br><br>
     </div>
-  </div>
+  </div>-->
 
+
+
+
+
+
+<div class="classement" [ngClass]="{'show': showVainqueur}">
+  <h2>Classement</h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let joueur"> {{joueur.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Pseudo </th>
+      <td mat-cell *matCellDef="let joueur"> {{joueur.pseudo}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="ecart">
+      <th mat-header-cell *matHeaderCellDef> Ecart </th>
+      <td mat-cell *matCellDef="let joueur"> {{joueur.totalEcart}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <app-button-big label="Retourner à l'accueil" (click)="versAccueil()"></app-button-big>
+</div>
+
+
+
+</body>
