@@ -5,6 +5,7 @@ import {PlayerInfo} from "../models/player-info.model";
 import {PlayerService} from "../services/player.service";
 import {DataSource} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
+import {ViewportScroller} from "@angular/common";
 
 
 @Component({
@@ -25,7 +26,8 @@ export class ScoresComponent implements OnInit{
 
 constructor(private router: Router,
             private activatedRoute: ActivatedRoute,
-            private playerService: PlayerService,){
+            private playerService: PlayerService,
+            private viewportScroller: ViewportScroller){
   this.users = new FormGroup({});
   this.players = this.playerService.getPlayers();
 }
@@ -40,6 +42,7 @@ onSubmitForm():void {
 
 
 ngOnInit(): void {
+  this.viewportScroller.scrollToPosition([0, 0]);
 
   setTimeout(() => {
     this.showLoader = false;

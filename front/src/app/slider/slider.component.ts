@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SliderService} from "../services/slider.service";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -8,6 +9,7 @@ import {SliderService} from "../services/slider.service";
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
+  private resetSubscription: Subscription | undefined;
 
   constructor(private sliderSerevice: SliderService) {
   }
@@ -24,6 +26,8 @@ export class SliderComponent implements OnInit {
   sliderValue: number = 50;
 
   ngOnInit() {
+
+
     console.log('Valeur actuelle du slider :', this.sliderValue);
     this.updateBeforeAfterWidth();
   }
@@ -50,4 +54,9 @@ export class SliderComponent implements OnInit {
       afterElement.style.width = afterWidth + '%';
     }
   }
+
+
+
+
+
 }
