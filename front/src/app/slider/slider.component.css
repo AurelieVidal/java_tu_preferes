@@ -80,3 +80,14 @@
   height: 20px; /* Ajustez la hauteur de l'image en fonction de vos besoins */
 }
 
+
+p{
+  font-size: 24px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  margin: 40px;
+  background-color: transparent;
+  text-align: center;
+}
+

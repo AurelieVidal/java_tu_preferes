@@ -101,6 +101,11 @@ export class AddCardComponent implements OnInit, AfterViewInit{
       return;
     }
 
+    if (String(this.cardForm.controls.reponse.value!!).length >85) {
+      this.showErrorMessage("Vous avez dépassé la limite de 85 caractères");
+      return;
+    }
+
     const reponse = await this.cardService.exist(this.cardForm.controls.reponse.value!!).toPromise();
 
     if (reponse) {
@@ -185,20 +190,7 @@ export class AddCardComponent implements OnInit, AfterViewInit{
   Retour() {
     this.location.back();
   }
-/*
-  confirmer (card : Card) {
-    const snackBarRef = this.snackBar.open(
-      "Etes-vous sûr de vouloir supprimer cette carte ? Toutes les liaisons la contenant seront également supprimées.",
-      "Confirmer",
-      { duration: 10000 }
-    );
 
-    // Ajouter un écouteur pour l'action "Confirmer" sur snackBarRef
-    snackBarRef.onAction().subscribe(() => {
-      console.log("OUI")
-      this.delete(card)
-    });
-  }*/
   confirmer(card: Card) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
