@@ -5,7 +5,7 @@
 </audio>
 <div class="slidecontainer">
   <input type="range" min="1" max="100" [(ngModel)]="sliderValue" (input)="onSliderChange()" class="slider" id="myRange">
-  <div class="before"></div>
-  <div class="after"></div>
+  <div class="before">{{ leftValue}} joueur </div>
+  <div class="after">{{ rightValue }} joueur</div>
 </div>
 <p>{{slidervalue}} joueurs sur {{nbPlayers}}</p>

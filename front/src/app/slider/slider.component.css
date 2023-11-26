@@ -16,6 +16,13 @@
   align-items: center;
 
 }
+div{
+  font-size: 30px; /* Taille de la police */
+  font-weight: bold; /* Poids de la police */
+  color: white; /* Couleur du texte */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
+  margin: 40px;
+}
 
 .slider {
   -webkit-appearance: none;

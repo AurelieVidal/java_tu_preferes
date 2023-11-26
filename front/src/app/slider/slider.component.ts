@@ -13,6 +13,9 @@ export class SliderComponent implements OnInit {
   slidervalue!: number
   gameSettings!: GameSettingsModel
   nbPlayers!: number
+  sliderValue: number = 50; // La valeur par défaut du slider, ajustez selon vos besoins
+  leftValue: number = 1;
+  rightValue: number = 1;
 
 
   constructor(private sliderSerevice: SliderService,
@@ -28,7 +31,7 @@ export class SliderComponent implements OnInit {
   }
   @ViewChild('audioPlayer', {static: false}) private _audioPlayerRef!: ElementRef;
 
-  sliderValue: number = 50;
+
 
   ngOnInit() {
     this.gameSettings = this.gameSettingsService.getGameSettings();
@@ -47,6 +50,9 @@ export class SliderComponent implements OnInit {
     this.slidervalue = Math.round(this.sliderSerevice.getValue()*this.gameSettings.nombreJoueur/100)
     //console.log('Valeur actuelle du slider :', this.sliderValue);
     this.sliderSerevice.setValue(this.sliderValue);
+    this.leftValue = parseInt(String(this.sliderValue / 100 * this.nbPlayers));
+    this.rightValue = parseInt(String((100 - this.sliderValue)/100*this.nbPlayers));
+
     this.updateBeforeAfterWidth();
   }
 
