@@ -132,6 +132,12 @@ export class EditThemeComponent implements OnInit {
   // Gérer le changement de l'input
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
 
+    if (formcontrolller.value.length > 85) {
+      console.log("Limite de 85 caractères atteinte ! ");
+      this.showErrorMessage("Limite de 85 caractères atteinte ! ");
+      formcontrolller.setValue(formcontrolller.value.slice(0, 100));
+    }
+
     for (let ind of this.indexes1) {
       if (ind != this.indexes1[index]) {
         if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value) {
@@ -179,6 +185,7 @@ export class EditThemeComponent implements OnInit {
       const id2 = await this.createOrFindCard(value2);
       const liaison = {id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!!};
 
+
       if (id1 == id2) {
         this.showErrorMessage("Une des liaisons a deux choix identiques ! ")
         return;
@@ -188,13 +195,13 @@ export class EditThemeComponent implements OnInit {
         const existingLiaison = this.findExistingLiaison(id1!!, id2!!);
 
         if (existingLiaison) {
-          liaisons.push(existingLiaison);
+          await liaisons.push(existingLiaison);
         } else {
           const newLiaison = await this.createLiaison(id1!!, id2!!);
-          liaisons.push(newLiaison);
+          await liaisons.push(newLiaison);
         }
       } else {
-        liaisons.push(liaison);
+        await liaisons.push(liaison);
       }
     }
 

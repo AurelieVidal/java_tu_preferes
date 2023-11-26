@@ -1,10 +1,11 @@
+
 <audio #audioPlayer>
   <source src="assets/prison_Mike_audio.m4a" type="audio/mp3">
 
 </audio>
 <div class="slidecontainer">
-  <input (input)="onSliderChange()" [(ngModel)]="sliderValue" class="slider" id="myRange" max="100" min="1"
-         type="range">
-  <div class="before"></div>
-  <div class="after"></div>
+  <input type="range" min="1" max="100" [(ngModel)]="sliderValue" (input)="onSliderChange()" class="slider" id="myRange">
+  <div class="before">{{ left}}</div>
+  <div class="after">{{ right}}</div>
 </div>
+<p>{{slidervalue}} joueurs sur {{nbPlayers}}</p>

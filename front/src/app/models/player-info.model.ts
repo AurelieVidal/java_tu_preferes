@@ -3,4 +3,6 @@ export interface PlayerInfo {
   image_path: string;
   predictions: number[];
   choices: string[];
+  totalEcart?: number;
+  position?: number;
 }

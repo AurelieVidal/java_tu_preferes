@@ -7,6 +7,7 @@ import {GameSettingsService} from "../services/gameSettings.service";
 import {ToggleService} from "../services/toggle.service";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SliderService} from "../services/slider.service";
+import {Location, ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-game',
@@ -25,12 +26,16 @@ export class GameComponent implements OnInit {
     private router: Router,
     private toggleService: ToggleService,
     private snackBar: MatSnackBar,
-    private sliderService: SliderService
+    private sliderService: SliderService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private viewportScroller: ViewportScroller,
   ) {
     this.players = this.playerService.getPlayers();
   }
 
   ngOnInit() {
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.gameSettings = this.gameSettingsService.getGameSettings()
     console.log(this.gameSettings)
     if (this.gameSettingsService.isLastPlayer()) {
@@ -61,7 +66,7 @@ export class GameComponent implements OnInit {
     }
 
     this.players[this.gameSettings.currentPlayer].choices.push(this.toggleService.getSelected())
-    this.players[this.gameSettings.currentPlayer].predictions.push(this.sliderService.getValue())
+    this.players[this.gameSettings.currentPlayer].predictions.push(Math.round(this.sliderService.getValue()*this.gameSettings.nombreJoueur/100))
     this.playerService.setPlayers(this.players)
     console.log(this.players)
 
@@ -70,10 +75,25 @@ export class GameComponent implements OnInit {
     } else if (this.gameSettingsService.canIncrementPlayer()) {
       console.log("CHANGEMENT DE JOUEUR")
       this.nextPlayer();
+      //window.location.reload();
+      this.reloadCurrentRoute();
     } else if (this.goToNextManche) {
       console.log("CHANGEMENT DE MANCHE")
       this.nextManche();
+      this.reloadCurrentRoute();
     }
+
+    //this.router.navigateByUrl('game/'+this.activatedRoute.snapshot.params["themeId"])
+    //this.ngOnInit()
+
+  }
+
+  private reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+      this.viewportScroller.scrollToPosition([0, 0]);
+    });
   }
 
 

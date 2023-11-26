@@ -96,7 +96,14 @@ export class AddCardComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    // Vérifie si la carte existe déjà.
+
+    //Vérifie si le message de la carte n'est pas trop long
+    if (String(this.cardForm.controls.reponse.value!!).length >85) {
+      this.showErrorMessage("Vous avez dépassé la limite de 85 caractères");
+      return;
+    }
+    
+  // Vérifie si la carte existe déjà.
     const reponse = await this.cardService.exist(this.cardForm.controls.reponse.value!!).toPromise();
 
     if (reponse) {
@@ -106,6 +113,7 @@ export class AddCardComponent implements OnInit, AfterViewInit {
 
     // Crée une nouvelle carte et la sauvegarde.
     const card: Card = {reponse: this.cardForm.controls.reponse.value!!};
+
     const createdCard = await this.cardService.create(card).toPromise();
 
     // Redirige et recharge la page.
@@ -178,6 +186,7 @@ export class AddCardComponent implements OnInit, AfterViewInit {
   Retour() {
     this.location.back();
   }
+
 
   // Cette fonction affiche une boîte de dialogue de confirmation avant de supprimer une carte.
   confirmer(card: Card) {
