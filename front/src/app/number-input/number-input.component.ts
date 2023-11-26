@@ -13,9 +13,8 @@ export class NumberInputComponent {
   constructor(private numberService: NumberService) {
   }
 
+  //Quand on appuie sur -
   handleMinus() {
-    console.log("MOINS")
-    console.log(this.label)
     if (this.label == "joueurs") {
       if (this.value > 2) {
         this.value--;
@@ -31,9 +30,8 @@ export class NumberInputComponent {
 
   }
 
+  //Quand on appuie sur +
   handlePlus() {
-    console.log("PLUS")
-    console.log(this.label)
     if (this.label == "joueurs") {
       if (this.value < 10) {
         this.value++;
@@ -43,7 +41,5 @@ export class NumberInputComponent {
       this.value++;
       this.numberService.setValueManche(this.value);
     }
-
-
   }
 }

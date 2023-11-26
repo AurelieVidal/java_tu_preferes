@@ -19,21 +19,17 @@ import {ToggleService} from "../services/toggle.service";
 })
 
 export class QuestionsComponent implements OnInit, OnDestroy {
-  buttonClicked: boolean = false;
-
   cardTheme!: ThemeModel;
   idTheme!: number;
   gameSettings!: GameSettingsModel;
-  cards!: Card[];
+
   cardText: { button_1: string, button_2: string } = {button_1: '', button_2: ''};
   players!: PlayerInfo[];
   option1!: string
   option2!: string
   private cardsSubscription: Subscription | undefined;
   private themeSubscription: Subscription | undefined;
-  private currentIdIndex: number = 0;
-  private playerSubscription: Subscription | undefined;
-  private currentMancheSubscription: Subscription | undefined;
+
 
   constructor(
     private themeService: ThemeService,
@@ -48,7 +44,6 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.gameSettings = this.gameSettingsService.getGameSettings();
     this.idTheme = parseInt(this.activatedRoute.snapshot.params["themeId"]);
-    console.log(this.idTheme)
     this.themeSubscription = this.themeService.findById(this.idTheme).subscribe((theme) => {
 
       this.cardTheme = theme;
@@ -67,18 +62,6 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     this.cardsSubscription?.unsubscribe();
   }
 
-  addVote(button: string) {
-    if (button == 'button_1') {
-      this.players[this.gameSettings.currentPlayer].choices.push(this.cardText.button_1)
-    }
-    if (button == 'button_2') {
-      this.players[this.gameSettings.currentPlayer].choices.push(this.cardText.button_2)
-    }
-    console.log(this.players)
-    // désactivez le bouton en mettant la variable buttonClicked sur true.
-    this.buttonClicked = true;
-
-  }
 
   onToggleChange(event: MatButtonToggleChange) {
     const selectedValue = event.value;
@@ -87,7 +70,6 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
   // Met à jour cardText en fonction de this.gameSettings.currentManche
   private updateCardText() {
-    console.log("updateCardText currentManche: ", this.gameSettings.currentManche)
     const paire = this.cardTheme.paires[this.gameSettings.currentManche - 1];
 
     this.cardService.findById(paire.id_1).subscribe((card) => {

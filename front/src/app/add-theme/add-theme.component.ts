@@ -92,18 +92,17 @@ export class AddThemeComponent implements OnInit {
   }
 
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
-    
+
     if (formcontrolller.value.length > 85) {
-      console.log("Limite de 85 caractères atteinte ! ");
       this.showErrorMessage("Limite de 85 caractères atteinte ! ");
       formcontrolller.setValue(formcontrolller.value.slice(0, 100));
     }
-    
+
     for (let ind of this.indexes1) {
       if (ind != this.indexes1[index]) {
         if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value) {
           formcontrolller.setValue("");
-          this.showErrorMessage('Liaison existante !');
+          this.showErrorMessage('Question existante !');
         }
       }
     }
@@ -191,7 +190,6 @@ export class AddThemeComponent implements OnInit {
       const card: Card = {reponse: value};
       this.cardService.create(card).subscribe(
         (newCard: Card) => {
-          console.log("Nouvelle carte créée avec ID " + newCard.id);
           resolve(newCard);
         },
         (error) => {
@@ -215,11 +213,9 @@ export class AddThemeComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.liaisonService.create(newLiaison).subscribe(
         (newLiaison: Liaison) => {
-          console.log("Nouvelle liaison créée avec ID " + newLiaison.id);
           resolve(newLiaison);
         },
         (error) => {
-          console.error("Erreur lors de la création de la liaison:", error);
           reject(error);
         }
       );
@@ -263,7 +259,7 @@ export class AddThemeComponent implements OnInit {
 
     for (let ind of this.indexes1) {
       if (this.myControl1.value == this.carteControls1[ind].value && this.myControl2.value == this.carteControls2[ind].value) {
-        this.showErrorMessage('Liaison existante !');
+        this.showErrorMessage('Question existante !');
         return;
       }
 
@@ -294,8 +290,6 @@ export class AddThemeComponent implements OnInit {
       this.carteControls2[Number(newLiaison.id)] = new FormControl(this.myControl2.value!!);
       this.all_liaisons.push(newLiaison)
     }
-
-    console.log(this.liaison)
 
     this.myControl1.setValue('');
     this.myControl2.setValue('');
