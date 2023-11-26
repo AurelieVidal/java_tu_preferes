@@ -47,13 +47,17 @@ export class SliderComponent implements OnInit {
     audioPlayer.play();
     this.slidervalue = Math.round(this.sliderSerevice.getValue()*this.gameSettings.nombreJoueur/100)
     this.sliderSerevice.setValue(this.sliderValue);
+    this.rightValue = this.gameSettings.nombreJoueur - this.slidervalue
+    this.leftValue = this.slidervalue
 
     //on retire le texte si l'espace est trop petit
     if (this.sliderValue>90){
       this.right = ""
+      this.left = String(this.leftValue)+" joueurs"
     }
     else if ( this.sliderValue<10){
       this.left = ""
+      this.right = String(this.rightValue)+" joueurs"
     }
     else {
       this.left = String(this.leftValue)+" joueurs"
