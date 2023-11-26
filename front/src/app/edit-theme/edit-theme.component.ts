@@ -77,10 +77,8 @@ export class EditThemeComponent implements OnInit {
     this.theme_obs.subscribe(
       x => {
         this.theme = x;
-        console.log(this.theme);
         this.liaison = this.theme.paires;
         this.themenameFC = new FormControl(this.theme.name)
-        console.log("LE TRUC DU NOM : " + this.themenameFC.value)
         for (const paire of this.liaison) {
           // Récupérer les détails de la carte et créer des contrôles de formulaire
 
@@ -89,8 +87,6 @@ export class EditThemeComponent implements OnInit {
               paire.carte1 = carte1;
               this.indexes1.push(Number(paire.id))
               this.carteControls1[Number(paire.id)] = new FormControl(carte1.reponse);
-              console.log("création form : " + paire.id_1 + "---" + this.carteControls1[Number(paire.id)].value)
-              console.log(this.carteControls1[Number(paire.id)])
             }
           );
 
@@ -99,8 +95,6 @@ export class EditThemeComponent implements OnInit {
               paire.carte2 = carte2;
               this.indexes2.push(Number(paire.id))
               this.carteControls2[Number(paire.id)] = new FormControl(carte2.reponse);
-              console.log("création form 2 : " + paire.id_2 + "---" + this.carteControls2[Number(paire.id)].value);
-
             }
           );
 
@@ -133,7 +127,6 @@ export class EditThemeComponent implements OnInit {
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
 
     if (formcontrolller.value.length > 85) {
-      console.log("Limite de 85 caractères atteinte ! ");
       this.showErrorMessage("Limite de 85 caractères atteinte ! ");
       formcontrolller.setValue(formcontrolller.value.slice(0, 100));
     }
@@ -142,7 +135,7 @@ export class EditThemeComponent implements OnInit {
       if (ind != this.indexes1[index]) {
         if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value) {
           formcontrolller.setValue("");
-          this.showErrorMessage('Liaison existante !');
+          this.showErrorMessage('Question existante !');
         }
       }
     }
@@ -223,7 +216,6 @@ export class EditThemeComponent implements OnInit {
       const card: Card = {reponse: value};
       this.cardService.create(card).subscribe(
         (newCard: Card) => {
-          console.log("Nouvelle carte créée avec ID " + newCard.id);
           resolve(newCard);
         },
         (error) => {
@@ -245,7 +237,6 @@ export class EditThemeComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.liaisonService.create(newLiaison).subscribe(
         (newLiaison: Liaison) => {
-          console.log("Nouvelle liaison créée avec ID " + newLiaison.id);
           resolve(newLiaison);
         },
         (error) => {
@@ -284,8 +275,7 @@ export class EditThemeComponent implements OnInit {
 
     for (let ind of this.indexes1) {
       if (this.myControl1.value == this.carteControls1[ind].value && this.myControl2.value == this.carteControls2[ind].value) {
-        console.log("LIAISON EXISTANTE")
-        this.showErrorMessage('Liaison existante !');
+        this.showErrorMessage('Question existante !');
         return;
       }
 

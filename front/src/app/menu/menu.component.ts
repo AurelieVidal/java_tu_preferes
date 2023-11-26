@@ -39,7 +39,6 @@ export class MenuComponent implements OnInit {
     this.activatedRoute.params.subscribe(s => {
       this.nombreJoueur = numberOfPlayers;
       this.nombreManche = s["nbManche"];
-      console.log("le nbr de manche est " + this.nombreManche + "le nbr de joueur est" + this.nombreJoueur);
     })
 
     for (let i = 0; i < numberOfPlayers; i++) {
@@ -61,15 +60,9 @@ export class MenuComponent implements OnInit {
   }
 
   updateImage(playerIndex: number, event: MatSelectChange) {
-    console.log("DANS UPDATE");
     const selectedField = event.value;
-    console.log(selectedField)
     const selectedImage = this.fieldImages[selectedField];
-
-    console.log("IMAGE " + selectedImage);
-
     const currentPlayerImageControl = this.users.get(`joueur_${playerIndex}`);
-    console.log('currentPlayerImageControl', currentPlayerImageControl);
 
     if (currentPlayerImageControl) {
       currentPlayerImageControl.get('image_path')?.setValue(selectedImage);

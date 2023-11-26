@@ -64,11 +64,9 @@ export class ThemesComponent implements OnInit, AfterViewInit {
     this.themes$.subscribe(
       x => {
         this.theme = x;
-        console.log('Liaisons récupérées :', x);
         this.dataSource.data = x
       }
     );
-    console.log(this.dataSource.data)
   }
 
   versAddTheme() {
@@ -76,7 +74,6 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   }
 
   DeleteTheme(theme: ThemeModel) {
-    console.log("SUPPR")
     this.themeService.delete(theme).subscribe()
 
     const index = this.dataSource.data.findIndex(c => c.id === theme.id);
@@ -102,8 +99,6 @@ export class ThemesComponent implements OnInit, AfterViewInit {
         this.dataSource.data = result
       }
     );
-
-    console.log(this.dataSource.data)
     this.isSearching = true;
   }
 

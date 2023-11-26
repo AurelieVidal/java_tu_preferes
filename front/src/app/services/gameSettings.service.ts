@@ -34,7 +34,6 @@ export class GameSettingsService {
   incrementCurrentPlayer() {
     if (this.gameSettings) {
       this.gameSettings.currentPlayer++;
-      console.log("incrementCurrentPlayer")
       this.saveGameSettings();
 
       this.currentMancheSubject.next(this.gameSettings.currentPlayer);
@@ -44,8 +43,6 @@ export class GameSettingsService {
 
   incrementCurrentManche() {
     if (this.gameSettings) {
-      console.log("this.gameSettings.currentManche: ", this.gameSettings.currentManche)
-
       this.gameSettings.currentManche++;
       this.gameSettings.currentPlayer = 0;
       this.saveGameSettings();

@@ -7,7 +7,7 @@ import {GameSettingsService} from "../services/gameSettings.service";
 import {ToggleService} from "../services/toggle.service";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SliderService} from "../services/slider.service";
-import {Location, ViewportScroller} from '@angular/common';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-game',
@@ -27,8 +27,6 @@ export class GameComponent implements OnInit {
     private toggleService: ToggleService,
     private snackBar: MatSnackBar,
     private sliderService: SliderService,
-    private activatedRoute: ActivatedRoute,
-    private location: Location,
     private viewportScroller: ViewportScroller,
   ) {
     this.players = this.playerService.getPlayers();
@@ -37,7 +35,6 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.gameSettings = this.gameSettingsService.getGameSettings()
-    console.log(this.gameSettings)
     if (this.gameSettingsService.isLastPlayer()) {
       this.goToNextManche = true;
     }
@@ -57,9 +54,6 @@ export class GameComponent implements OnInit {
   }
 
   nextPlayerOrManche() {
-    console.log("SCORE ?")
-    console.log(this.gameSettingsService.isLastManche() && this.goToNextManche)
-    console.log(this.gameSettingsService.canIncrementPlayer())
     if (this.toggleService.getSelected() == "none") {
       this.showErrorMessage("Veuillez choisir entre les deux propositions")
       return;
@@ -68,24 +62,16 @@ export class GameComponent implements OnInit {
     this.players[this.gameSettings.currentPlayer].choices.push(this.toggleService.getSelected())
     this.players[this.gameSettings.currentPlayer].predictions.push(Math.round(this.sliderService.getValue()*this.gameSettings.nombreJoueur/100))
     this.playerService.setPlayers(this.players)
-    console.log(this.players)
 
     if (this.gameSettingsService.isLastManche() && this.goToNextManche) {
       this.router.navigate(['/scores']);
     } else if (this.gameSettingsService.canIncrementPlayer()) {
-      console.log("CHANGEMENT DE JOUEUR")
       this.nextPlayer();
-      //window.location.reload();
       this.reloadCurrentRoute();
     } else if (this.goToNextManche) {
-      console.log("CHANGEMENT DE MANCHE")
       this.nextManche();
       this.reloadCurrentRoute();
     }
-
-    //this.router.navigateByUrl('game/'+this.activatedRoute.snapshot.params["themeId"])
-    //this.ngOnInit()
-
   }
 
   private reloadCurrentRoute() {
