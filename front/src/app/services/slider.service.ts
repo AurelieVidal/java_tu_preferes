@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Injectable} from '@angular/core';
 
 
 @Injectable({
@@ -7,7 +6,6 @@ import {Observable, Subject} from "rxjs";
 })
 export class SliderService {
   private value: number = 50;
-  private resetSubject: Subject<void> = new Subject<void>();
 
 
   getValue(): number {
@@ -18,9 +16,5 @@ export class SliderService {
     this.value = value;
   }
 
-  resetSlider(): void {
-    this.value = 50;
-    this.resetSubject.next();
-  }
 
 }

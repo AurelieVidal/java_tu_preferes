@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core"
-import { Observable } from "rxjs"
-import { Card } from "../models/card.model"
+import {Injectable} from "@angular/core"
+import {Observable} from "rxjs"
+import {Card} from "../models/card.model"
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
 })
 export class CardService {
+  private cardsUrl = "http://localhost:8080/cards"
+
   constructor(private http: HttpClient) {
   }
-
-  private cardsUrl = "http://localhost:8080/cards"
 
   findAll(): Observable<Card[]> {
     return this.http.get<Card[]>(this.cardsUrl)
@@ -28,7 +28,7 @@ export class CardService {
     return this.http.post<Card>(this.cardsUrl, card)
   }
 
-  delete(card : Card) {
+  delete(card: Card) {
     return this.http.delete(`${this.cardsUrl}/${card.id}`)
   }
 
@@ -36,11 +36,9 @@ export class CardService {
     return this.http.get<Card[]>(`${this.cardsUrl}/search/${keyword}`)
   }
 
-  exist(reponse:String) {
+  exist(reponse: String) {
     return this.http.get<boolean>(`${this.cardsUrl}/exists/${reponse}`)
   }
-
-
 
 
 }

@@ -1,36 +1,29 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
   styleUrls: ['./audio.component.css']
 })
-export class AudioComponent implements AfterViewInit{
+export class AudioComponent implements AfterViewInit {
   isPlaying!: boolean
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
-  ngAfterViewInit() {
-    /*
-    const audioPlayer = this.el.nativeElement.querySelector('audio');
-    this.renderer.listen(audioPlayer, 'play', (event) => {
-      this.onPlay();
-    });*/
-    this.playAudio()
+  constructor(private renderer: Renderer2, private el: ElementRef) {
   }
 
-  onPlay() {
-    console.log('Lectures en cours');
-    // Ajouter ici votre logique spécifique à l'action de lecture
+  ngAfterViewInit() {
+    this.playAudio(); // Appel de la fonction playAudio lorsqu'une vue a été initialisée
   }
 
   playAudio() {
-    const audioPlayer = this.el.nativeElement.querySelector('audio');
+    const audioPlayer = this.el.nativeElement.querySelector('audio'); // Sélectionne l'élément audio du DOM
+
     if (audioPlayer.paused) {
-      this.isPlaying = true
-      audioPlayer.play();
+      this.isPlaying = true; // Met à jour l'état de lecture à true (en cours de lecture)
+      audioPlayer.play(); // Démarre la lecture de l'audio
     } else {
-      this.isPlaying = false
-      audioPlayer.pause();
+      this.isPlaying = false; // Met à jour l'état de lecture à false (non en cours de lecture)
+      audioPlayer.pause(); // Met en pause la lecture de l'audio
     }
   }
 }

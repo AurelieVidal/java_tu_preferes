@@ -1,32 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
-import {FormControl, FormGroup, Validators, ReactiveFormsModule, FormArray} from '@angular/forms';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import { PlayerService } from "../services/player.service";
-import {MatInputModule} from "@angular/material/input";
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectChange, MatSelectModule} from "@angular/material/select";
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ButtonBigComponent } from '../button-big/button-big.component';
-import {AppModule} from "../app.module";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {PlayerService} from "../services/player.service";
+import {MatSelectChange} from "@angular/material/select";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  //standalone: true,
-  //imports: [ReactiveFormsModule, NgIf, RouterOutlet, NgForOf, MatInputModule, MatOptionModule, MatSelectModule, ButtonBigComponent],
 })
 
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit {
   users!: FormGroup;
   characters: string[] = ['Micheal', 'Jim', 'Dwight', 'Meredith', 'Pam', 'Standley', 'Angela', 'Kevin', 'Kelly', 'Tobby', 'Phyllis', 'Ryan', 'Creed', 'Oscars', 'Andy'];
-  fields: string[] = Array.from({ length: 15 }, (_, i) => `${this.characters[i]}`);
+  fields: string[] = Array.from({length: 15}, (_, i) => `${this.characters[i]}`);
   fieldImages: { [key: string]: string } = {};
   nombreManche!: number;
   nombreJoueur!: number;
   idTheme!: number
-
 
 
   constructor(private router: Router,
@@ -57,7 +49,6 @@ export class MenuComponent implements OnInit{
         pseudo: new FormControl('', [Validators.required]),
         image_path: new FormControl(this.fieldImages[this.characters[number]]),
         image_path_display: new FormControl(this.characters[number]),
-        //vote: new FormArray([]),
       });
     }
     this.users = new FormGroup(formControls);

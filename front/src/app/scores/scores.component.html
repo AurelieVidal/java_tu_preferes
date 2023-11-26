@@ -1,4 +1,3 @@
-
 <body>
 
 
@@ -27,16 +26,6 @@
 
 </div>
 </div>
-<!--
-  <div *ngFor="let joueur of users.controls | keyvalue; let i = index">
-    <div formGroupName="{{joueur.key}}">
-      <label>Score du joueur {{ i + 1 }} :</label>
-      <br><br>
-    </div>
-  </div>-->
-
-
-
 
 
 
@@ -44,8 +33,6 @@
   <h2>Classement</h2>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Position Column -->
     <ng-container matColumnDef="position">
@@ -71,7 +58,6 @@
 
   <app-button-big label="Retourner à l'accueil" (click)="versAccueil()"></app-button-big>
 </div>
-
 
 
 </body>

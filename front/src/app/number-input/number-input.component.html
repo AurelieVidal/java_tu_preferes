@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <button class="plusminus" (click)="handleMinus()">-</button>
-  <input type="number" class="num" value="2" [(ngModel)]="value"/>
-  <button class="plusminus" (click)="handlePlus()">+</button>
+  <button (click)="handleMinus()" class="plusminus">-</button>
+  <input [(ngModel)]="value" class="num" type="number" value="2"/>
+  <button (click)="handlePlus()" class="plusminus">+</button>
 </div>

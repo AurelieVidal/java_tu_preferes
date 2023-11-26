@@ -6,7 +6,7 @@ body {
   background-color: transparent;
 }
 
-h1{
+h1 {
   color: white; /* Couleur du texte */
   font-size: 80px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -16,7 +16,8 @@ h1{
   background-color: transparent;
 
 }
-h2{
+
+h2 {
   color: white; /* Couleur du texte */
   font-size: 50px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -26,7 +27,8 @@ h2{
   background-color: transparent;
 
 }
-p{
+
+p {
   font-size: 18px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -34,7 +36,8 @@ p{
   margin: 40px;
   background-color: transparent;
 }
-label{
+
+label {
   font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -43,10 +46,11 @@ label{
   background-color: transparent;
 }
 
-div{
+div {
   text-align: center;
   background-color: transparent;
 }
+
 button {
   background-color: transparent;
   box-sizing: border-box;
@@ -66,6 +70,7 @@ button {
   position: relative;
   text-align: center;
 }
+
 .infos {
   position: absolute;
   top: 0;
@@ -80,7 +85,6 @@ button {
 }
 
 
-
 .texte-sur-image {
   position: absolute;
   top: 50%;
@@ -93,6 +97,6 @@ button {
 
 }
 
-.giff{
+.giff {
   filter: opacity(0.8);
 }

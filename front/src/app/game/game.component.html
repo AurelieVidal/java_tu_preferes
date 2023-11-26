@@ -1,44 +1,36 @@
 <body>
 
-  <div class = infos>
+<div class=infos>
 
-    <div class="imag_pseudo-container">
-      <img src="assets/pseudo.png" alt="Pseudo">
-      <div class="texte-sur-image">{{ players[this.gameSettings.currentPlayer]?.pseudo }}</div>
-    </div>
-
-    <div class="imag_pseudo-container">
-      <img src="assets/manche.png" alt="Manche">
-      <div class="texte-sur-image">{{ this.gameSettings.currentManche }} / {{this.gameSettings.nombreManche}}</div>
-    </div>
+  <div class="imag_pseudo-container">
+    <img alt="Pseudo" src="assets/pseudo.png">
+    <div class="texte-sur-image">{{ players[this.gameSettings.currentPlayer]?.pseudo }}</div>
   </div>
-  <!-- Affiche le pseudo du joueur actuel -->
+
+  <div class="imag_pseudo-container">
+    <img alt="Manche" src="assets/manche.png">
+    <div class="texte-sur-image">{{ this.gameSettings.currentManche }} / {{this.gameSettings.nombreManche}}</div>
+  </div>
+</div>
+<!-- Affiche le pseudo du joueur actuel -->
 
 
-  <iframe class="giff"
-          src="https://gifer.com/embed/5Dam"
-          width="100%"
-          height="100%"
-          style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
-          allowfullscreen
-  ></iframe>
+<iframe allowfullscreen
+        class="giff"
+        height="100%"
+        src="https://gifer.com/embed/5Dam"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+        width="100%"
+></iframe>
 
 
-  <app-questions></app-questions>
+<app-questions></app-questions>
 
-  <app-slider></app-slider>
-
-
-<!--
-  <div class="image-container">
-    <img src="assets/bettrave.png" alt="Description de l'image" (click)="nextPlayerOrManche()" />
-    <div class="texte-sur-image">{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}
-    </div>
-</div>-->
+<app-slider></app-slider>
 
 <app-button-big
-  label="{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}"
-  (click)="nextPlayerOrManche()">
+  (click)="nextPlayerOrManche()"
+  label="{{ (this.gameSettings.currentPlayer < players.length - 1) ? 'Joueur suivant' : (this.gameSettings.currentManche < gameSettings.nombreManche) ? 'Passer à la manche suivante' : 'Affichage des scores' }}">
 </app-button-big>
 
 

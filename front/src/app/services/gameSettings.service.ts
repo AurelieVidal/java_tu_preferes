@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { GameSettingsModel } from "../models/gameSettings.model";
+import {Injectable} from '@angular/core';
+import {GameSettingsModel} from "../models/gameSettings.model";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
@@ -22,6 +22,7 @@ export class GameSettingsService {
   getCurrentManche(): Observable<number> {
     return this.currentMancheSubject.asObservable();
   }
+
   // Méthode pour obtenir les paramètres du jeu
   getGameSettings(): GameSettingsModel {
     if (!this.gameSettings) {
@@ -43,7 +44,7 @@ export class GameSettingsService {
 
   incrementCurrentManche() {
     if (this.gameSettings) {
-      console.log("this.gameSettings.currentManche: ",this.gameSettings.currentManche)
+      console.log("this.gameSettings.currentManche: ", this.gameSettings.currentManche)
 
       this.gameSettings.currentManche++;
       this.gameSettings.currentPlayer = 0;

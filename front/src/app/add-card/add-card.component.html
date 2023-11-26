@@ -1,25 +1,22 @@
 <body>
 <h1>Liste des cartes</h1>
-  <iframe class="giff"
-          src="https://gifer.com/embed/3b4"
-          width="100%"
-          height="100%"
-          style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
-          allowfullscreen
-  ></iframe>
-
-
-
-
+<iframe allowfullscreen
+        class="giff"
+        height="100%"
+        src="https://gifer.com/embed/3b4"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+        width="100%"
+></iframe>
 
 <ng-container>
-  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()"  class="dessus">
+  <form (ngSubmit)="onSubmit()" [formGroup]="cardForm" class="dessus">
     <label for="reponse"><p class="precherche">Créer une carte : </p></label>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Ex. Chocolatine" type="text" id="reponse" formControlName="reponse">
+      <input formControlName="reponse" id="reponse" matInput placeholder="Ex. Chocolatine" type="text">
     </mat-form-field>
 
-    <button mat-button class="nextButton retour" type="submit" [disabled]="!cardForm.valid"><p class="pbutton" >Ajouter</p></button>
+    <button [disabled]="!cardForm.valid" class="nextButton retour" mat-button type="submit"><p class="pbutton">
+      Ajouter</p></button>
   </form>
 
 
@@ -27,13 +24,13 @@
     <label><p class="precherche">Rechercher une carte : </p></label>
     <mat-form-field appearance="fill">
       <div class="input-recherche">
-        <input matInput placeholder="Ex. Pain au chocolat" [formControl]="searchForm">
+        <input [formControl]="searchForm" matInput placeholder="Ex. Pain au chocolat">
 
-        <button mat-icon-button color="primary" (click)="Recherche()" *ngIf="!isSearching">
+        <button (click)="Recherche()" *ngIf="!isSearching" color="primary" mat-icon-button>
           <mat-icon matSuffix>search</mat-icon>
         </button>
 
-        <button mat-icon-button color="primary" (click)="AnnulerRecherche()" *ngIf="isSearching">
+        <button (click)="AnnulerRecherche()" *ngIf="isSearching" color="primary" mat-icon-button>
           <mat-icon matSuffix>close</mat-icon>
         </button>
 
@@ -47,37 +44,31 @@
 </ng-container>
 
 
-
 <div class="mat-elevation-z8">
 
 
-
-
-
-
-
-  <table mat-table [dataSource]="dataSource">
+  <table [dataSource]="dataSource" mat-table>
 
     <!-- id Column -->
     <ng-container matColumnDef="#">
-      <th mat-header-cell *matHeaderCellDef> # </th>
-      <td mat-cell *matCellDef="let card"> {{card.id}} </td>
+      <th *matHeaderCellDef mat-header-cell> #</th>
+      <td *matCellDef="let card" mat-cell> {{card.id}} </td>
     </ng-container>
 
     <!-- Response Column -->
     <ng-container matColumnDef="content">
-      <th mat-header-cell *matHeaderCellDef> Réponse </th>
-      <td mat-cell *matCellDef="let card">
+      <th *matHeaderCellDef mat-header-cell> Réponse</th>
+      <td *matCellDef="let card" mat-cell>
         <ng-container *ngIf="!isEditingCard(card)">
           {{ card.reponse }}
         </ng-container>
         <ng-container *ngIf="isEditingCard(card)">
           <mat-form-field class="edit-container">
             <div class="edit-field">
-            <input matInput [(ngModel)]="editedCardValue" required>
-            <button mat-icon-button color="primary" (click)="saveEditedCard(card)" *ngIf="isEditingCard(card)">
-              <mat-icon matSuffix>done</mat-icon>
-            </button>
+              <input [(ngModel)]="editedCardValue" matInput required>
+              <button (click)="saveEditedCard(card)" *ngIf="isEditingCard(card)" color="primary" mat-icon-button>
+                <mat-icon matSuffix>done</mat-icon>
+              </button>
             </div>
           </mat-form-field>
 
@@ -87,34 +78,34 @@
 
     <!-- Action Column -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let card">
+      <th *matHeaderCellDef mat-header-cell> Actions</th>
+      <td *matCellDef="let card" mat-cell>
         <div class="actions">
 
-        <button mat-icon-button color="primary" (click)="edit(card)"  *ngIf="!isEditingCard(card)">
-          <mat-icon matSuffix>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="primary" (click)="edit(card)"  *ngIf="isEditingCard(card)">
-          <mat-icon matSuffix>close</mat-icon>
-        </button>
+          <button (click)="edit(card)" *ngIf="!isEditingCard(card)" color="primary" mat-icon-button>
+            <mat-icon matSuffix>edit</mat-icon>
+          </button>
+          <button (click)="edit(card)" *ngIf="isEditingCard(card)" color="primary" mat-icon-button>
+            <mat-icon matSuffix>close</mat-icon>
+          </button>
 
-          <button mat-icon-button color="warn" (click)="confirmer(card)" >
+          <button (click)="confirmer(card)" color="warn" mat-icon-button>
             <mat-icon matSuffix>delete</mat-icon>
           </button>
         </div>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of cards">
+                 aria-label="Select page of cards"
+                 showFirstLastButtons>
   </mat-paginator>
 </div>
 
 
-<app-back-button label="Retour" (click)="Retour()"></app-back-button>
+<app-back-button (click)="Retour()" label="Retour"></app-back-button>
 </body>

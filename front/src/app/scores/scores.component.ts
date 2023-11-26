@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {PlayerInfo} from "../models/player-info.model";
 import {PlayerService} from "../services/player.service";
 import {DataSource} from "@angular/cdk/collections";
@@ -24,20 +24,11 @@ export class ScoresComponent implements OnInit{
   gagnant!: PlayerInfo | undefined;
 
 
-constructor(private router: Router,
-            private activatedRoute: ActivatedRoute,
-            private playerService: PlayerService,
-            private viewportScroller: ViewportScroller){
-  this.users = new FormGroup({});
-  this.players = this.playerService.getPlayers();
-}
 
-/*onContinue(): void{
-  this.router.navigateByUrl('menu/'+this.nombreJoueur+'/'+this.nombreManche);
-}*/
-onSubmitForm():void {
-  console.log(this.nombreJoueur);
-}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private playerService: PlayerService,) {
+    this.users = new FormGroup({});
+    this.players = this.playerService.getPlayers();
+  }
 
 
 
@@ -55,9 +46,9 @@ ngOnInit(): void {
 
   this.gagnant = this.players.find(player => player.position === 1);
   this.dataSource = new MatTableDataSource(this.players);
-  console.log(this.players)
 
 }
+
   getNumberArray(n: number): any[] {
     return Array(n);
   }

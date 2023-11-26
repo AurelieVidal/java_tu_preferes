@@ -2,20 +2,15 @@
 <div>
   <h2>Thème: {{ cardTheme.name }}</h2>
 </div>
-<!--
-<section>
-  <div class="example-button-row">
-    <button mat-raised-button style="background-color: white; color: black;" (click)="addVote('button_1')">{{this.cardText.button_1}}</button>
-    <button mat-raised-button style="background-color: black; color: white;" (click)="addVote('button_1')">{{this.cardText.button_2}}</button>
-    </div>
-</section>-->
+
 <p>Fais ton choix !</p>
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="onToggleChange($event)">
+<mat-button-toggle-group (change)="onToggleChange($event)" aria-label="Font Style" name="fontStyle">
   <mat-button-toggle value="option1"><span class="button-toggle-text">{{option1}}</span></mat-button-toggle>
   <span class="button-toggle-space"></span>
   <mat-button-toggle value="option2"><span class="button-toggle-text">{{option2}}</span></mat-button-toggle>
 </mat-button-toggle-group>
 
-<p> Bienvenu.e dans la conférence room. Ton but deviner combien de personne voterait {{option1}}. Utilise le slider !</p>
+<p> Bienvenu.e dans la conférence room. Ton but deviner combien de personne voterait {{option1}}. Utilise le slider
+  !</p>
 
 </body>

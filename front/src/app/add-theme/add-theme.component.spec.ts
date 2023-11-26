@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddThemeComponent } from './add-theme.component';
+import {AddThemeComponent} from './add-theme.component';
 
 describe('AddThemeComponent', () => {
   let component: AddThemeComponent;

@@ -1,10 +1,10 @@
 <ng-container>
-  <form [formGroup]="liaisonForm" (ngSubmit)="onSubmit()" >
+  <form (ngSubmit)="onSubmit()" [formGroup]="liaisonForm">
     <label for="id_1">carte 1 </label>
-    <input type="number" id="id_1" formControlName="id_1">
+    <input formControlName="id_1" id="id_1" type="number">
     <label for="id_2">carte 2</label>
-    <input type="number" id="id_2" formControlName="id_2" >
-    <button >OK!</button>
+    <input formControlName="id_2" id="id_2" type="number">
+    <button>OK!</button>
   </form>
 
 </ng-container>

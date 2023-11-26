@@ -13,16 +13,19 @@ export class SliderComponent implements OnInit {
   slidervalue!: number
   gameSettings!: GameSettingsModel
   nbPlayers!: number
-  sliderValue: number = 50; // La valeur par défaut du slider, ajustez selon vos besoins
+  sliderValue: number = 50;
   leftValue!: number;
   rightValue!: number;
   left!: string;
   right!: string;
 
 
+
   constructor(private sliderSerevice: SliderService,
               private gameSettingsService: GameSettingsService,) {
   }
+
+  @ViewChild('audioPlayer', {static: false}) private _audioPlayerRef!: ElementRef;
 
   get audioPlayerRef(): ElementRef {
     return this._audioPlayerRef;
@@ -31,6 +34,7 @@ export class SliderComponent implements OnInit {
   set audioPlayerRef(value: ElementRef) {
     this._audioPlayerRef = value;
   }
+
   @ViewChild('audioPlayer', {static: false}) private _audioPlayerRef!: ElementRef;
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,15 +8,11 @@ import {Router} from "@angular/router";
 })
 export class ConfigComponent {
   nombreManche!: number;
-  constructor(private router: Router){ }
 
-  onContinue(): void{
-    this.router.navigateByUrl('accueil/'+this.nombreManche);
+  constructor(private router: Router) {
   }
 
-  onSubmitForm():void {
-    console.log(this.nombreManche);
+  onContinue(): void {
+    this.router.navigateByUrl('accueil/' + this.nombreManche);
   }
-
-
 }
