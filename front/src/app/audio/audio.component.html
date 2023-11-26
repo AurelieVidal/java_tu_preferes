@@ -1,6 +1,6 @@
 <div>
-  <div class="image-container" (click)="playAudio()">
-    <img src="assets/bettrave.png" alt="Description de l'image"  />
+  <div (click)="playAudio()" class="image-container">
+    <img alt="Description de l'image" src="assets/bettrave.png"/>
     <div class="texte-sur-image">
       <mat-icon *ngIf="isPlaying">volume_up</mat-icon>
       <mat-icon *ngIf="!isPlaying">volume_off</mat-icon>

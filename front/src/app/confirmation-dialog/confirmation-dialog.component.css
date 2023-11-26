@@ -1,6 +1,6 @@
 /* Style pour la boîte de dialogue */
 .mat-dialog-container {
-  max-width: 700px; /* Ajustez la largeur maximale selon vos besoins */
+  max-width: 700px;
   margin: 0 auto; /* Centre la boîte de dialogue horizontalement */
 }
 
@@ -29,12 +29,10 @@ button {
 }
 
 /* Style pour le bouton Annuler */
-/* Style pour le bouton Annuler */
 button.annuler {
-  background-color: dimgray ; /* Ajoutez !important pour assurer que ce style est appliqué */
-  color: white; /* Ajoutez !important pour assurer que ce style est appliqué */
+  background-color: dimgray;
+  color: white;
 }
-
 
 /* Style pour le bouton Confirmer */
 .confirmer {

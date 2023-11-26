@@ -10,19 +10,19 @@ export class NumberInputComponent {
   value = 2;
   @Input() label: string = '';
 
-  constructor(private numberService : NumberService) {
+  constructor(private numberService: NumberService) {
   }
 
   handleMinus() {
     console.log("MOINS")
     console.log(this.label)
-    if(this.label=="joueurs"){
-      if (this.value > 2){
+    if (this.label == "joueurs") {
+      if (this.value > 2) {
         this.value--;
         this.numberService.setValueJoueur(this.value);
       }
-    } else if(this.label=="manches"){
-      if (this.value > 1){
+    } else if (this.label == "manches") {
+      if (this.value > 1) {
         this.value--;
         this.numberService.setValueManche(this.value);
       }
@@ -30,15 +30,16 @@ export class NumberInputComponent {
 
 
   }
+
   handlePlus() {
     console.log("PLUS")
     console.log(this.label)
-    if(this.label=="joueurs"){
-      if (this.value < 10){
+    if (this.label == "joueurs") {
+      if (this.value < 10) {
         this.value++;
         this.numberService.setValueJoueur(this.value);
       }
-    } else if (this.label=="manches"){
+    } else if (this.label == "manches") {
       this.value++;
       this.numberService.setValueManche(this.value);
     }

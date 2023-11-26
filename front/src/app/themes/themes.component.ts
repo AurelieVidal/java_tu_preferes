@@ -4,7 +4,7 @@ import {CardService} from "../services/card.services";
 import {Router} from "@angular/router";
 import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {FormControl} from "@angular/forms";
@@ -21,6 +21,7 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   isSearching: boolean = false;
   dataSource = new MatTableDataSource<ThemeModel>();
   displayedColumns: string[] = ['name', 'number', 'actions'];
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator
 
   constructor(
     private themeService: ThemeService,
@@ -30,9 +31,6 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   ) {
     this.themes$ = themeService.findAll();
   }
-
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator
-
 
   ngAfterViewInit() {
 
@@ -95,7 +93,7 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   Recherche() {
     const searchTerm = String(this.searchForm.value); // Assurez-vous que searchForm.value contient le terme de recherche
 
-    if (searchTerm==""){
+    if (searchTerm == "") {
       return;
     }
 
@@ -119,11 +117,11 @@ export class ThemesComponent implements OnInit, AfterViewInit {
   }
 
   AfficherTheme(theme: ThemeModel) {
-    this.router.navigateByUrl('cartes/'+theme.id)
+    this.router.navigateByUrl('cartes/' + theme.id)
   }
 
   ModifierTheme(theme: ThemeModel) {
-    this.router.navigateByUrl('edit/'+theme.id)
+    this.router.navigateByUrl('edit/' + theme.id)
   }
 
   VersAccueil() {

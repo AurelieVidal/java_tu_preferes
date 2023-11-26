@@ -1,4 +1,4 @@
-h1{
+h1 {
   color: white; /* Couleur du texte */
   font-size: 80px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -10,7 +10,8 @@ h1{
   margin-bottom: 40px;
 
 }
-h2{
+
+h2 {
   color: white; /* Couleur du texte */
   font-size: 50px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -19,42 +20,43 @@ h2{
   text-align: center;
 
 }
-p{
+
+p {
   font-size: 30px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
   margin: 40px;
 }
-label{
+
+label {
   font-size: 30px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Contour noir autour des lettres */
   text-align: center;
 }
-div{
+
+div {
   text-align: center;
 }
+
 button {
   background-color: transparent;
   box-sizing: border-box;
   padding: 5px 10px;
   border: none;
-  /*box-shadow: lightgray 3px 3px 7px;*/
   text-align: center;
   outline: none;
   font-size: 14px;
-  font-weight: bold; /* Poids de la police */
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
-
-
-.giff{
+.giff {
   filter: opacity(0.8);
 }
 
@@ -66,7 +68,7 @@ body {
   font-size: 25px;
 }
 
-.mat-elevation-z8{
+.mat-elevation-z8 {
   margin: 40px;
   box-shadow: none;
   margin-top: 0;
@@ -78,7 +80,7 @@ body {
   align-items: center; /* Centrer verticalement */
 }
 
-mat-form-field{
+mat-form-field {
   margin-top: 30px;
   width: 300px;
   display: flex;
@@ -86,7 +88,7 @@ mat-form-field{
   align-items: center;
 }
 
-.retour{
+.retour {
   height: 50px;
   margin-top: 5px;
 }
@@ -98,7 +100,7 @@ mat-form-field{
   margin: 0;
 }
 
-.nextButton{
+.nextButton {
   margin-left: 40px;
   height: 100%;
   width: 90px;
@@ -125,6 +127,7 @@ mat-form-field{
 table {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
 mat-paginator {
   background-color: rgba(255, 255, 255, 0.76);
 }
@@ -156,6 +159,6 @@ app-back-button {
   flex-direction: row;
 }
 
-.edit-container{
+.edit-container {
   width: 100%;
 }

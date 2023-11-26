@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GestionCartesComponent } from './gestion-cartes.component';
+import {GestionCartesComponent} from './gestion-cartes.component';
 
 describe('GestionCartesComponent', () => {
   let component: GestionCartesComponent;

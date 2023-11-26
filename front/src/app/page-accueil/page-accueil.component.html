@@ -1,44 +1,45 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playtone+One">
+<link href="https://fonts.googleapis.com/css2?family=Playtone+One" rel="stylesheet">
 
 
 <body>
 
 
-<app-button-small label="Voir les thèmes"  (click)="versThemes()"></app-button-small>
+<app-button-small (click)="versThemes()" label="Voir les thèmes"></app-button-small>
 <!--<a href='config'>Configurations</a>-->
 
 
-
 <h1>That what they like :</h1>
-<p>Que tu sois fan de Dwight ou que tu collectionnes les posters de Michael, bienvenu.e.s sur That what they like! Le but n'est pas d'être le plus original mais d'être celui qui arrivera à deviner les préférences de ses collègues. Bon assez discuter, aller tous en conférence room !... </p>
+<p>Que tu sois fan de Dwight ou que tu collectionnes les posters de Michael, bienvenu.e.s sur That what they like! Le
+  but n'est pas d'être le plus original mais d'être celui qui arrivera à deviner les préférences de ses collègues. Bon
+  assez discuter, aller tous en conférence room !... </p>
 
-<iframe class="giff"
-  src="https://gifer.com/embed/14bg"
-  width="100%"
-  height="100%"
-  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
-  allowfullscreen
+<iframe allowfullscreen
+        class="giff"
+        height="100%"
+        src="https://gifer.com/embed/14bg"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+        width="100%"
 ></iframe>
 
 <div class="big">
   <div class="stepper">
-    <mat-stepper orientation="vertical" [linear]="false" #stepper class="custom-stepper">
-      <mat-step [stepControl]="firstFormGroup" >
+    <mat-stepper #stepper [linear]="false" class="custom-stepper" orientation="vertical">
+      <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" class="step1">
           <ng-template matStepLabel><p>Nombre de joueurs</p></ng-template>
           <app-number-input label="joueurs"></app-number-input>
           <div>
-            <button matStepperNext class="nextButton"><p class="pbutton">Suivant</p></button>
+            <button class="nextButton" matStepperNext><p class="pbutton">Suivant</p></button>
           </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup" class="step1">
           <ng-template matStepLabel><p>Nombre de manches</p></ng-template>
-          <app-number-input label="manches" (click)="changed()"></app-number-input>
+          <app-number-input (click)="changed()" label="manches"></app-number-input>
           <div class="buttons">
-            <button mat-button matStepperPrevious class="nextButton"><p class="pbutton">Retour</p></button>
-            <button mat-button matStepperNext class="nextButton"><p class="pbutton">Suivant</p></button>
+            <button class="nextButton" mat-button matStepperPrevious><p class="pbutton">Retour</p></button>
+            <button class="nextButton" mat-button matStepperNext><p class="pbutton">Suivant</p></button>
           </div>
         </form>
       </mat-step>
@@ -49,30 +50,24 @@
           <mat-form-field>
             <mat-label>Thème</mat-label>
             <mat-select [formControl]="secondFormGroup.controls.secondCtrl">
-              <mat-option *ngFor="let theme of themes" [value]="theme.name" >
+              <mat-option *ngFor="let theme of themes" [value]="theme.name">
                 {{theme.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-button matStepperPrevious class="nextButton retour"><p class="pbutton">Retour</p></button>
+          <button class="nextButton retour" mat-button matStepperPrevious><p class="pbutton">Retour</p></button>
 
         </form>
       </mat-step>
     </mat-stepper>
   </div>
-  <app-button-big label="Continuer" (click)="onContinue()"></app-button-big>
-
+  <app-button-big (click)="onContinue()" label="Continuer"></app-button-big>
 
 
 </div>
 
 
-<!--<button type="submit" [disabled]="!form.valid" (click)="onContinue()" >OK!</button>-->
-
 </body>
-<!--<app-audio>loading</app-audio>-->
-
-
 
 
 <router-outlet></router-outlet>

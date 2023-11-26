@@ -1,36 +1,36 @@
 <h1>{{ theme.name }}</h1>
 
 <iframe
-  class="giff"
-  src="https://gifer.com/embed/6SO"
-  width="100%"
-  height="100%"
-  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
   allowfullscreen
+  class="giff"
+  height="100%"
+  src="https://gifer.com/embed/6SO"
+  style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: none; margin: 0; padding: 0; overflow: hidden; z-index: -1;"
+  width="100%"
 ></iframe>
 <div class="tab">
-<div class="tableau">
-  <table mat-table [dataSource]="liaison" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="carte1Reponse">
-      <th mat-header-cell *matHeaderCellDef> Carte 1 </th>
-      <td mat-cell *matCellDef="let element"> {{ element.carte1?.reponse }} </td>
-    </ng-container>
+  <div class="tableau">
+    <table [dataSource]="liaison" class="mat-elevation-z8" mat-table>
+      <!-- Position Column -->
+      <ng-container matColumnDef="carte1Reponse">
+        <th *matHeaderCellDef mat-header-cell> Carte 1</th>
+        <td *matCellDef="let element" mat-cell> {{ element.carte1?.reponse }} </td>
+      </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="carte2Reponse">
-      <th mat-header-cell *matHeaderCellDef> Carte 2 </th>
-      <td mat-cell *matCellDef="let element"> {{ element.carte2?.reponse }} </td>
-    </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="carte2Reponse">
+        <th *matHeaderCellDef mat-header-cell> Carte 2</th>
+        <td *matCellDef="let element" mat-cell> {{ element.carte2?.reponse }} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+    </table>
+  </div>
 </div>
-</div>
 
 
-<div class = "buttons">
-  <app-back-button label="Retour" (click)="VersTheme()"></app-back-button>
-  <app-button-small label="Modifier le thème" (click)="versEditTheme()"></app-button-small>
+<div class="buttons">
+  <app-back-button (click)="VersTheme()" label="Retour"></app-back-button>
+  <app-button-small (click)="versEditTheme()" label="Modifier le thème"></app-button-small>
 </div>

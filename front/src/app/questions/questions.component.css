@@ -7,9 +7,10 @@ body {
   justify-content: center;
   padding: 10px 30px;
   background-color: transparent;
-  width: 100%;}
+  width: 100%;
+}
 
-h1{
+h1 {
   color: white; /* Couleur du texte */
   font-size: 80px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -19,7 +20,8 @@ h1{
   background-color: transparent;
 
 }
-h2{
+
+h2 {
   color: white; /* Couleur du texte */
   font-size: 50px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -30,7 +32,8 @@ h2{
   margin: 0;
 
 }
-p{
+
+p {
   font-size: 30px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -39,7 +42,8 @@ p{
   background-color: transparent;
   text-align: center;
 }
-label{
+
+label {
   font-size: 30px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -48,16 +52,17 @@ label{
   background-color: transparent;
 }
 
-div{
+div {
   text-align: center;
   background-color: transparent;
   display: flex;
 }
 
-div.example-button-row{
+div.example-button-row {
   display: flex;
   justify-content: center;
 }
+
 button {
   box-sizing: border-box;
   padding: 5px 10px;
@@ -88,7 +93,7 @@ button {
 
 }
 
-.giff{
+.giff {
   filter: opacity(0.8);
 }
 
@@ -107,8 +112,6 @@ button {
   max-width: 400px; /* Ajustez selon votre préférence */
   white-space: normal;
 }
-
-
 
 
 mat-button-toggle-group {

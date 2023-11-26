@@ -1,12 +1,12 @@
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Component } from "@angular/core";
-import { GameSettingsService } from "../services/gameSettings.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Component} from "@angular/core";
+import {GameSettingsService} from "../services/gameSettings.service";
 import {ThemeService} from "../services/theme.service";
 import {Observable} from "rxjs";
 import {ThemeModel} from "../models/themes.model";
 import {NumberService} from "../services/number.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-page-accueil',
@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PageAccueilComponent {
   form: FormGroup; // Créez un formulaire réactif
-  themes_obs!:Observable<ThemeModel[]>
+  themes_obs!: Observable<ThemeModel[]>
   themes!: ThemeModel[]
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -24,15 +24,13 @@ export class PageAccueilComponent {
     secondCtrl: ['', Validators.required],
   });
   totalThemes!: ThemeModel[]
-  //firstFormGroup = new FormGroup('');
-  //secondFormGroup = new FormControl('');
-  //thirdFormGroup = new FormControl('');
+
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
               private gameSettingsService: GameSettingsService,
-              private themeService : ThemeService,
+              private themeService: ThemeService,
               private _formBuilder: FormBuilder,
               private numberService: NumberService,
               private snackBar: MatSnackBar
@@ -45,9 +43,9 @@ export class PageAccueilComponent {
     this.themes_obs = themeService.findAll();
   }
 
-  getTheme (name:String){
+  getTheme(name: String) {
     for (let theme of this.themes) {
-      if (theme.name == name){
+      if (theme.name == name) {
         return theme.id
       }
     }
@@ -61,20 +59,20 @@ export class PageAccueilComponent {
   }
 
   onContinue(): void {
-    // Enregistrez le nombre de manches dans le service GameSettingsService
+    // Enregistre le nombre de manches dans le service GameSettingsService
     console.log(this.numberService.getValueJoueur())
     console.log(this.numberService.getValueManche())
-    console.log ("THEME")
+    console.log("THEME")
     console.log(this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)))
 
-    if (this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)) == -1){
+    if (this.getTheme(String(this.secondFormGroup.controls.secondCtrl.value)) == -1) {
       this.showErrorMessage("Veuillez renseigner un thème !")
       return;
     }
 
     this.gameSettingsService.setGameSettings({
-      nombreManche: this.numberService.getValueManche(), // Utilisez this.form.value
-      nombreJoueur: this.numberService.getValueJoueur(), // Utilisez this.form.value
+      nombreManche: this.numberService.getValueManche(),
+      nombreJoueur: this.numberService.getValueJoueur(),
       currentManche: 1,
       currentPlayer: 0,
 
@@ -87,14 +85,13 @@ export class PageAccueilComponent {
     if (this.form.valid) {
       console.log(this.form.value.nombreJoueur);
     } else {
-      // Affichez un message d'erreur ou effectuez une action appropriée si les champs ne sont pas valides
     }
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(s => {
       this.form.patchValue({
-        nombreManche: s["nombreManche"] // Initialisez le champ nombreManche à partir des paramètres
+        nombreManche: s["nombreManche"] // Initialise le champ nombreManche à partir des paramètres
       });
       console.log("le nbr de manche est " + this.form.value.nombreManche);
     });

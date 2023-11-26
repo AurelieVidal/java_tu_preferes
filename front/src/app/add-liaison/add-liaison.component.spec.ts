@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddLiaisonComponent } from './add-liaison.component';
+import {AddLiaisonComponent} from './add-liaison.component';
 
 describe('AddLiaisonComponent', () => {
   let component: AddLiaisonComponent;

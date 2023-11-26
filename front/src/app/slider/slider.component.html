@@ -3,7 +3,8 @@
 
 </audio>
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" [(ngModel)]="sliderValue" (input)="onSliderChange()" class="slider" id="myRange">
+  <input (input)="onSliderChange()" [(ngModel)]="sliderValue" class="slider" id="myRange" max="100" min="1"
+         type="range">
   <div class="before"></div>
   <div class="after"></div>
 </div>

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { PlayerService } from "../services/player.service";
-import { PlayerInfo } from "../models/player-info.model";
-import { GameSettingsModel } from "../models/gameSettings.model";
-import { GameSettingsService } from "../services/gameSettings.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {PlayerService} from "../services/player.service";
+import {PlayerInfo} from "../models/player-info.model";
+import {GameSettingsModel} from "../models/gameSettings.model";
+import {GameSettingsService} from "../services/gameSettings.service";
 import {ToggleService} from "../services/toggle.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {SliderService} from "../services/slider.service";
 
 @Component({
@@ -16,7 +16,8 @@ import {SliderService} from "../services/slider.service";
 
 export class GameComponent implements OnInit {
   gameSettings!: GameSettingsModel
-
+  players: PlayerInfo[];
+  goToNextManche: boolean = false;
 
   constructor(
     private playerService: PlayerService,
@@ -28,9 +29,6 @@ export class GameComponent implements OnInit {
   ) {
     this.players = this.playerService.getPlayers();
   }
-
-  players: PlayerInfo[];
-  goToNextManche: boolean = false;
 
   ngOnInit() {
     this.gameSettings = this.gameSettingsService.getGameSettings()
@@ -57,7 +55,7 @@ export class GameComponent implements OnInit {
     console.log("SCORE ?")
     console.log(this.gameSettingsService.isLastManche() && this.goToNextManche)
     console.log(this.gameSettingsService.canIncrementPlayer())
-    if (this.toggleService.getSelected() == "none"){
+    if (this.toggleService.getSelected() == "none") {
       this.showErrorMessage("Veuillez choisir entre les deux propositions")
       return;
     }

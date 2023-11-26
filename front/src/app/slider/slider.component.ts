@@ -9,8 +9,12 @@ import {SliderService} from "../services/slider.service";
 })
 export class SliderComponent implements OnInit {
 
+  sliderValue: number = 50;
+
   constructor(private sliderSerevice: SliderService) {
   }
+
+  @ViewChild('audioPlayer', {static: false}) private _audioPlayerRef!: ElementRef;
 
   get audioPlayerRef(): ElementRef {
     return this._audioPlayerRef;
@@ -19,9 +23,6 @@ export class SliderComponent implements OnInit {
   set audioPlayerRef(value: ElementRef) {
     this._audioPlayerRef = value;
   }
-  @ViewChild('audioPlayer', {static: false}) private _audioPlayerRef!: ElementRef;
-
-  sliderValue: number = 50;
 
   ngOnInit() {
     console.log('Valeur actuelle du slider :', this.sliderValue);

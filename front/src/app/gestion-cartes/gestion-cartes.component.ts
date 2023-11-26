@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Liaison } from '../models/liaison.model';
-import { CardService } from "../services/card.services";
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Liaison} from '../models/liaison.model';
+import {CardService} from "../services/card.services";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ThemeModel} from "../models/themes.model";
 import {ThemeService} from "../services/theme.service";
@@ -16,7 +16,7 @@ export class GestionCartesComponent implements OnInit {
   liaison!: MatTableDataSource<Liaison>;
   theme_obs!: Observable<ThemeModel>
   theme!: ThemeModel
-  theme_id!:number
+  theme_id!: number
   displayedColumns: string[] = ['carte1Reponse', 'carte2Reponse'];
 
   constructor(
@@ -30,8 +30,8 @@ export class GestionCartesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.theme_obs.subscribe (
-      x=> {
+    this.theme_obs.subscribe(
+      x => {
         this.theme = x;
 
         this.liaison = new MatTableDataSource<Liaison>(this.theme.paires);
@@ -43,17 +43,20 @@ export class GestionCartesComponent implements OnInit {
 
           this.cardService.findById(Number(paire.id_2)).subscribe(
             carte2 => paire.carte2 = carte2
-          );}})
+          );
+        }
+      })
   }
 
-  versEditTheme(): void{
-    this.router.navigateByUrl('edit/'+this.theme_id);
+  versEditTheme(): void {
+    this.router.navigateByUrl('edit/' + this.theme_id);
   }
-  versAddCard(): void{
+
+  versAddCard(): void {
     this.router.navigateByUrl('addCard');
   }
 
-  versAddLiaison(): void{
+  versAddLiaison(): void {
     this.router.navigateByUrl('addLiaison');
   }
 

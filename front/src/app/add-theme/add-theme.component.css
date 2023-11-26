@@ -1,13 +1,14 @@
 body {
   box-sizing: border-box;
   width: 50%;
-  margin:0 auto;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   padding: 10px 30px;
-  background-color: transparent;}
+  background-color: transparent;
+}
 
-h1{
+h1 {
   color: white; /* Couleur du texte */
   font-size: 80px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -17,7 +18,8 @@ h1{
   background-color: transparent;
 
 }
-h2{
+
+h2 {
   color: white; /* Couleur du texte */
   font-size: 50px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
@@ -27,7 +29,8 @@ h2{
   background-color: transparent;
 
 }
-p{
+
+p {
   font-size: 30px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -35,7 +38,8 @@ p{
   margin: 40px;
   background-color: transparent;
 }
-label{
+
+label {
   font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Poids de la police */
   color: white; /* Couleur du texte */
@@ -44,10 +48,11 @@ label{
   background-color: transparent;
 }
 
-div{
+div {
   text-align: center;
   background-color: transparent;
 }
+
 button {
   background-color: transparent;
   box-sizing: border-box;
@@ -72,7 +77,6 @@ button {
 }
 
 
-
 .texte-sur-image {
   position: absolute;
   top: 50%;
@@ -85,7 +89,7 @@ button {
 
 }
 
-.giff{
+.giff {
   filter: opacity(0.8);
 }
 
@@ -102,7 +106,8 @@ table {
 
 
 }
-.tableau{
+
+.tableau {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,13 +132,14 @@ input {
   background-color: transparent;
   width: 100%;
 }
-mat-form-field{
+
+mat-form-field {
   width: 100%;
   background-color: transparent;
 
 }
 
-.imag_pseudo-container-2{
+.imag_pseudo-container-2 {
   margin-top: 20px;
   position: absolute;
   top: 0;
@@ -143,14 +149,13 @@ mat-form-field{
   font-size: 15px; /* Taille de la police */
 }
 
-.validation{
+.validation {
   display: flex;
   justify-content: center;
 }
 
 
-
-.suite{
+.suite {
   display: flex;
   justify-content: center;
 }
@@ -181,7 +186,7 @@ mat-form-field{
   font-size: 25px;
 }
 
-.fvalidation{
+.fvalidation {
   width: 30%;
   margin-top: 10px;
 }
@@ -200,20 +205,13 @@ body {
   justify-content: center;
 }
 
-/*
-app-button-small {
-  position: absolute;
-  top: 0;
-  right: 0;
-}*/
-
 .buttons {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.bigbutton{
+.bigbutton {
   display: flex;
   justify-content: center;
 }

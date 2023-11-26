@@ -1,21 +1,22 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { Liaison } from "../models/liaison.model";
-import { map, Observable, startWith } from "rxjs";
-import { ThemeModel } from "../models/themes.model";
-import { CardService } from "../services/card.services";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ThemeService } from "../services/theme.service";
-import { FormControl } from "@angular/forms";
-import { Card } from "../models/card.model";
+import {Component, OnInit} from '@angular/core';
+import {Liaison} from "../models/liaison.model";
+import {map, Observable} from "rxjs";
+import {ThemeModel} from "../models/themes.model";
+import {CardService} from "../services/card.services";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ThemeService} from "../services/theme.service";
+import {FormControl} from "@angular/forms";
+import {Card} from "../models/card.model";
 import {LiaisonService} from "../services/liaison.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-theme',
   templateUrl: './edit-theme.component.html',
   styleUrls: ['./edit-theme.component.css']
 })
-export class EditThemeComponent implements OnInit{
+export class EditThemeComponent implements OnInit {
+  // Déclaration des propriétés
   liaison!: Liaison[];
   theme_obs!: Observable<ThemeModel>;
   theme!: ThemeModel;
@@ -29,16 +30,11 @@ export class EditThemeComponent implements OnInit{
   carteControls1: { [key: number]: FormControl } = {};
   themenameFC!: FormControl<string | null>
   carteControls2: { [key: number]: FormControl } = {};
-  indexes1 :number[] = [];
-  indexes2 :number[] = [];
+  indexes1: number[] = [];
+  indexes2: number[] = [];
   all_liaisons!: Liaison[];
   all_liaisons_obs!: Observable<Liaison[]>;
-
-  private _filter(value: string): string[] {
-
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  protected readonly Number = Number;
 
   constructor(
     private cardService: CardService,
@@ -48,26 +44,27 @@ export class EditThemeComponent implements OnInit{
     private liaisonService: LiaisonService,
     private snackBar: MatSnackBar
   ) {
+    // Initialisation des propriétés et récupération de l'ID du thème
+
     this.theme_id = parseInt(this.activatedRoute.snapshot.params["id"]);
     this.theme_obs = this.themeService.findById(this.theme_id);
     this.options_obs = cardService.findAll();
     this.all_liaisons_obs = liaisonService.findAll();
   }
 
+  // Hook de cycle de vie Angular
+
   ngOnInit() {
     this.filteredOptions = this.myControl1.valueChanges.pipe(
-
       map(value => this._filter(value || '')),
     );
 
     this.filteredOptions = this.myControl2.valueChanges.pipe(
-
       map(value => this._filter(value || '')),
     );
 
 
-    this.all_liaisons_obs.subscribe(x =>this.all_liaisons = x)
-
+    this.all_liaisons_obs.subscribe(x => this.all_liaisons = x)
 
 
     this.options_obs.subscribe(
@@ -85,12 +82,14 @@ export class EditThemeComponent implements OnInit{
         this.themenameFC = new FormControl(this.theme.name)
         console.log("LE TRUC DU NOM : " + this.themenameFC.value)
         for (const paire of this.liaison) {
+          // Récupérer les détails de la carte et créer des contrôles de formulaire
+
           this.cardService.findById(Number(paire.id_1)).subscribe(
             carte1 => {
               paire.carte1 = carte1;
               this.indexes1.push(Number(paire.id))
               this.carteControls1[Number(paire.id)] = new FormControl(carte1.reponse);
-              console.log("création form : "+ paire.id_1 + "---"+this.carteControls1[Number(paire.id)].value)
+              console.log("création form : " + paire.id_1 + "---" + this.carteControls1[Number(paire.id)].value)
               console.log(this.carteControls1[Number(paire.id)])
             }
           );
@@ -100,86 +99,48 @@ export class EditThemeComponent implements OnInit{
               paire.carte2 = carte2;
               this.indexes2.push(Number(paire.id))
               this.carteControls2[Number(paire.id)] = new FormControl(carte2.reponse);
-              console.log("création form 2 : "+ paire.id_2 +"---"+this.carteControls2[Number(paire.id)].value);
+              console.log("création form 2 : " + paire.id_2 + "---" + this.carteControls2[Number(paire.id)].value);
 
             }
-
           );
 
         }
       }
     );
-
-
   }
-
-
 
   versAddCard(): void {
     this.router.navigateByUrl('addCard');
   }
 
-  versAddLiaison(): void {
-    this.router.navigateByUrl('addLiaison');
-  }
-
-
   handleInputFocus(type: string, index: number, formcontrolller: FormControl): void {
 
     //vérification
-
-
-
-
-
     this.filteredOptions = formcontrolller.valueChanges.pipe(
-
       map(value => this._filter(value || '')),
     );
 
-    console.log(this.indexes1)
-    console.log(this.carteControls1)
-    console.log(formcontrolller)
 
-
-    console.log("id = "+index)
-    console.log ("str : " + type)
-    if (type =='inputCarte1') {
-      console.log("valeur = " + this.carteControls1[this.indexes1[index]].value);
+    if (type == 'inputCarte1') {
       this._filter(this.carteControls1[this.indexes1[index]].value)
     }
-    if (type =='inputCarte2') {
+    if (type == 'inputCarte2') {
 
-      console.log("valeur = " + this.carteControls2[this.indexes2[index]].value);
       this._filter(this.carteControls2[this.indexes2[index]].value)
     }
-
-
-
-
-
-
-
   }
-
+  // Gérer le changement de l'input
   handleInputChange(type: string, index: number, formcontrolller: FormControl) {
 
-    console.log('Champ de recherche modifié:', formcontrolller.value);
-    for (let ind of this.indexes1){
-      if (ind != this.indexes1[index]){
-        if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value){
-          console.log("LIAISON EXISTANTE")
+    for (let ind of this.indexes1) {
+      if (ind != this.indexes1[index]) {
+        if (this.carteControls1[this.indexes1[index]].value == this.carteControls1[ind].value && this.carteControls2[this.indexes2[index]].value == this.carteControls2[ind].value) {
           formcontrolller.setValue("");
           this.showErrorMessage('Liaison existante !');
         }
-
       }
-
     }
   }
-
-
-
 
   showErrorMessage(message: string) {
     this.snackBar.open(message, 'Fermer', {
@@ -187,18 +148,13 @@ export class EditThemeComponent implements OnInit{
     });
   }
 
-
   focusinputs(formcontroller: FormControl) {
     this.filteredOptions = formcontroller.valueChanges.pipe(
-
       map(value => this._filter(value || '')),
     );
-
-
   }
 
-
-
+  // Valider et mettre à jour le thème
   async valider() {
     const nom = this.themenameFC.value;
     if (nom == null || nom.trim() === '') {
@@ -206,8 +162,6 @@ export class EditThemeComponent implements OnInit{
       this.showErrorMessage("Le nom du thème est vide.");
       return; // Arrêter la validation si le nom est vide ou null
     }
-
-
 
     const liaisons: Liaison[] = [];
 
@@ -223,14 +177,12 @@ export class EditThemeComponent implements OnInit{
 
       const id1 = await this.createOrFindCard(value1);
       const id2 = await this.createOrFindCard(value2);
+      const liaison = {id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!!};
 
-      const liaison = { id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!! };
-
-      if (id1==id2){
+      if (id1 == id2) {
         this.showErrorMessage("Une des liaisons a deux choix identiques ! ")
         return;
       }
-
 
       if (this.liaison[index].id_1 !== id1 || this.liaison[index].id_2 !== id2) {
         const existingLiaison = this.findExistingLiaison(id1!!, id2!!);
@@ -251,24 +203,17 @@ export class EditThemeComponent implements OnInit{
       return;
     }
 
-    const theme = { name: String(nom), paires: liaisons };
-    console.log("Thème modifié:", theme);
+    const theme = {name: String(nom), paires: liaisons};
 
     this.themeService.update(this.theme_id, theme).subscribe(() => {
-      //this.router.navigate(["themes"]);
       this.router.navigateByUrl("themes");
     });
-
-
-
   }
-
-
 
 
   async createCard(value: string): Promise<Card> {
     return new Promise((resolve, reject) => {
-      const card: Card = { reponse: value };
+      const card: Card = {reponse: value};
       this.cardService.create(card).subscribe(
         (newCard: Card) => {
           console.log("Nouvelle carte créée avec ID " + newCard.id);
@@ -289,7 +234,7 @@ export class EditThemeComponent implements OnInit{
   }
 
   async createLiaison(id1: number, id2: number): Promise<Liaison> {
-    const newLiaison: Liaison = { id_1: id1, id_2: id2 };
+    const newLiaison: Liaison = {id_1: id1, id_2: id2};
     return new Promise((resolve, reject) => {
       this.liaisonService.create(newLiaison).subscribe(
         (newLiaison: Liaison) => {
@@ -303,18 +248,6 @@ export class EditThemeComponent implements OnInit{
       );
     });
   }
-
-  existe(value: string):number{
-    console.log ("dans esiste")
-    let id: number = -1
-    for (let index = 0; index < this.options.length; index++) {
-      if (this.options[index]==value){
-        id=this.ids[index]
-      }
-    }
-    return id
-  }
-
 
   async createOrFindCard(value: string): Promise<number | null> {
     for (let index = 0; index < this.options.length; index++) {
@@ -342,8 +275,8 @@ export class EditThemeComponent implements OnInit{
       return;
     }
 
-    for (let ind of this.indexes1){
-      if (this.myControl1.value == this.carteControls1[ind].value && this.myControl2.value == this.carteControls2[ind].value){
+    for (let ind of this.indexes1) {
+      if (this.myControl1.value == this.carteControls1[ind].value && this.myControl2.value == this.carteControls2[ind].value) {
         console.log("LIAISON EXISTANTE")
         this.showErrorMessage('Liaison existante !');
         return;
@@ -381,33 +314,18 @@ export class EditThemeComponent implements OnInit{
   }
 
   deleteLiaison(liaison: Liaison) {
-    console.log(liaison)
     const index = this.liaison.indexOf(liaison); // Trouver l'index de la liaison à supprimer
     this.indexes1.splice(index, 1);
-    this.indexes2.splice(index,1);
+    this.indexes2.splice(index, 1);
     this.liaison.splice(index, 1); // Supprimer la liaison en utilisant splice
-    /* //Vérification pas utile
-    if (index !== -1) {
-
-      console.log(`Liaison supprimée : ${liaison}`);
-    } else {
-      console.log(`Liaison introuvable : ${liaison}`);
-    }*/
   }
 
   Retour() {
     this.router.navigateByUrl('themes')
   }
 
-
-
-
-
-
-
-
-  protected readonly Number = Number;
-
-
-
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
 }

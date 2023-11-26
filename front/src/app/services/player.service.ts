@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { PlayerInfo } from '../models/player-info.model';
+import {Injectable} from '@angular/core';
+import {PlayerInfo} from '../models/player-info.model';
 
 
 @Injectable({
