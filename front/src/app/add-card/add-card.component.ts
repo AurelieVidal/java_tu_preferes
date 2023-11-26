@@ -114,7 +114,6 @@ export class AddCardComponent implements OnInit, AfterViewInit{
     }
 
     const card: Card = { reponse: this.cardForm.controls.reponse.value!! };
-    console.log(card.reponse);
     const createdCard = await this.cardService.create(card).toPromise();
 
     console.log('Carte créée :', createdCard);

@@ -232,7 +232,8 @@ export class EditThemeComponent implements OnInit{
       const id2 = await this.createOrFindCard(value2);
 
       const liaison = { id: this.liaison[index].id!!, id_1: id1!!, id_2: id2!! };
-
+      console.log("LIAISON")
+      console.log(liaison)
       if (id1==id2){
         this.showErrorMessage("Une des liaisons a deux choix identiques ! ")
         return;
